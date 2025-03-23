@@ -15,6 +15,6 @@ La página irá dedicada a la promoción y gestión de un club amateur de e-spor
     
 -   Vanilla JS para el front-end (principalmente validaciones de formularios).
     
--   SCSS para los estilos.
+-   HTML y SCSS para los estilos y la estructura de la página.
     
 -   Para la base de datos utilizaría MySQL
