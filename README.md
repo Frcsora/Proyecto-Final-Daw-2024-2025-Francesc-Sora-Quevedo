@@ -20,11 +20,11 @@ La página irá dedicada a la promoción y gestión de un club amateur de e-spor
 -   Para la base de datos utilizaría MySQL
 ##Diseño de la web
 -  El cliente me presentó el siguiente boceto inicial
-![image](https://github.com/user-attachments/assets/5f5d51b2-0972-423e-9906-66c97ed87126)
+-  ![image](https://github.com/user-attachments/assets/5f5d51b2-0972-423e-9906-66c97ed87126)
 -  En la actualidad este es la primera plantila llevaba a cabo con la información del cliente:
-![image](https://github.com/user-attachments/assets/c2ab1814-ad49-4523-9bb6-953fbb446d95)
+-  ![image](https://github.com/user-attachments/assets/c2ab1814-ad49-4523-9bb6-953fbb446d95)
 -  También con plantilla para la version móvil
-![image](https://github.com/user-attachments/assets/68370443-6630-4254-9053-029781118449)
+-  ![image](https://github.com/user-attachments/assets/68370443-6630-4254-9053-029781118449)
  
 
 ## El proyecto se puede definir en 3 flujos de desarrollo
