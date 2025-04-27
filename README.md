@@ -36,7 +36,32 @@ La página irá dedicada a la promoción y gestión de un club amateur de e-spor
 -  Rol 'admin'
 3. Flujo de contenido estático:
 -  El contenido estático consiste en información que suele mantenerse con el paso del tiempo, como el logo de la página, o los enlaces a redes sociales. Este flujo se encarga de traer esta información que se encuentra guardada en la base de datos.
-## Ejemplo de CRUD
--  Me encuentro realizando el modelo entidad-relación de la base de datos, comparto como funcionario el flujo de la gestión de noticias ya que creo que no será muy diferente para los demas apartados.
-![image](https://github.com/user-attachments/assets/51c5e4e9-7c63-4ab7-ac46-edd677195dd4)
+## Modelos base de datos
+
+En este apartado mostraré en 3 partes diferenciadas los modelos entidad-relación y relacional, para que pueda verse con más claridad
+
+### Users-News-Messages
+
+#### Modelo entidad-relación
+![imagen](https://github.com/user-attachments/assets/22ff96ad-1ba5-4dc1-a183-860dc7180c45)
+
+#### Modelo relacional
+![imagen](https://github.com/user-attachments/assets/034a6bcd-b364-4c0c-8755-4b442b31b0e0)
+
+### Medias-Teams-Players
+
+#### Modelo entidad-relación
+![imagen](https://github.com/user-attachments/assets/345e2f50-5fc4-4287-afb7-e315133366ca)
+
+#### Modelo relacional
+![imagen](https://github.com/user-attachments/assets/352511a0-2c2c-4ae4-90dd-ec20c4e66783)
+
+### Images
+
+#### Modelo entidad-relación
+![imagen](https://github.com/user-attachments/assets/5a110921-f900-4404-ae2a-078f4e937b5e)
+
+#### Modelo relacional
+![imagen](https://github.com/user-attachments/assets/890eba02-2c5f-40d9-9548-c18df260bc8c)
+
 
