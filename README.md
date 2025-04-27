@@ -43,7 +43,7 @@ En este apartado mostraré en 3 partes diferenciadas los modelos entidad-relaci�
 ### Users-News-Messages
 
 #### Modelo entidad-relación
-![imagen](https://github.com/user-attachments/assets/22ff96ad-1ba5-4dc1-a183-860dc7180c45)
+![imagen](https://github.com/user-attachments/assets/6e7d13d1-63ff-441d-b569-934d2314210c)
 
 #### Modelo relacional
 ![imagen](https://github.com/user-attachments/assets/034a6bcd-b364-4c0c-8755-4b442b31b0e0)
