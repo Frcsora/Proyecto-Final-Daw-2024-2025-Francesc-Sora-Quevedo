@@ -40,13 +40,13 @@ La página irá dedicada a la promoción y gestión de un club amateur de e-spor
 
 En este apartado mostraré en 3 partes diferenciadas los modelos entidad-relación y relacional, para que pueda verse con más claridad
 
-### Users-News-Messages
+### Users-News
 
 #### Modelo entidad-relación
-![imagen](https://github.com/user-attachments/assets/eaa6aea5-2a7a-494e-a7dd-ee25b32f4155)
+![imagen](https://github.com/user-attachments/assets/401bf45f-2983-4424-85e0-dfbc801086c3)
 
 #### Modelo relacional
-![imagen](https://github.com/user-attachments/assets/034a6bcd-b364-4c0c-8755-4b442b31b0e0)
+![imagen](https://github.com/user-attachments/assets/4d276258-7268-4ee6-88ba-69a0b0567ad4)
 
 ### Medias-Teams-Players
 
