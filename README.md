@@ -38,30 +38,11 @@ La página irá dedicada a la promoción y gestión de un club amateur de e-spor
 -  El contenido estático consiste en información que suele mantenerse con el paso del tiempo, como el logo de la página, o los enlaces a redes sociales. Este flujo se encarga de traer esta información que se encuentra guardada en la base de datos.
 ## Modelos base de datos
 
-En este apartado mostraré en 3 partes diferenciadas los modelos entidad-relación y relacional, para que pueda verse con más claridad
-
-### Users-News
-
 #### Modelo entidad-relación
-![imagen](https://github.com/user-attachments/assets/401bf45f-2983-4424-85e0-dfbc801086c3)
+![imagen](https://github.com/user-attachments/assets/dda49ee5-5bd9-4124-aa1d-8a9ded9e345a)
 
 #### Modelo relacional
 ![imagen](https://github.com/user-attachments/assets/4d276258-7268-4ee6-88ba-69a0b0567ad4)
 
-### Medias-Teams-Players
-
-#### Modelo entidad-relación
-![imagen](https://github.com/user-attachments/assets/345e2f50-5fc4-4287-afb7-e315133366ca)
-
-#### Modelo relacional
-![imagen](https://github.com/user-attachments/assets/352511a0-2c2c-4ae4-90dd-ec20c4e66783)
-
-### Images
-
-#### Modelo entidad-relación
-![imagen](https://github.com/user-attachments/assets/5a110921-f900-4404-ae2a-078f4e937b5e)
-
-#### Modelo relacional
-![imagen](https://github.com/user-attachments/assets/890eba02-2c5f-40d9-9548-c18df260bc8c)
 
 
