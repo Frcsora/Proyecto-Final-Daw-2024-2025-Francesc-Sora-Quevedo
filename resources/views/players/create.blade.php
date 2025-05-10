@@ -4,6 +4,7 @@
         @include('partials.errors')
         <form id="formImage" method="post" action="{{route('players.store')}}" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" value="{{Auth::user()->id}}" name="created_by">
             <fieldset>
                 <label for="name">Nombre:</label>
                 <input type="text" name="name">

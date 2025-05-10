@@ -57,7 +57,8 @@ class ImagesController extends Controller
         $base64 = $request->image;
         $name = $request->name;
         $type = $request ->type;
-        Images::create(['base64'=>$base64,'name'=>$name,'type'=>$type]);
+        $created_by = $request->created_by;
+        Images::create(['created_by'=> $created_by,'base64'=>$base64,'name'=>$name,'type'=>$type]);
         return redirect()->route('images.index')->with('status', 'Imagen agregada');
     }
 

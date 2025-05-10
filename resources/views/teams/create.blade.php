@@ -5,6 +5,7 @@
 
         <form method="post" action="{{route('teams.store')}}">
             @csrf
+            <input type="hidden" value="{{Auth::user()->id}}" name="created_by">
             <fieldset>
                 <label for="name">Nombre del equipo</label>
                 <input type="text" name="name">

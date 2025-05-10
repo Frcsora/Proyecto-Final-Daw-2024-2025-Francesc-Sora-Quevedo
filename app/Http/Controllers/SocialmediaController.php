@@ -57,7 +57,8 @@ class SocialmediaController extends Controller
         $media = $request->media;
         $name = $request->name;
         $link = $request->link;
-        Socialmedia::create(['id_media'=>$media, 'name' => $name, 'link'=>$link]);
+        $created_by = $request->created_by;
+        Socialmedia::create(['created_by'=>$created_by,'id_media'=>$media, 'name' => $name, 'link'=>$link]);
         return redirect()->route('socialmedia.index')->with('status', 'Red social creada');
     }
 

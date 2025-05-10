@@ -4,6 +4,7 @@
         @include('partials.errors')
         <form id="formCreateSocialMedia" method="post" action="{{route('socialmedia.store')}}">
             @csrf
+            <input type="hidden" value="{{Auth::user()->id}}" name="created_by">
             <fieldset>
                 <label for="media">Red social:</label>
                 <select name="media" class="media" id="media">

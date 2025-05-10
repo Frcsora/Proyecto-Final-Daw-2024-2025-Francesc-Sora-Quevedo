@@ -71,6 +71,7 @@ class TeamsController extends Controller
             ->where('active', 'true')->first();
         $games = Games::all();
         $socialmedias = Socialmedia::all();
+        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         $team = Teams::where('id', $id)->with('games')->first();
         $medias = TeamsMedias::where('team_id', $id)->with('medias')->get();
         $medias = SanitizeSVG::sanitizeSVG($medias);

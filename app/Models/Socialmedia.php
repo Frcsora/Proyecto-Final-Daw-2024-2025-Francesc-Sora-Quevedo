@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Socialmedia extends Model
 {
     protected $table = 'socialmedia';
-    protected $fillable = ['id_media', 'name', 'link'];
+    protected $fillable = ["created_by", 'id_media', 'name', 'link'];
     public function medias(){
         return $this->belongsTo(Medias::class, 'id_media', 'id');
     }

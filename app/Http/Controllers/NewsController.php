@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Helpers\SanitizeSVG;
 use App\Helpers\UserValidator;
 use App\Models\Images;
@@ -12,13 +11,7 @@ use App\Models\Socialmedia;
 use App\Models\Tags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-=======
-use App\Models\Images;
-use App\Models\News;
-use App\Models\NewsTags;
-use App\Models\Tags;
-use Illuminate\Http\Request;
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
 
 class NewsController extends Controller
 {
@@ -27,7 +20,6 @@ class NewsController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
@@ -37,13 +29,6 @@ class NewsController extends Controller
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('news.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->get();
-
-        return view('news.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**
@@ -51,7 +36,6 @@ class NewsController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
@@ -61,12 +45,6 @@ class NewsController extends Controller
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('news.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tags'=>$tags, 'socialmedias'=>$socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        $tags = Tags::all();
-        return view('news.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tags'=>$tags]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**
@@ -75,11 +53,8 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate(['id_user' => 'required',
-<<<<<<< HEAD
             'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
-=======
             'image' => 'required',
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
             'title' => 'required|string|max:255',
             'abstract' => 'required|string|max:255',
             'news' => 'required']);
@@ -101,11 +76,7 @@ class NewsController extends Controller
             }
         }
 
-<<<<<<< HEAD
         return redirect()->route('news.index')->with('status', 'Noticia agregada');
-=======
-        return redirect()->route('news.index');
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**
@@ -113,7 +84,6 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
@@ -122,12 +92,6 @@ class NewsController extends Controller
         $socialmedias = Socialmedia::all();
         UserValidator::validateAdmin();
         return view('news.show', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        $newsvar = News::with(['user','tags'])->findOrFail($id);
-        return view('news.show', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**
@@ -135,7 +99,6 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
@@ -146,19 +109,11 @@ class NewsController extends Controller
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('news.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, "newsvar"=>$newsvar,"alltags"=>$alltags, 'socialmedias'=>$socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        $newsvar = News::with(['user','tags'])->findOrFail($id);
-        $alltags = Tags::all();
-        return view('news.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, "newsvar"=>$newsvar,"alltags"=>$alltags]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
     public function update(Request $request,$id)
     {
         $request->validate(['id_user' => 'required',
@@ -178,31 +133,20 @@ class NewsController extends Controller
         NewsTags::where('news_id', $id)->delete();
 
         foreach ($tags as $tag) {
-            if($tag != ""){
+            if ($tag != "") {
                 NewsTags::create(['news_id' => $id, 'tag_id' => $tag]);
             }
         }
-        return redirect() -> route('news.show',$id)->with('status', 'Noticia actualizada');
-=======
-    public function update(Request $request, News $news)
-    {
-        //
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+        return redirect()->route('news.show', $id)->with('status', 'Noticia actualizada');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-<<<<<<< HEAD
     public function destroy($id)
     {
         News::findOrFail($id)->delete();
         NewsTags::where('news_id', $id)->delete();
         return redirect()->route('news.index')->with('status', 'Noticia eliminada');
-=======
-    public function destroy(News $news)
-    {
-        //
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 }

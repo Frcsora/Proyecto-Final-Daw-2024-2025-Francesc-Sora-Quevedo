@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Helpers\UserValidator;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Images;
 use App\Models\Socialmedia;
-=======
-use App\Http\Requests\ProfileUpdateRequest;
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +19,6 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-<<<<<<< HEAD
         $socialmedias = Socialmedia::all();
 
         $image = Images::where('type', 'logo')
@@ -36,10 +31,6 @@ class ProfileController extends Controller
             'socialmedias' => $socialmedias,
             'image' => $image->base64,
             'imageFondo' => $imageFondo->base64 ,
-=======
-        return view('profile.edit', [
-            'user' => $request->user(),
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         ]);
     }
 
@@ -56,11 +47,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-<<<<<<< HEAD
         return Redirect::route('profile.edit')->with('status', 'Perfil actualizado');
-=======
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**

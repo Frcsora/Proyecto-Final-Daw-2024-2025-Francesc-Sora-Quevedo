@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Helpers\SanitizeSVG;
 use App\Helpers\UserValidator;
 use App\Models\Images;
@@ -11,12 +10,7 @@ use App\Models\Socialmedia;
 use App\Models\Tags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-=======
-use App\Models\Images;
-use App\Models\News;
-use App\Models\Tags;
-use Illuminate\Http\Request;
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
 
 class TagsController extends Controller
 {
@@ -25,7 +19,6 @@ class TagsController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
             $image = Images::where('type', 'logo')
                 ->where('active', 'true')->first();
             $imageFondo = Images::where('type', 'fondo')
@@ -35,12 +28,7 @@ class TagsController extends Controller
             $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
             UserValidator::validateAdmin();
             return view('tags.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tagsvar'=>$tagsvar, 'socialmedias'=>$socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        $tagsvar = Tags::all();
-        return view('tags.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tagsvar'=>$tagsvar]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     }
 
     /**
@@ -48,7 +36,6 @@ class TagsController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
@@ -58,11 +45,7 @@ class TagsController extends Controller
         UserValidator::validateAdmin();
 
         return view('tags.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        return view('tags.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     }
 
     /**
@@ -72,11 +55,7 @@ class TagsController extends Controller
     {
         $request->validate(['tag'=>'required|string|max:255']);
         Tags::create($request->all());
-<<<<<<< HEAD
-        return redirect()->route('games.index')->with('status', 'Tags agregado correctamente');
-=======
         return redirect()->route('tags.index')->with('status', 'Tags agregado correctamente');
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**
@@ -84,7 +63,6 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
@@ -97,14 +75,6 @@ class TagsController extends Controller
         UserValidator::validateAdmin();
 
         return view('tags.show', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        $newsvar = News::whereHas('tags', function ($query) use ($id) {
-            $query->where('tags.id', $id);
-        })->orderBy('created_at', 'desc')->get();
-        return view('tags.show', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**
@@ -112,7 +82,6 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
@@ -123,12 +92,6 @@ class TagsController extends Controller
         UserValidator::validateAdmin();
 
         return view('tags.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tag'=>$tag, 'socialmedias'=>$socialmedias]);
-=======
-        $tag = Tags::findOrFail($id);
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        return view('tags.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tag'=>$tag]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     }
 
     /**

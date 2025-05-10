@@ -5,6 +5,7 @@
     <main>
         <form id="formImage" method="post" action="{{route('images.store')}}" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" value="{{Auth::user()->id}}" name="created_by">
             <fieldset id="dropeo">
                 <label for="type">Tipo</label>
                 <select id="type" name="type">

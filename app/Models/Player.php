@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Player extends Model
 {
     protected $table = 'players';
-    protected $fillable = ['name', 'surname1', 'surname2', 'nickname', 'image', 'team_id'];
+    protected $fillable = ["created_by", 'name', 'surname1', 'surname2', 'nickname', 'image', 'team_id'];
 }
