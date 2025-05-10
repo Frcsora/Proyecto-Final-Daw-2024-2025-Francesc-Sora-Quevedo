@@ -42,7 +42,7 @@ La página irá dedicada a la promoción y gestión de un club amateur de e-spor
 ![imagen](https://github.com/user-attachments/assets/4c087091-ca6f-4575-9b5c-cb94f5a916db)
 
 #### Modelo relacional
-![imagen](https://github.com/user-attachments/assets/07fb558f-a217-4f01-af70-fa9704a3417b)
+![imagen](https://github.com/user-attachments/assets/cea7dcbe-bf3f-4893-85b0-42f037d55a08)
 
 
 
