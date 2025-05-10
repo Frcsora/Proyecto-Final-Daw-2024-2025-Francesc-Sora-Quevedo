@@ -1,0 +1,670 @@
+$Yellow: #fac533;
+$Blue: #49b1fc;
+$fondo_web:"{{asset('images/FONDO_WEB2.png')}}";
+$LetraHeaderFooter:1.5em;
+@function endarken($color, $amount: 25%){
+    @return darken($color, $amount);
+}
+<<<<<<< HEAD
+@function enlighten($color, $amount: 25%){
+    @return lighten($color, $amount);
+}
+=======
+
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+html, body{
+    margin:0;
+    padding:0;
+    position:relative;
+}
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    opacity: 0.5;
+    z-index: -2;
+}
+body{
+    font-family: Arial;
+    font-size: 12px;
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    header{
+        width: 100%;
+        height: 20vh;
+        section{
+            height: 30%;
+            background-color: $Yellow;
+            color:$Blue;
+            display: grid;
+            grid-template-columns: 20% 80%;
+            font-size: $LetraHeaderFooter;
+            padding: 1vw;
+<<<<<<< HEAD
+            .dropdown{
+                cursor:pointer;
+                position: relative;
+                p{
+                    margin:0;
+                    padding: 0;
+                }
+                .dropdown-user{
+                    width: 100%;
+                    position:absolute;
+                    
+                    ul{
+                        width: 100%;
+                        padding: 1vw 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        background-color: $Yellow;
+                        gap:0;
+                        li{
+                            display:flex;
+                            justify-content: center;
+                            align-items: 100%;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            .menu-escritorio{
+                display: flex;
+                justify-content: space-between;
+            }
+            
+=======
+            .menu-escritorio{
+                display: flex;
+            }
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+            nav{
+                grid-column: 2/span 1;
+                max-height: 50%;
+            }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+            ul{
+                display: flex;
+                gap: 2vw;
+            }
+            li{
+                list-style: none;
+                font-weight: bolder;
+                white-space: nowrap;
+<<<<<<< HEAD
+                svg{
+                    width: 0.5vw;
+                    height:100%;
+                }
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+            }
+            .logo{
+                width: 8vw;
+                height: 15vh;
+                position:relative;
+                animation: LogoOut 1s ease-in-out;
+                grid-column: 1/span 1;
+                img{
+                    width: 100%;
+                }
+            }
+            .socialmedia{
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                height: 50%;
+                margin:0;
+                svg{
+                    width: 1vw;
+                }
+            }
+            .relative{
+                button{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $Yellow;
+                    border:none;
+                    width: 5vw;
+                    cursor:pointer;
+                    &:hover{
+                        background-color: endarken($Yellow);
+                    }
+                }
+                svg{
+                    width: 3vw;
+                }
+            }
+        }
+    }
+<<<<<<< HEAD
+    .mainusers{
+        padding:1vw;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap:5vw;
+        .user{
+            display: flex;
+            padding: 0.5vw;
+            gap:0.2vw;
+            justify-content: center;
+            align-items: center;
+            width: 20vw;
+            height: auto;
+            position:relative;
+            &::before{
+                content:"";
+                height: 100%;
+                opacity: 0.7;
+                position:absolute;
+                width: 100%;
+                background-color: wheat;
+                z-index:-1;
+            }
+        }
+        .userShow{
+            display: flex;
+            padding: 0.5vw;
+            gap:0.2vw;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 20vw;
+            height: auto;
+            position:relative;
+            &::before{
+                content:"";
+                height: 100%;
+                opacity: 0.7;
+                position:absolute;
+                width: 100%;
+                background-color: wheat;
+                z-index:-1;
+            }
+            form{
+                width: 30%;
+                input{
+                    width: 100%;
+                    color:black;
+                    font-family: Arial;
+                }
+            }
+        }
+    }
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+    .maintags{
+        padding:1vw;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap:5vw;
+        .tag{
+            display: flex;
+            padding: 0.5vw;
+            gap:0.2vw;
+            justify-content: center;
+            align-items: center;
+            width: 20vw;
+            height: auto;
+            position:relative;
+            svg{
+                width: 1vw;
+                height: 1vw;
+            }
+            p{
+                margin:0;
+            }
+            &::before{
+                content:"";
+                height: 100%;
+                opacity: 0.7;
+                position:absolute;
+                width: 100%;
+                background-color: wheat;
+                z-index:-1;
+            }
+        }
+    }
+    main{
+<<<<<<< HEAD
+        display: flex;
+            padding: 0.5vw;
+            gap:0.2vw;
+            justify-content: center;
+            align-items: center;
+            width: 20vw;
+            height: auto;
+            position:relative;
+            svg{
+                width: 1vw;
+                height: 1vw;
+            }
+            p{
+                margin:0;
+            }
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+        padding:1vw;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap:5vw;
+<<<<<<< HEAD
+        .tarjetasSM{
+            display:flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items:center;
+            width: 100%;
+            .tarjetaSM{
+                display: flex;
+                width: 50%;
+                justify-content: space-evenly;
+                align-items: center;
+                position:relative;
+                padding:0.5vw;
+            }
+            .tarjetaSM::before{
+                content:"";
+                opacity: 0.7;
+                position:absolute;
+                width: 100%;
+                height: 100%;
+                background-color: wheat;
+                z-index:-1;
+            }
+        }
+        .media{
+            svg{
+                width: 1vw;
+            }
+        }
+        .imagenesIndex{
+            display:flex;
+            flex-direction: column;
+            button{
+                max-width: 10%;
+            }
+            form{
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                gap:2px;
+            }
+            .logosfondos{
+                display:grid;
+                grid-template-columns:repeat(8,1fr);
+                
+            }
+            .tarjetaIndex{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position:relative;
+                padding:0;
+                img{
+                    width: 70%;
+                    height: 70%;
+                }
+            }
+            .tarjetaIndex::before{
+                content:"";
+                opacity: 0.7;
+                position:absolute;
+                width: 100%;
+                height:100%;
+                background-color: wheat;
+                z-index:-1;
+            }
+        }
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+        .noticia{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+<<<<<<< HEAD
+            svg{
+                width: 1vw;
+            }
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+            img{
+                width: 20vw;
+            }
+            position:relative;
+<<<<<<< HEAD
+            .aboutus{
+                display: flex;
+                width: 80%;
+                flex-direction: column;
+                align-items: center;
+                font-size:1.5em;
+                p{
+                    text-align: justify;
+                }
+                .socialmediaAboutus{
+                    display: flex;
+                    svg{
+                        width:1vw;
+                    }
+                }
+            }
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+        }
+        .noticia::before{
+            content:"";
+            height: 100%;
+            opacity: 0.7;
+            position:absolute;
+            width: 100%;
+            background-color: wheat;
+            z-index:-1;
+        }
+        .tarjetasAdmin{
+            display:flex;
+            flex-direction: column;
+            width: 60vw;
+            min-height: 50vh;
+            justify-content: space-evenly;
+            align-items: center;
+            .admindiv{
+                display: flex;
+                position:relative;
+                justify-content: space-evenly;
+                align-items: center;
+                padding: 0.5vw;
+                width: 50%;
+                gap: 1vw;
+                &::before{
+                    content:"";
+                    height: 100%;
+                    opacity: 0.7;
+                    position:absolute;
+                    width: 100%;
+                    background-color: wheat;
+                    z-index:-1;
+                }
+                h3{
+                    margin:0;
+                }
+            }
+        }
+
+        .tarjetaform{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position:relative;
+            padding: 2vw;
+            form{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap:1vw;
+                fieldset{
+                    border:none;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-items: center;
+                    width: 100%;
+                    .tagdiv{
+                        width:100%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 1vw;
+                        .tags{
+                            background-color: #DADADA;
+                            border: 1px solid black;
+                            display:flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            gap:0.5vw;
+                            padding: 0.5vw;
+                        }
+                    }
+                }
+            }
+
+        }
+        .tarjetaform::before{
+            content:"";
+            height: 100%;
+            opacity: 0.7;
+            position:absolute;
+            width: 100%;
+            background-color: wheat;
+            z-index:-1;
+
+        }
+        .tarjeta{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 40vh;
+            padding: 2vw;
+            position:relative;
+            img{
+                width: 70%;
+                height: 50%;
+            }
+        }
+        .tarjeta::before{
+            content:"";
+            opacity: 0.7;
+            position:absolute;
+            width: 100%;
+            height: 40vh;
+            background-color: wheat;
+            z-index:-1;
+<<<<<<< HEAD
+        }
+        
+=======
+
+        }
+        .aside{
+            width: 10vw;
+            grid-column: 1/span 1;
+            height: 30vh;
+            padding-left: 1.5vw;
+        }
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+        .tarjetero{
+            width: 80%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 1vw;
+            padding-right: 1.5vw;
+
+        }
+    }
+    footer{
+        display:flex;
+        justify-content: space-around;
+        font-size: $LetraHeaderFooter;
+        background-color: $Yellow;
+        color:$Blue;
+        width: 100%;
+    }
+}
+a{
+    color:$Blue;
+    transition: color ease 1s;
+    &:visited{
+        color:$Blue;
+    }
+    &:hover{
+        color: endarken($Blue);
+    }
+}
+.hidden{
+    display: none;
+}
+@keyframes LogoOut {
+    from{
+        top:-20vh;
+    }
+    to{
+        top:0;
+    }
+}
+<<<<<<< HEAD
+.flex{
+    display:flex;
+}
+hr{
+    width: 95%;
+    height: 1px;
+}
+@media screen and (max-width:880px){
+=======
+@media screen and (max-width:800px){
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+    body{
+        header{
+            section{
+                display:flex;
+                justify-content: space-between;
+                .logo{
+                    width: 20%;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .menu-escritorio{
+                    display:none;
+                }
+                .menu-movil{
+                    grid-column:2/span 1;
+                    grid-row: 1/ span 1;
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
+                    justify-self: flex-end;
+                    align-self: center;
+                    width:2em;
+                    height: 6vh;
+                    box-shadow: inset 0 0 0 1px black;
+<<<<<<< HEAD
+                    z-index:2;
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+                    .relative{
+                        width: 100%;
+                        height: 100%;
+                        div{
+                            width: inherit;
+                            height:inherit;
+                            button{
+                                width: inherit;
+                                height:inherit;
+                                svg{
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                        }
+
+                    }
+
+                    .relative{
+                        .nav-movil{
+                            display:flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $Yellow;
+                            margin:0;
+                            padding: 2vw;
+                            top: 6vh;
+                            left:50%;
+                            position:absolute;
+                            width: 50vw;
+                            height: 25vh;
+                        }
+                    }
+                }
+            }
+        }
+<<<<<<< HEAD
+        main{
+            .tarjetero{
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+=======
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+        footer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1vh;
+        }
+    }
+}
+.logout{
+<<<<<<< HEAD
+    transition: background-color 1s ease;
+    &:hover{
+        background-color: enlighten($Blue, 10%);
+    }
+=======
+    background-color: $Yellow;
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+}
+.error{
+    color:red;
+}
+<<<<<<< HEAD
+@media screen and (max-width:550px){
+    body{
+        main{
+            .tarjetero{
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+.red{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.status{
+    color:green;
+}
+.sombra{
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra con profundidad */
+}
+=======
+/*Fondo tarjeta*/
+>>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
