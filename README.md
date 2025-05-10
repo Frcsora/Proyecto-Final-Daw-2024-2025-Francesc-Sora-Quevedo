@@ -39,10 +39,9 @@ La página irá dedicada a la promoción y gestión de un club amateur de e-spor
 ## Modelos base de datos
 
 #### Modelo entidad-relación
-![imagen](https://github.com/user-attachments/assets/dda49ee5-5bd9-4124-aa1d-8a9ded9e345a)
+![imagen](https://github.com/user-attachments/assets/4c087091-ca6f-4575-9b5c-cb94f5a916db)
 
 #### Modelo relacional
-![imagen](https://github.com/user-attachments/assets/4d276258-7268-4ee6-88ba-69a0b0567ad4)
 
 
 
