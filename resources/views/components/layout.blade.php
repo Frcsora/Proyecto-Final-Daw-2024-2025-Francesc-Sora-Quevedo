@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 @props(['image', 'imageFondo', 'socialmedias'])
-=======
-@props(['image', 'imageFondo'])
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,12 +28,6 @@
 {{$slot}}
 @include("partials.footer")
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<<<<<<< HEAD
 <script src="{{asset('index.js')}}"></script>
-=======
-@isset($js)
-    {{$js}}
-@endisset
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
 </body>
 </html>

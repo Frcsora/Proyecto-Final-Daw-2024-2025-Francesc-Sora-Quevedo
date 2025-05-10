@@ -14,13 +14,10 @@
     @endif
     @if(Auth::check() && (Auth::user()->role == "admin" || Auth::user()->role == "superadmin"))
         <a href="{{route("news.edit", $id)}}">Editar</a>
-<<<<<<< HEAD
         <form method="POST" action="{{route('news.destroy', $id)}}">
             @csrf
             @method('DELETE')
             <input type="submit" value="Eliminar noticia">
         </form>
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     @endif
 </div>

@@ -59,4 +59,4 @@
 <?php unset($__componentOriginal1f9e5f64f242295036c059d9dc1c375c); ?>
 <?php endif; ?>
 
-<?php /**PATH /var/www/html/resources/views//administracion.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/html/resources/views/administracion.blade.php ENDPATH**/ ?>

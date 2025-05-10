@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Images;
-<<<<<<< HEAD
 use App\Models\Socialmedia;
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -24,18 +22,13 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $socialmedias = Socialmedia::all();
         return view('auth.register', ["image" => $image->base64, "imageFondo" => $imageFondo->base64, "socialmedias" => $socialmedias]);
-=======
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        return view('auth.register', ["image" => $image->base64, "imageFondo" => $imageFondo->base64]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     }
 
     /**

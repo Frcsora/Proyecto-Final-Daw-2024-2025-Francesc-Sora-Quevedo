@@ -8,10 +8,7 @@
     "require": {
         "php": "^8.2",
         "beyondcode/expose": "^3.0",
-<<<<<<< HEAD
         "enshrined/svg-sanitize": "^0.21.0",
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"
     },

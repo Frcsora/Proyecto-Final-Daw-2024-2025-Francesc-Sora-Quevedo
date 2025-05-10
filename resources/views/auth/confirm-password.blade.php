@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
-=======
-<x-layout :image="$image" :imageFondo="$imageFondo">
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     <x-slot:title>Confirm password</x-slot:title>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}

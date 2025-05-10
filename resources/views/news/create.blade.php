@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
     <x-slot:title>News</x-slot:title>
     <main>
@@ -8,17 +7,6 @@
                 @csrf
                 <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
                 <fieldset id="dropeo">
-=======
-<x-layout :image="$image" :imageFondo="$imageFondo">
-    <x-slot:title>News</x-slot:title>
-    <x-slot:js><script src="{{asset('index.js')}}"></script></x-slot:js>
-    <main>
-        <div class="tarjetaform">
-            <form id="formCreateNews" method="post" action="{{route('news.store')}}">
-                @csrf
-                <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
-                <fieldset>
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
                     <label for="image">Imagen:</label>
                     <input type="file" id="imagen" name="imagen" alt="imagen noticia">
                     <input type="hidden" name="image" id="image">

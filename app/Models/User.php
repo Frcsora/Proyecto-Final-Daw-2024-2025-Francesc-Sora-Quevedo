@@ -11,11 +11,8 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-<<<<<<< HEAD
     protected $table = 'users';
-=======
 
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     /**
      * The attributes that are mass assignable.
      *
@@ -24,11 +21,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-<<<<<<< HEAD
         'role',
         'active_user',
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         'password',
     ];
 

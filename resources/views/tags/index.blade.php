@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
-=======
-<x-layout :image="$image" :imageFondo="$imageFondo">
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     <x-slot:title>Tags</x-slot:title>
     <main class="maintags">
         @forelse($tagsvar as $tag)
@@ -22,11 +19,7 @@
         @isset($status)
             <p style="color:green">{{$status}}</p>
         @endisset
-<<<<<<< HEAD
             @include('partials.status')
-
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     </main>
 </x-layout>
 

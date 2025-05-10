@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
-=======
-<x-layout :image="$image" :imageFondo="$imageFondo">
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     <x-slot:title>News</x-slot:title>
 
     <main>
@@ -22,14 +18,12 @@
             @endisset
             @if(Auth::check() && (Auth::user()->role === "admin" || Auth::user()->role === "superadmin"))
                 <a href="{{route('news.edit', $newsvar->id)}}">Editar</a>
-<<<<<<< HEAD
                 <form method="POST" action="{{route('news.destroy', $newsvar->id)}}">
                     @csrf
                     @method('DELETE')
                     <input type="submit" value="Eliminar noticia">
                 </form>
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
             @endif
         </div>
     </main>

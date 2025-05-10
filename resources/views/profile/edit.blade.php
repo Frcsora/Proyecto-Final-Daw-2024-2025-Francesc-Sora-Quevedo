@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
     <x-slot:title>Profile</x-slot:>
-=======
-<x-app-layout>
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Profile') }}
@@ -31,8 +28,5 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </x-layout>
-=======
-</x-app-layout>
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+

@@ -29,7 +29,6 @@
                                     </ul>
                                 </div>
                             </li>
-
                     <?php endif; ?>
 
                 </ul>

@@ -11,6 +11,7 @@
      <?php $__env->slot('title', null, []); ?> News <?php $__env->endSlot(); ?>
     <main>
         <div class="tarjetero">
+
             <?php $__empty_1 = true; $__currentLoopData = $newsvar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $news): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <?php if (isset($component)) { $__componentOriginal71e3226cf3fe2778b596d213467290d3 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal71e3226cf3fe2778b596d213467290d3 = $attributes; } ?>
@@ -37,6 +38,7 @@
         </div>
     </main>
     <?php echo $__env->make('partials.status', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal1f9e5f64f242295036c059d9dc1c375c)): ?>

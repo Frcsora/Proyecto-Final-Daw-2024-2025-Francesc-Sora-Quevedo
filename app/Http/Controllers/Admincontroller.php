@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\SanitizeSVG;
+use App\Helpers\UserValidator;
 use App\Models\Images;
+use App\Models\Socialmedia;
+use App\Models\TeamsMedias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,9 +19,9 @@ class AdminController extends Controller
     {
         $image = Images::findOrFail(1);
         $imageFondo = Images::findOrFail(2);
-        if(Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role ==  'superadmin'){
-            return view('/administracion', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64]);
-        }
-        return redirect(route('news.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64]));
+        $socialmedias = Socialmedia::all();
+        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+        UserValidator::validateAdmin();
+        return view('administracion', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
     }
 }

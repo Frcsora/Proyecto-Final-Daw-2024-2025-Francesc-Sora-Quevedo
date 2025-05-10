@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
-=======
-<x-layout :image="$image" :imageFondo="$imageFondo">
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     <x-slot:title>Tags</x-slot:title>
     <main>
         <div class="tarjetero">

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
-=======
-<x-layout :image="$image" :imageFondo="$imageFondo">
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     <x-slot:title>Login</x-slot:title>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

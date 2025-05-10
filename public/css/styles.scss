@@ -1,17 +1,13 @@
+//Esto lo quiero retocar antes de la entrega final, eh ido haciendo mucha cosa sobre la marchar y se pueden unificar muchas clases
 $Yellow: #fac533;
 $Blue: #49b1fc;
-$fondo_web:"{{asset('images/FONDO_WEB2.png')}}";
 $LetraHeaderFooter:1.5em;
 @function endarken($color, $amount: 25%){
     @return darken($color, $amount);
 }
-<<<<<<< HEAD
 @function enlighten($color, $amount: 25%){
     @return lighten($color, $amount);
 }
-=======
-
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
 html, body{
     margin:0;
     padding:0;
@@ -49,7 +45,6 @@ body{
             grid-template-columns: 20% 80%;
             font-size: $LetraHeaderFooter;
             padding: 1vw;
-<<<<<<< HEAD
             .dropdown{
                 cursor:pointer;
                 position: relative;
@@ -83,19 +78,10 @@ body{
                 justify-content: space-between;
             }
             
-=======
-            .menu-escritorio{
-                display: flex;
-            }
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
             nav{
                 grid-column: 2/span 1;
                 max-height: 50%;
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
             ul{
                 display: flex;
                 gap: 2vw;
@@ -104,13 +90,10 @@ body{
                 list-style: none;
                 font-weight: bolder;
                 white-space: nowrap;
-<<<<<<< HEAD
                 svg{
                     width: 0.5vw;
                     height:100%;
                 }
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
             }
             .logo{
                 width: 8vw;
@@ -151,7 +134,6 @@ body{
             }
         }
     }
-<<<<<<< HEAD
     .mainusers{
         padding:1vw;
         width: 100%;
@@ -208,8 +190,6 @@ body{
             }
         }
     }
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     .maintags{
         padding:1vw;
         width: 100%;
@@ -246,7 +226,6 @@ body{
         }
     }
     main{
-<<<<<<< HEAD
         display: flex;
             padding: 0.5vw;
             gap:0.2vw;
@@ -262,15 +241,12 @@ body{
             p{
                 margin:0;
             }
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         padding:1vw;
         width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
         gap:5vw;
-<<<<<<< HEAD
         .tarjetasSM{
             display:flex;
             flex-direction: column;
@@ -339,25 +315,19 @@ body{
                 z-index:-1;
             }
         }
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         .noticia{
             width: 80%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-<<<<<<< HEAD
             svg{
                 width: 1vw;
             }
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
             img{
                 width: 20vw;
             }
             position:relative;
-<<<<<<< HEAD
             .aboutus{
                 display: flex;
                 width: 80%;
@@ -374,8 +344,6 @@ body{
                     }
                 }
             }
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         }
         .noticia::before{
             content:"";
@@ -485,19 +453,8 @@ body{
             height: 40vh;
             background-color: wheat;
             z-index:-1;
-<<<<<<< HEAD
         }
         
-=======
-
-        }
-        .aside{
-            width: 10vw;
-            grid-column: 1/span 1;
-            height: 30vh;
-            padding-left: 1.5vw;
-        }
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         .tarjetero{
             width: 80%;
             display: grid;
@@ -537,7 +494,6 @@ a{
         top:0;
     }
 }
-<<<<<<< HEAD
 .flex{
     display:flex;
 }
@@ -546,9 +502,6 @@ hr{
     height: 1px;
 }
 @media screen and (max-width:880px){
-=======
-@media screen and (max-width:800px){
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     body{
         header{
             section{
@@ -574,10 +527,7 @@ hr{
                     width:2em;
                     height: 6vh;
                     box-shadow: inset 0 0 0 1px black;
-<<<<<<< HEAD
                     z-index:2;
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
                     .relative{
                         width: 100%;
                         height: 100%;
@@ -615,14 +565,11 @@ hr{
                 }
             }
         }
-<<<<<<< HEAD
         main{
             .tarjetero{
                 grid-template-columns: 1fr 1fr;
             }
         }
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
         footer{
             display: flex;
             flex-direction: column;
@@ -632,19 +579,14 @@ hr{
     }
 }
 .logout{
-<<<<<<< HEAD
     transition: background-color 1s ease;
     &:hover{
         background-color: enlighten($Blue, 10%);
     }
-=======
-    background-color: $Yellow;
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
 }
 .error{
     color:red;
 }
-<<<<<<< HEAD
 @media screen and (max-width:550px){
     body{
         main{
@@ -663,8 +605,5 @@ hr{
     color:green;
 }
 .sombra{
-    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra con profundidad */
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.2); 
 }
-=======
-/*Fondo tarjeta*/
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")

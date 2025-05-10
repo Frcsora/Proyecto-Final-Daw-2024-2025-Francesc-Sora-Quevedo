@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
 use App\Models\Images;
 use App\Models\Socialmedia;
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,16 +19,13 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $socialmedias = Socialmedia::all();
         return view('auth.confirm-password', ["image" => $image->base64, "imageFondo" => $imageFondo->base64, 'socialmedias'=>$socialmedias]);
-=======
-        return view('auth.confirm-password');
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     }
 
     /**

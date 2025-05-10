@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
 use App\Models\Images;
 use App\Models\Socialmedia;
-=======
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
@@ -25,16 +23,13 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
-<<<<<<< HEAD
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $socialmedias = Socialmedia::all();
         return view('auth.reset-password', ['request' => $request, 'socialmedias' => $socialmedias, "image" => $image->base64, "imageFondo" => $imageFondo->base64]);
-=======
-        return view('auth.reset-password', ['request' => $request]);
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
+
     }
 
     /**

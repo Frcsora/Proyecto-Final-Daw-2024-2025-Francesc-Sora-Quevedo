@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-<<<<<<< HEAD
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\ImagesController;
@@ -33,19 +32,6 @@ Route::resource('/teams', TeamsController::class);
 Route::resource('/teamsmedias', TeamsMediasController::class);
 Route::resource('/players', PlayerController::class);
 Route::resource('/playersmedias', PlayersMediasController::class);
-=======
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TagsController;
-use Illuminate\Support\Facades\Route;
-use App\Models\Images;
-Route::get('/administracion', AdminController::class)->name('admin');
-Route::get('/', [NewsController::class, 'index'])->name('welcome');
-Route::resource('/news', NewsController::class);
-Route::resource('/tags', TagsController::class);
-Route::get('/dashboard', [NewsController::class, "index"])->middleware(['auth', 'verified'])->name('dashboard');
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
     <x-slot:title>Forgot-password</x-slot:title>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('¿Has olvidado tu contraseña? No te preocupes, puedes recuperarla a través de tu correo electrónico.') }}
-=======
-<x-layout :image="$image" :imageFondo="$imageFondo">
-    <x-slot:title>Forgot-password</x-slot:title>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
->>>>>>> parent of effacc4 (Revert "Primer commit del proyecto Laravel")
     </div>
 
     <!-- Session Status -->
