@@ -1,0 +1,67 @@
+$Yellow: #fac533;
+$Blue: #49b1fc;
+$LetraHeaderFooter:1.5em;
+@function endarken($color, $amount: 25%){
+    @return darken($color, $amount);
+}
+@function enlighten($color, $amount: 25%){
+    @return lighten($color, $amount);
+}
+html, body{
+    margin:0;
+    padding:0;
+}
+a{
+    color: endarken($Blue,15%);
+    transition: color ease 1s;
+    &:visited{
+        color:$Blue;
+    }
+    &:hover{
+        color: endarken($Blue);
+    }
+}
+.logo{
+    animation: LogoOut 1s ease-in-out;
+    position:relative
+}
+.status{
+    color:green;
+}
+.sombra{
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+button,input, textarea, select{
+    border-radius: 6px;
+}
+.buttonRed{
+    background-color: red;
+}
+.buttonBlue{
+    background-color: blue;
+}
+button, input[type="submit"]{
+    padding: 8px;
+    color:white;
+    transition: background-color 0.5s ease;
+    cursor:pointer;
+    &:hover{
+        background-color: endarken(grey);
+    }
+}
+svg{
+    width: 45px;
+}
+@media screen and (max-width:768px){
+    svg{
+        width: 30px;
+    }
+}
+@keyframes LogoOut {
+    from{
+        top:-20vh;
+    }
+    to{
+        top:0;
+    }
+}
