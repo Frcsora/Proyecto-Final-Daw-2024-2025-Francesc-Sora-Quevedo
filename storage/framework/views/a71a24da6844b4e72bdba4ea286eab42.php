@@ -27,11 +27,12 @@ foreach ($attributes->all() as $__key => $__value) {
 }
 
 unset($__defined_vars); ?>
-<div class="tarjeta">
-    <h2><a href="<?php echo e(route('news.show', $id)); ?>"><?php echo e($title); ?></a></h2>
+<div class="gap-3 rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-80 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
+    <h2 class="text-4xl"><a href="<?php echo e(route('news.show', $id)); ?>"><?php echo e($title); ?></a></h2>
     <small>Creado por <?php echo e($name); ?> el <?php echo e($fecha); ?></small>
-    <img src="<?php echo e($img); ?>" alt="imagen noticia">
-    <p><?php echo e($sinopsis); ?></p>
+    <img class="rounded-lg w-80 max-h-48" src="<?php echo e($img); ?>" alt="imagen noticia">
+    <p class="bg-white"><?php echo e($sinopsis); ?></p>
+
     <?php if(count($tags) > 0): ?>
         <p>
             Etiquetas:
@@ -41,12 +42,12 @@ unset($__defined_vars); ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </p>
     <?php endif; ?>
-    <?php if(Auth::check() && (Auth::user()->role == "admin" || Auth::user()->role == "superadmin")): ?>
+    <?php if(\App\Helpers\UserValidator::validateAdmin()): ?>
         <a href="<?php echo e(route("news.edit", $id)); ?>">Editar</a>
         <form method="POST" action="<?php echo e(route('news.destroy', $id)); ?>">
             <?php echo csrf_field(); ?>
             <?php echo method_field('DELETE'); ?>
-            <input type="submit" value="Eliminar noticia">
+            <input class="buttonRed" type="submit" value="Eliminar noticia">
         </form>
     <?php endif; ?>
 </div>

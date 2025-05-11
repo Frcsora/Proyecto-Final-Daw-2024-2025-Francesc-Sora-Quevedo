@@ -9,9 +9,26 @@
 <?php endif; ?>
 <?php $component->withAttributes(['image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($image),'imageFondo' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($imageFondo),'socialmedias' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($socialmedias)]); ?>
      <?php $__env->slot('title', null, []); ?> News <?php $__env->endSlot(); ?>
-    <main>
-        <div class="tarjetero">
-
+    <?php if (isset($component)) { $__componentOriginal65e0bd0aeed8a21b598c76606db79d38 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal65e0bd0aeed8a21b598c76606db79d38 = $attributes; } ?>
+<?php $component = App\View\Components\Main::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('main'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\Main::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+        <?php if (isset($component)) { $__componentOriginalcee70f1acfea662afbe7691878e7b99e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalcee70f1acfea662afbe7691878e7b99e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.cards-div','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('cards-div'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
             <?php $__empty_1 = true; $__currentLoopData = $newsvar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $news): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <?php if (isset($component)) { $__componentOriginal71e3226cf3fe2778b596d213467290d3 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal71e3226cf3fe2778b596d213467290d3 = $attributes; } ?>
@@ -35,10 +52,26 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <h1>No hay noticias que mostrar</h1>
             <?php endif; ?>
-        </div>
-    </main>
-    <?php echo $__env->make('partials.status', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalcee70f1acfea662afbe7691878e7b99e)): ?>
+<?php $attributes = $__attributesOriginalcee70f1acfea662afbe7691878e7b99e; ?>
+<?php unset($__attributesOriginalcee70f1acfea662afbe7691878e7b99e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalcee70f1acfea662afbe7691878e7b99e)): ?>
+<?php $component = $__componentOriginalcee70f1acfea662afbe7691878e7b99e; ?>
+<?php unset($__componentOriginalcee70f1acfea662afbe7691878e7b99e); ?>
+<?php endif; ?>
+     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal65e0bd0aeed8a21b598c76606db79d38)): ?>
+<?php $attributes = $__attributesOriginal65e0bd0aeed8a21b598c76606db79d38; ?>
+<?php unset($__attributesOriginal65e0bd0aeed8a21b598c76606db79d38); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal65e0bd0aeed8a21b598c76606db79d38)): ?>
+<?php $component = $__componentOriginal65e0bd0aeed8a21b598c76606db79d38; ?>
+<?php unset($__componentOriginal65e0bd0aeed8a21b598c76606db79d38); ?>
+<?php endif; ?>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal1f9e5f64f242295036c059d9dc1c375c)): ?>

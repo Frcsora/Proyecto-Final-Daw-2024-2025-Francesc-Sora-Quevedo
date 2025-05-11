@@ -46,7 +46,7 @@ class PlayerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'surname1' => 'required|string|max:255',
-            'surname2' => 'required|string|max:255',
+            'surname2' => 'string|max:255|nullable',
             'nickname' => 'required|string|max:255',
             'imagen' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
@@ -60,7 +60,7 @@ class PlayerController extends Controller
             : $request->image;
         $created_by = $request->created_by;
         Player::create(['created_by'=>$created_by,'name' => $name,'surname1' => $surname1, 'surname2' => $surname2,'nickname' => $nickname, 'image' => $image, 'team_id' => $team_id]);
-        return redirect()->route('teams.show', $team_id)->with('status', 'Jugaodr creado');
+        return redirect()->route('teams.show', $team_id)->with('status', 'Jugador creado');
     }
 
     /**
@@ -107,7 +107,7 @@ class PlayerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'surname1' => 'required|string|max:255',
-            'surname2' => 'required|string|max:255',
+            'surname2' => 'string|max:255|nullable',
             'nickname' => 'required|string|max:255',
             'imagen' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);

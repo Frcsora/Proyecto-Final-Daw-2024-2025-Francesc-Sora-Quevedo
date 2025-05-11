@@ -25,6 +25,7 @@ class NewsController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->get();
+
         $socialmedias = Socialmedia::all();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
@@ -58,14 +59,12 @@ class NewsController extends Controller
             'title' => 'required|string|max:255',
             'abstract' => 'required|string|max:255',
             'news' => 'required']);
-
         $userid = $request->get('id_user');
         $image = $request->get('image');
         $title = $request->get('title');
         $abstract = $request->get('abstract');
         $text = $request->get('news');
         $tags = explode("-", $request->get('taginput'));
-
         News::create(['created_by' => $userid, 'image' => $image, 'title' => $title, 'abstract' => $abstract, 'text' => $text]);
         $newsid = News::all()->last()->id;
         if(isset($tags)){

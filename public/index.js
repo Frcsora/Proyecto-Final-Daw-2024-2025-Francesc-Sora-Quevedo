@@ -18,7 +18,11 @@ function convertToBase64(image){
     })
 }
 addEventListener('DOMContentLoaded', () => {
-
+    if(document.getElementById("back")){
+        document.getElementById("back").addEventListener('click', ()=>{
+            history.back();
+        })
+    }
     if(document.getElementById('tagdiv')){
         const children = document.getElementById("tagdiv").children;
         Array.from(children).forEach(element => {
@@ -39,11 +43,12 @@ addEventListener('DOMContentLoaded', () => {
             if(!contains(children, tagid) && target.value !== ""){
 
                 const tag = document.createElement('p');
-                tag.classList.add('tags');
+                tag.classList.add('rounded', 'bg-[grey]','p-2');
                 tag.innerText = tagname;
                 tag.id = tagid;
                 const button = document.createElement('button');
                 button.innerText = 'X';
+                button.classList.add('buttonRed')
                 button.addEventListener('click', () => {
                     button.parentElement.remove();
                 })
@@ -51,6 +56,7 @@ addEventListener('DOMContentLoaded', () => {
                 container.insertAdjacentElement('beforeend', tag);
             }
         });
+
     }
     if(document.getElementById('formImage')){
         const dropeo = document.getElementById("dropeo");
@@ -72,10 +78,21 @@ addEventListener('DOMContentLoaded', () => {
         });
         document.getElementById('formImage').addEventListener('submit', async (event) => {
             event.preventDefault();
-            console.log(document.getElementById('imagen'))
             if(document.getElementById('imagen').value !== ""){
                 const image64 = await convertToBase64(document.getElementById('imagen').files[0]);
                 document.getElementById("image").value = image64;
+            }
+            if(document.getElementById('tagdiv')){
+                event.preventDefault();
+                const children = document.getElementById('tagdiv').children;
+                if(children.length > 0){
+                    let str = "";
+                    Array.from(children).forEach(child => {
+                        const id=child.id;
+                        str += `${id}-`;
+                    })
+                    document.getElementById('taginput').value = str;
+                }
             }
             document.getElementById('formImage').submit();
         })

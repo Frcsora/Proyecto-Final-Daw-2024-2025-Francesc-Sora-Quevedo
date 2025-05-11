@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Medias extends Model
 {
     protected $table = 'medias';
-    protected $fillable = [];
+    protected $fillable = ['name','svg'];
 }

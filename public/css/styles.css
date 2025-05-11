@@ -1,461 +1,10 @@
 html, body {
   margin: 0;
   padding: 0;
-  position: relative;
-}
-
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100%;
-  opacity: 0.5;
-  z-index: -2;
-}
-
-body {
-  font-family: Arial;
-  font-size: 12px;
-  width: 100vw;
-  min-height: 100vh;
-  height: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-body header {
-  width: 100%;
-  height: 20vh;
-}
-body header section {
-  height: 30%;
-  background-color: #fac533;
-  color: #49b1fc;
-  display: grid;
-  grid-template-columns: 20% 80%;
-  font-size: 1.5em;
-  padding: 1vw;
-}
-body header section .dropdown {
-  cursor: pointer;
-  position: relative;
-}
-body header section .dropdown p {
-  margin: 0;
-  padding: 0;
-}
-body header section .dropdown .dropdown-user {
-  width: 100%;
-  position: absolute;
-}
-body header section .dropdown .dropdown-user ul {
-  width: 100%;
-  padding: 1vw 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fac533;
-  gap: 0;
-}
-body header section .dropdown .dropdown-user ul li {
-  display: flex;
-  justify-content: center;
-  align-items: 100%;
-  width: 100%;
-}
-body header section .menu-escritorio {
-  display: flex;
-  justify-content: space-between;
-}
-body header section nav {
-  grid-column: 2/span 1;
-  max-height: 50%;
-}
-body header section ul {
-  display: flex;
-  gap: 2vw;
-}
-body header section li {
-  list-style: none;
-  font-weight: bolder;
-  white-space: nowrap;
-}
-body header section li svg {
-  width: 0.5vw;
-  height: 100%;
-}
-body header section .logo {
-  width: 8vw;
-  height: 15vh;
-  position: relative;
-  animation: LogoOut 1s ease-in-out;
-  grid-column: 1/span 1;
-}
-body header section .logo img {
-  width: 100%;
-}
-body header section .socialmedia {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  height: 50%;
-  margin: 0;
-}
-body header section .socialmedia svg {
-  width: 1vw;
-}
-body header section .relative button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fac533;
-  border: none;
-  width: 5vw;
-  cursor: pointer;
-}
-body header section .relative button:hover {
-  background-color: #a97d04;
-}
-body header section .relative svg {
-  width: 3vw;
-}
-body .mainusers {
-  padding: 1vw;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 5vw;
-}
-body .mainusers .user {
-  display: flex;
-  padding: 0.5vw;
-  gap: 0.2vw;
-  justify-content: center;
-  align-items: center;
-  width: 20vw;
-  height: auto;
-  position: relative;
-}
-body .mainusers .user::before {
-  content: "";
-  height: 100%;
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body .mainusers .userShow {
-  display: flex;
-  padding: 0.5vw;
-  gap: 0.2vw;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 20vw;
-  height: auto;
-  position: relative;
-}
-body .mainusers .userShow::before {
-  content: "";
-  height: 100%;
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body .mainusers .userShow form {
-  width: 30%;
-}
-body .mainusers .userShow form input {
-  width: 100%;
-  color: black;
-  font-family: Arial;
-}
-body .maintags {
-  padding: 1vw;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 5vw;
-}
-body .maintags .tag {
-  display: flex;
-  padding: 0.5vw;
-  gap: 0.2vw;
-  justify-content: center;
-  align-items: center;
-  width: 20vw;
-  height: auto;
-  position: relative;
-}
-body .maintags .tag svg {
-  width: 1vw;
-  height: 1vw;
-}
-body .maintags .tag p {
-  margin: 0;
-}
-body .maintags .tag::before {
-  content: "";
-  height: 100%;
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body main {
-  display: flex;
-  padding: 0.5vw;
-  gap: 0.2vw;
-  justify-content: center;
-  align-items: center;
-  width: 20vw;
-  height: auto;
-  position: relative;
-  padding: 1vw;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 5vw;
-}
-body main svg {
-  width: 1vw;
-  height: 1vw;
-}
-body main p {
-  margin: 0;
-}
-body main .tarjetasSM {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-}
-body main .tarjetasSM .tarjetaSM {
-  display: flex;
-  width: 50%;
-  justify-content: space-evenly;
-  align-items: center;
-  position: relative;
-  padding: 0.5vw;
-}
-body main .tarjetasSM .tarjetaSM::before {
-  content: "";
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body main .media svg {
-  width: 1vw;
-}
-body main .imagenesIndex {
-  display: flex;
-  flex-direction: column;
-}
-body main .imagenesIndex button {
-  max-width: 10%;
-}
-body main .imagenesIndex form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-body main .imagenesIndex .logosfondos {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-}
-body main .imagenesIndex .tarjetaIndex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 0;
-}
-body main .imagenesIndex .tarjetaIndex img {
-  width: 70%;
-  height: 70%;
-}
-body main .imagenesIndex .tarjetaIndex::before {
-  content: "";
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body main .noticia {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-}
-body main .noticia svg {
-  width: 1vw;
-}
-body main .noticia img {
-  width: 20vw;
-}
-body main .noticia .aboutus {
-  display: flex;
-  width: 80%;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.5em;
-}
-body main .noticia .aboutus p {
-  text-align: justify;
-}
-body main .noticia .aboutus .socialmediaAboutus {
-  display: flex;
-}
-body main .noticia .aboutus .socialmediaAboutus svg {
-  width: 1vw;
-}
-body main .noticia::before {
-  content: "";
-  height: 100%;
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body main .tarjetasAdmin {
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  min-height: 50vh;
-  justify-content: space-evenly;
-  align-items: center;
-}
-body main .tarjetasAdmin .admindiv {
-  display: flex;
-  position: relative;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 0.5vw;
-  width: 50%;
-  gap: 1vw;
-}
-body main .tarjetasAdmin .admindiv::before {
-  content: "";
-  height: 100%;
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body main .tarjetasAdmin .admindiv h3 {
-  margin: 0;
-}
-body main .tarjetaform {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 2vw;
-}
-body main .tarjetaform form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1vw;
-}
-body main .tarjetaform form fieldset {
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-}
-body main .tarjetaform form fieldset .tagdiv {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1vw;
-}
-body main .tarjetaform form fieldset .tagdiv .tags {
-  background-color: #DADADA;
-  border: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5vw;
-  padding: 0.5vw;
-}
-body main .tarjetaform::before {
-  content: "";
-  height: 100%;
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  background-color: wheat;
-  z-index: -1;
-}
-body main .tarjeta {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40vh;
-  padding: 2vw;
-  position: relative;
-}
-body main .tarjeta img {
-  width: 70%;
-  height: 50%;
-}
-body main .tarjeta::before {
-  content: "";
-  opacity: 0.7;
-  position: absolute;
-  width: 100%;
-  height: 40vh;
-  background-color: wheat;
-  z-index: -1;
-}
-body main .tarjetero {
-  width: 80%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1vw;
-  padding-right: 1.5vw;
-}
-body footer {
-  display: flex;
-  justify-content: space-around;
-  font-size: 1.5em;
-  background-color: #fac533;
-  color: #49b1fc;
-  width: 100%;
 }
 
 a {
-  color: #49b1fc;
+  color: #0490f4;
   transition: color ease 1s;
 }
 a:visited {
@@ -465,114 +14,9 @@ a:hover {
   color: #0372c2;
 }
 
-.hidden {
-  display: none;
-}
-
-@keyframes LogoOut {
-  from {
-    top: -20vh;
-  }
-  to {
-    top: 0;
-  }
-}
-.flex {
-  display: flex;
-}
-
-hr {
-  width: 95%;
-  height: 1px;
-}
-
-@media screen and (max-width: 880px) {
-  body header section {
-    display: flex;
-    justify-content: space-between;
-  }
-  body header section .logo {
-    width: 20%;
-  }
-  body header section .logo img {
-    width: 100%;
-  }
-  body header section .menu-escritorio {
-    display: none;
-  }
-  body header section .menu-movil {
-    grid-column: 2/span 1;
-    grid-row: 1/span 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: flex-end;
-    align-self: center;
-    width: 2em;
-    height: 6vh;
-    box-shadow: inset 0 0 0 1px black;
-    z-index: 2;
-  }
-  body header section .menu-movil .relative {
-    width: 100%;
-    height: 100%;
-  }
-  body header section .menu-movil .relative div {
-    width: inherit;
-    height: inherit;
-  }
-  body header section .menu-movil .relative div button {
-    width: inherit;
-    height: inherit;
-  }
-  body header section .menu-movil .relative div button svg {
-    width: 100%;
-    height: 100%;
-  }
-  body header section .menu-movil .relative .nav-movil {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #fac533;
-    margin: 0;
-    padding: 2vw;
-    top: 6vh;
-    left: 50%;
-    position: absolute;
-    width: 50vw;
-    height: 25vh;
-  }
-  body main .tarjetero {
-    grid-template-columns: 1fr 1fr;
-  }
-  body footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1vh;
-  }
-}
-.logout {
-  transition: background-color 1s ease;
-}
-.logout:hover {
-  background-color: #7bc7fd;
-}
-
-.error {
-  color: red;
-}
-
-@media screen and (max-width: 550px) {
-  body main .tarjetero {
-    grid-template-columns: 1fr;
-  }
-}
-.red {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.logo {
+  animation: LogoOut 1s ease-in-out;
+  position: relative;
 }
 
 .status {
@@ -581,4 +25,44 @@ hr {
 
 .sombra {
   box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+button, input, textarea, select {
+  border-radius: 6px;
+}
+
+.buttonRed {
+  background-color: red;
+}
+
+.buttonBlue {
+  background-color: blue;
+}
+
+button, input[type=submit] {
+  padding: 8px;
+  color: white;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+button:hover, input[type=submit]:hover {
+  background-color: #404040;
+}
+
+svg {
+  width: 45px;
+}
+
+@media screen and (max-width: 768px) {
+  svg {
+    width: 30px;
+  }
+}
+@keyframes LogoOut {
+  from {
+    top: -20vh;
+  }
+  to {
+    top: 0;
+  }
 }/*# sourceMappingURL=styles.css.map */

@@ -1,13 +1,13 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
     <x-slot:title>News</x-slot:title>
-
-    <main>
-        <div class="noticia">
-            <h2>{{$newsvar->title}}</h2>
+    <x-main>
+        <x-card>
+            <x-slot:show></x-slot:show>
+            <h2 class="text-3xl">{{$newsvar->title}}</h2>
             <small>Creado por {{$newsvar->user->name}} el {{$newsvar->created_at}}</small><br>
-            <img src="{{$newsvar->image}}" alt="imagen noticia">
-            <p>{{$newsvar->text}}</p>
-            @isset($newsvar->tags)
+            <img class="lg:w-96 rounded-lg max-h-96" src="{{$newsvar->image}}" alt="imagen noticia">
+            <p class="bg-white p-1">{{$newsvar->text}}</p>
+            @if(count($newsvar->tags) > 0)
                 <p>
                     Etiquetas:
                     @foreach($newsvar->tags as $tag)
@@ -16,17 +16,15 @@
                     @endforeach
                 </p>
             @endisset
-            @if(Auth::check() && (Auth::user()->role === "admin" || Auth::user()->role === "superadmin"))
+            @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'superadmin']))
                 <a href="{{route('news.edit', $newsvar->id)}}">Editar</a>
                 <form method="POST" action="{{route('news.destroy', $newsvar->id)}}">
                     @csrf
                     @method('DELETE')
-                    <input type="submit" value="Eliminar noticia">
+                    <input class="buttonRed" type="submit" value="Eliminar noticia">
                 </form>
-
             @endif
-        </div>
-    </main>
-
+        </x-card>
+    </x-main>
 </x-layout>
 
