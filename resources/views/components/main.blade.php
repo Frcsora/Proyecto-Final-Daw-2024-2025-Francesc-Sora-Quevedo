@@ -3,7 +3,13 @@
         @include('partials.patreoncard')
         <section class="w-full">{{$slot}}</section>
     </section>
-    @include('partials.linea')
-    @include('partials.status')
-    @include('partials.back')
+    @isset($newsindex)
+        @include('partials.status')
+
+    @else
+        @include('partials.linea')
+        @include('partials.status')
+        @include('partials.back')
+    @endisset
+
 </main>

@@ -1,6 +1,8 @@
 <header class="w-full bg-[#fac533]">
     <section class="flex justify-between gap-1">
-        <a href="<?php echo e(route('welcome')); ?>" class="w-24 md:w-64"><img class="w-24 md:w-32 lg:w-full logo" src="<?php echo e($image); ?>" alt="Logo del equipo pio pio e-sports"></a>
+        <a href="<?php use Illuminate\Support\Facades\Auth;
+
+        echo e(route('welcome')); ?>" class="w-24 md:w-64"><img class="w-24 md:w-32 lg:w-full logo" src="<?php echo e($image); ?>" alt="Logo del equipo pio pio e-sports"></a>
         <section class="w-full hidden xl:flex justify-around items-center">
             <nav class="flex justify-center items-center lg:text-2xl 2xl:text-4xl">
                 <ul class="flex items-center gap-5">
@@ -98,7 +100,7 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
                  <?php $__env->slot('trigger', null, []); ?> <button class="boton"><svg class="w-14 md:w-20 lg:w-48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></button> <?php $__env->endSlot(); ?>
-                 <?php $__env->slot('content', null, []); ?> 
+                 <?php $__env->slot('content', null, []); ?>
                     <ul class="p-2 flex flex-col gap-5">
                         <li><?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
