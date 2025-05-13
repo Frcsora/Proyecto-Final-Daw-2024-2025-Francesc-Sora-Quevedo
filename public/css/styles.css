@@ -51,6 +51,8 @@ button:hover, input[type=submit]:hover {
 
 svg {
   width: 45px;
+  height: 45px;
+  z-index:20;
 }
 
 @media screen and (max-width: 768px) {

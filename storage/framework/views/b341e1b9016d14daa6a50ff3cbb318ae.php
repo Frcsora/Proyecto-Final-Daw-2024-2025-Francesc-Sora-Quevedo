@@ -9,7 +9,6 @@
 <?php endif; ?>
 <?php $component->withAttributes(['image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($image),'imageFondo' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($imageFondo),'socialmedias' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($socialmedias)]); ?>
      <?php $__env->slot('title', null, []); ?> News <?php $__env->endSlot(); ?>
-
     <?php if (isset($component)) { $__componentOriginal65e0bd0aeed8a21b598c76606db79d38 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal65e0bd0aeed8a21b598c76606db79d38 = $attributes; } ?>
 <?php $component = App\View\Components\Main::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -20,6 +19,7 @@
 <?php $attributes = $attributes->except(\App\View\Components\Main::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+         <?php $__env->slot('newsindex', null, []); ?>  <?php $__env->endSlot(); ?>
         <?php if (isset($component)) { $__componentOriginalcee70f1acfea662afbe7691878e7b99e = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalcee70f1acfea662afbe7691878e7b99e = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.cards-div','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -30,6 +30,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+
             <?php $__empty_1 = true; $__currentLoopData = $newsvar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $news): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <?php if (isset($component)) { $__componentOriginal71e3226cf3fe2778b596d213467290d3 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal71e3226cf3fe2778b596d213467290d3 = $attributes; } ?>

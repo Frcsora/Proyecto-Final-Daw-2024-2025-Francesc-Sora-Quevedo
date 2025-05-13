@@ -9,7 +9,6 @@ use App\Models\News;
 use App\Models\NewsTags;
 use App\Models\Socialmedia;
 use App\Models\Tags;
-use App\View\Components\cardDiv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +25,7 @@ class NewsController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->get();
+
         $socialmedias = Socialmedia::all();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();

@@ -11,7 +11,7 @@ class SanitizeSVG
         $sanitizer = new Sanitizer();
 
         foreach ($socialmedias as $socialmedia) {
-            $cleanSvg = $sanitizer->sanitize($socialmedia->svg);
+            $cleanSvg = $sanitizer->sanitize($socialmedia->medias->svg);
             $socialmedia->svg = $cleanSvg;
         }
 

@@ -5,7 +5,7 @@
             <h1 class="text-4xl">{{$user->name}}</h1>
             <small>Usuario creado el {{$user->created_at->format('d M Y H:m:s')}}</small>
             @include('partials.linea')
-            @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'superadmin']))
+            @if(Auth::check() && Auth::user()->role !== 'superadmin' && $user->role !== 'superadmin')
                 <form action="{{route('users.update', $user->id)}}" method="POST">
                     @csrf
                     @method('PUT')
@@ -15,7 +15,7 @@
                 @include('partials.linea')
             @endif
             {{-- Auth::user hace rererencia al usuario autenticado, $user al usuario que se esta viendo en el show --}}
-            @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'superadmin']))
+            @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'superadmin']) && $user->role !== 'superadmin')
                 <form action="{{route('users.update', $user->id)}}" method="POST">
                     @csrf
                     @method('PUT')

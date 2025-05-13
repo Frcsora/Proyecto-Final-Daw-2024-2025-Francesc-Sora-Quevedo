@@ -15,7 +15,7 @@ class ContactUsController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();

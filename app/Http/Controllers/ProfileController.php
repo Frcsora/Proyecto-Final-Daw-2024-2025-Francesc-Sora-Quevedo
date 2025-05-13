@@ -19,7 +19,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
 
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();

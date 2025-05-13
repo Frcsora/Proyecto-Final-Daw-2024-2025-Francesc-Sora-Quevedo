@@ -26,7 +26,7 @@ class TeamsController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $teams = Teams::with('games')->get();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         return view('teams.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'teams'=>$teams, 'socialmedias'=>$socialmedias]);
     }
@@ -41,7 +41,7 @@ class TeamsController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $games = Games::all();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 
@@ -70,7 +70,7 @@ class TeamsController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $games = Games::all();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         $team = Teams::where('id', $id)->with('games')->first();
         $medias = TeamsMedias::where('team_id', $id)->with('medias')->get();
@@ -91,7 +91,7 @@ class TeamsController extends Controller
             ->where('active', 'true')->first();
         $team = Teams::findOrFail($id);
         $games = Games::all();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 

@@ -1,8 +1,8 @@
-<header class="w-full bg-[#fac533]">
-    <section class="flex justify-between gap-1">
-        <a href="{{route('welcome')}}" class="w-24 md:w-64"><img class="w-24 md:w-32 lg:w-full logo" src="{{$image}}" alt="Logo del equipo pio pio e-sports"></a>
-        <section class="w-full hidden xl:flex justify-around items-center">
-            <nav class="flex justify-center items-center lg:text-2xl 2xl:text-4xl">
+<header class="p-2 w-full bg-[#fac533]">
+    <section class="flex justify-evenly gap-1">
+        <a href="{{route('welcome')}}" class="w-24 md:w-32"><img class="w-24 md:w-32 lg:w-full logo" src="{{$image}}" alt="Logo del equipo pio pio e-sports"></a>
+        <section class="w-full hidden xl:flex justify-between items-center">
+            <nav class="w-full flex justify-center items-center lg:text-2xl 2xl:text-4xl">
                 <ul class="flex items-center gap-5">
                     <a href="{{route('aboutus')}}"><li>Nuestro club</li></a>
                     <a href="{{route('teams.index')}}"><li>Equipos</li></a>
@@ -16,7 +16,7 @@
                     @else
                                 <li class="cursor-pointer relative" id="dropdown">
                                     <p class="flex">¡Bienvenido, {{Auth::user()->name}}! <svg class="w-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M2 334.5c-3.8 8.8-2 19 4.6 26l136 144c4.5 4.8 10.8 7.5 17.4 7.5s12.9-2.7 17.4-7.5l136-144c6.6-7 8.4-17.2 4.6-26s-12.5-14.5-22-14.5l-72 0 0-288c0-17.7-14.3-32-32-32L128 0C110.3 0 96 14.3 96 32l0 288-72 0c-9.6 0-18.2 5.7-22 14.5z"/></svg></p>
-                                    <section class="left-full top-0 border border-black absolute w-full flex-col items-center p-2 bg-[#fac533] hidden dropdown-user" id="dropdown-user">
+                                    <section class="z-[20]  rounded border border-black absolute w-full flex-col items-center p-2 bg-[#fac533] hidden dropdown-user" id="dropdown-user">
                                         <ul>
                                             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin')
                                                 <li><small><x-dropdown-link><a href="{{route('admin')}}">Administración</a></x-dropdown-link></small></li>
@@ -33,10 +33,11 @@
 
                 </ul>
             </nav>
-            <ul class="socialmedia">
+
+            <ul class="w-12 flex flex-row-reverse z-20">
                 @if(count($socialmedias) > 0)
                     @foreach($socialmedias as $socialmedia)
-                        <li class="w-12"><a href="{{$socialmedia->link}}">{!! $socialmedia->medias->svg !!}</a></li>
+                        <li class="z-20 w-full"><a class="z-20" href="{{$socialmedia->link}}">{!! $socialmedia->medias->svg !!}</a></li>
                     @endforeach
                 @endif
             </ul>

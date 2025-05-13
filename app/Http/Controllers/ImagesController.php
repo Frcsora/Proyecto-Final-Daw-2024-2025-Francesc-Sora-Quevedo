@@ -21,8 +21,7 @@ class ImagesController extends Controller
             ->where('active', 'true')->first();
         $logos = Images::where('type', 'logo')->get();
         $fondos = Images::where('type', 'fondo')->get();
-        $socialmedias = Socialmedia::all();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+        $socialmedias = Socialmedia::with('medias')->get();        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('images.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'logos'=>$logos, 'fondos'=>$fondos, 'socialmedias'=>$socialmedias]);
     }
@@ -36,8 +35,7 @@ class ImagesController extends Controller
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
-
+        $socialmedias = Socialmedia::with('medias')->get();
         UserValidator::validateAdmin();
 
         return view('images.create', ['image'=>$image->base64, 'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
@@ -72,8 +70,7 @@ class ImagesController extends Controller
 
         $imageFondo = $imagen -> type == 'fondo' ? $imagen : Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
-        UserValidator::validateAdmin();
+        $socialmedias = Socialmedia::with('medias')->get();        UserValidator::validateAdmin();
         return view('images.show', ['image'=>$image->base64, 'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
     }
 

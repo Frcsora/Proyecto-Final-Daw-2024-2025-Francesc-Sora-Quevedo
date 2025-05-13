@@ -24,8 +24,8 @@ class TagsController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
             $tagsvar = Tags::all();
-            $socialmedias = Socialmedia::all();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+        $socialmedias = Socialmedia::with('medias')->get();
+        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
             UserValidator::validateAdmin();
             return view('tags.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tagsvar'=>$tagsvar, 'socialmedias'=>$socialmedias]);
 
@@ -40,7 +40,7 @@ class TagsController extends Controller
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 
@@ -70,7 +70,7 @@ class TagsController extends Controller
         $newsvar = News::whereHas('tags', function ($query) use ($id) {
             $query->where('tags.id', $id);
         })->orderBy('created_at', 'desc')->get();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 
@@ -87,7 +87,7 @@ class TagsController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $tag = Tags::findOrFail($id);
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 

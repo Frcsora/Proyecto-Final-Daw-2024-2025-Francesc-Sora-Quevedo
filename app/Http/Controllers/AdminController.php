@@ -17,9 +17,11 @@ class AdminController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $image = Images::findOrFail(1);
-        $imageFondo = Images::findOrFail(2);
-        $socialmedias = Socialmedia::all();
+        $image = Images::where('type', 'logo')
+            ->where('active', 'true')->first();
+        $imageFondo = Images::where('type', 'fondo')
+            ->where('active', 'true')->first();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('administracion', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);

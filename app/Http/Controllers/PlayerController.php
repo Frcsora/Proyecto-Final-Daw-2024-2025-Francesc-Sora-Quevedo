@@ -31,7 +31,7 @@ class PlayerController extends Controller
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $teams = Teams::all();
         UserValidator::validateAdmin();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
@@ -72,7 +72,7 @@ class PlayerController extends Controller
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $player = Player::findOrFail($id);
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         $medias = PlayersMedias::where('player_id', $id)->with('medias')->get();
@@ -90,7 +90,7 @@ class PlayerController extends Controller
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $player = Player::findOrFail($id);
         $teams = Teams::all();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);

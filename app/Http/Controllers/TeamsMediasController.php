@@ -32,7 +32,7 @@ class TeamsMediasController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $medias = Medias::all();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('teamsmedias.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias, 'medias'=>$medias, 'id' => $request->id]);
@@ -72,7 +72,7 @@ class TeamsMediasController extends Controller
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmediaEdit = TeamsMedias::findOrFail($id);
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         $medias = Medias::all();

@@ -23,8 +23,7 @@ class GamesController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $gamesvar = Games::all();
-        $socialmedias = Socialmedia::all();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+        $socialmedias = Socialmedia::with('medias')->get();        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('games.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'gamesvar'=>$gamesvar, 'socialmedias'=>$socialmedias]);
     }
@@ -38,7 +37,7 @@ class GamesController extends Controller
             ->where('active', 'true')->first();
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('games.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
@@ -72,7 +71,7 @@ class GamesController extends Controller
         $imageFondo = Images::where('type', 'fondo')
             ->where('active', 'true')->first();
         $game = Games::findOrFail($id);
-        $socialmedias = Socialmedia::all();
+        $socialmedias = Socialmedia::with('medias')->get();
         $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 

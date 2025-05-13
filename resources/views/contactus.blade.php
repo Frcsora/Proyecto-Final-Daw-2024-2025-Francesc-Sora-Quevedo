@@ -1,5 +1,5 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
-    <x-slot:title>Admin</x-slot:title>
+    <x-slot:title>Contáctanos</x-slot:title>
     <x-main>
         <section class="w-full flex flex-col items-center">
             <x-card>
