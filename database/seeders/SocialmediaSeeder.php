@@ -23,7 +23,7 @@ class SocialmediaSeeder extends Seeder
             ]
         ]);
         Socialmedia::firstOrCreate([
-            ['id' => 1],
+            ['id' => 2],
             [
                 'created_by' => 1,
                 'id_media' => 3,
@@ -32,7 +32,7 @@ class SocialmediaSeeder extends Seeder
             ]
         ]);
         Socialmedia::firstOrCreate([
-            ['id' => 1],
+            ['id' => 3],
             [
                 'created_by' => 1,
                 'id_media' => 4,
