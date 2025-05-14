@@ -13,16 +13,13 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        Tags::firstOrCreate(
-            [
-                'tag'=>'Actualidad'
-            ],
-            [
-                'tag'=> 'PioPioeSports'
-            ],
-            [
-                'tag'=> 'Noticias'
-            ]
-        );
+        $tags = ['Actualidad', 'PioPioeSports', 'Noticias'];
+
+        foreach ($tags as $tag) {
+            Tags::firstOrCreate(
+                ['tag' => $tag],
+                ['tag' => $tag]
+            );
+        }
     }
 }
