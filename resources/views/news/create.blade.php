@@ -18,11 +18,11 @@
                     </fieldset>
                     <fieldset>
                         <label for="abstract">Sinopsis:</label><br>
-                        <textarea name="text" class="w-96 md:w-[600px]" rows="20"></textarea>
+                        <textarea name="abstract" class="w-96 md:w-[600px]" rows="20"></textarea>
                     </fieldset>
                     <fieldset>
                         <label for="news">Noticia:</label><br>
-                        <textarea name="text" class="w-96 md:w-[600px]" rows="20"></textarea>
+                        <textarea name="news" class="w-96 md:w-[600px]" rows="20"></textarea>
                     </fieldset>
                     <fieldset>
                         <label for="tags">Tags</label><br>
