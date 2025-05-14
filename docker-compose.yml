@@ -74,7 +74,6 @@ services:
         volumes:
             - '.:/var/www/html'
             - './docker/8.4/php.ini:/usr/local/etc/php/conf.d/99-overrides.ini'
-
         networks:
             - sail
         depends_on:

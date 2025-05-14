@@ -13,7 +13,7 @@ class GamesSeeder extends Seeder
      */
     public function run(): void
     {
-        Games::insert(
+        Games::firstOrCreate(
             ['name' => 'League of Legends'],
             ['name' => 'Valorant']
         );
