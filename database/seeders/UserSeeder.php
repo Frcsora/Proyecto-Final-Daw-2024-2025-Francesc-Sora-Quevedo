@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         User::create(['name' => 'root',
             'role' => 'superadmin',
             'active_user' => 1,
-            'email' => 'piopioesportsclub@gmail.com',
+            'email' => 'root@root.com',
             'password'=>Hash::make('rootpassword')
         ]);
 

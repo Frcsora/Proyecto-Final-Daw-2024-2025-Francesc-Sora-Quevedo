@@ -19,13 +19,27 @@ class TagsController extends Controller
      */
     public function index()
     {
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
             $image = Images::where('type', 'logo')
                 ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
+        }
             $tagsvar = Tags::all();
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
             UserValidator::validateAdmin();
             return view('tags.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tagsvar'=>$tagsvar, 'socialmedias'=>$socialmedias]);
 
@@ -36,12 +50,26 @@ class TagsController extends Controller
      */
     public function create()
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         UserValidator::validateAdmin();
 
         return view('tags.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
@@ -63,15 +91,29 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         $newsvar = News::whereHas('tags', function ($query) use ($id) {
             $query->where('tags.id', $id);
         })->orderBy('created_at', 'desc')->get();
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 
         return view('tags.show', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
@@ -82,13 +124,27 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         $tag = Tags::findOrFail($id);
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 
         return view('tags.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tag'=>$tag, 'socialmedias'=>$socialmedias]);

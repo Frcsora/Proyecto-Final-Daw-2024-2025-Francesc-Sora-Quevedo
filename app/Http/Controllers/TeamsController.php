@@ -21,13 +21,27 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
         $teams = Teams::with('games')->get();
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         return view('teams.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'teams'=>$teams, 'socialmedias'=>$socialmedias]);
     }
 
@@ -36,13 +50,27 @@ class TeamsController extends Controller
      */
     public function create()
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
         $games = Games::all();
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         UserValidator::validateAdmin();
 
         return view('teams.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'games'=>$games, 'socialmedias'=>$socialmedias]);
@@ -65,13 +93,27 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         $games = Games::all();
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         $team = Teams::where('id', $id)->with('games')->first();
         $medias = TeamsMedias::where('team_id', $id)->with('medias')->get();
         $medias = SanitizeSVG::sanitizeSVG($medias);
@@ -85,14 +127,28 @@ class TeamsController extends Controller
     public function edit($id)
     {
 
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         $team = Teams::findOrFail($id);
         $games = Games::all();
-        $socialmedias = Socialmedia::with('medias')->get();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
 
         return view('teams.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'games'=>$games, 'socialmedias'=>$socialmedias, 'team'=>$team]);

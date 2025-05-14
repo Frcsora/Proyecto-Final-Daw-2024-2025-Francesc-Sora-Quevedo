@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(MediasSeeder::class);
         $this->call(ImagesSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(GamesSeeder::class);
+        $this->call(NewsSeeeder::class);
     }
 }

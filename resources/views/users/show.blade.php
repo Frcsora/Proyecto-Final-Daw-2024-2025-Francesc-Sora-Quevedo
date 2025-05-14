@@ -5,7 +5,7 @@
             <h1 class="text-4xl">{{$user->name}}</h1>
             <small>Usuario creado el {{$user->created_at->format('d M Y H:m:s')}}</small>
             @include('partials.linea')
-            @if(Auth::check() && Auth::user()->role !== 'superadmin' && $user->role !== 'superadmin')
+            @if(Auth::check() && Auth::user()->role === 'superadmin' && $user->role !== 'superadmin')
                 <form action="{{route('users.update', $user->id)}}" method="POST">
                     @csrf
                     @method('PUT')
