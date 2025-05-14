@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         User::firstOrCreate(['name' => 'root',
             'role' => 'superadmin',
             'active_user' => 1,
-            'email' => 'root@root.com',
+            'email' => 'fake@fake.com',
             'password'=>Hash::make('rootpassword')
         ]);
 
