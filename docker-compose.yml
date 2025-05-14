@@ -23,7 +23,6 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
             APP_NAME: Laravel
             APP_ENV: local
-            APP_KEY: base64:GXiCbXVI6/JmNgXN8vifmne5rraULXQkeQ7sADao9+s=
             APP_DEBUG: true
             APP_URL: http://piopioesports.test
             APP_LOCALE: en
