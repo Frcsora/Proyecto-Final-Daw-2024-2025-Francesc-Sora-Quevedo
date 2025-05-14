@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ImagesSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(GamesSeeder::class);
-        $this->call(NewsSeeeder::class);
+        $this->call(NewsSeeder::class);
     }
 }
