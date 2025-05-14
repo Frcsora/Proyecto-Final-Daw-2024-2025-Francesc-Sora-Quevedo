@@ -13,7 +13,7 @@ class SocialmediaSeeder extends Seeder
      */
     public function run(): void
     {
-        Socialmedia::firstOrCreate([
+        Socialmedia::firstOrCreate(
             ['id' => 1],
             [
                 'created_by' => 1,
@@ -21,8 +21,8 @@ class SocialmediaSeeder extends Seeder
                 'name' => 'Twitter',
                 'link' => 'https://x.com/PioPioEC'
             ]
-        ]);
-        Socialmedia::firstOrCreate([
+        );
+        Socialmedia::firstOrCreate(
             ['id' => 2],
             [
                 'created_by' => 1,
@@ -30,8 +30,8 @@ class SocialmediaSeeder extends Seeder
                 'name' => 'Instagram',
                 'link' => 'https://www.instagram.com/piopioec/'
             ]
-        ]);
-        Socialmedia::firstOrCreate([
+        );
+        Socialmedia::firstOrCreate(
             ['id' => 3],
             [
                 'created_by' => 1,
@@ -39,6 +39,6 @@ class SocialmediaSeeder extends Seeder
                 'name' => 'Tik Tok',
                 'link' => 'https://www.tiktok.com/@piopioesportsclub'
             ]
-        ]);
+        );
     }
 }
