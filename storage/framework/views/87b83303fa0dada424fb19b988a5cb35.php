@@ -1,4 +1,4 @@
-<header class="p-2 w-full bg-[#fac533]">
+<header class="p-4 w-full bg-[#fac533]">
     <section class="flex justify-evenly gap-1">
         <a href="<?php echo e(route('welcome')); ?>" class="w-24 md:w-32"><img class="w-24 md:w-32 lg:w-full logo" src="<?php echo e($image); ?>" alt="Logo del equipo pio pio e-sports"></a>
         <section class="w-full hidden xl:flex justify-between items-center">
@@ -78,8 +78,8 @@
                 <?php endif; ?>
             </ul>
         </section>
-        <section class="flex lg:hidden items-center">
-            <ul class="gap-2">
+        <section class="flex xl:hidden items-center">
+            <ul class=" flex gap-2">
                 <?php if(count($socialmedias) > 0): ?>
                     <?php $__currentLoopData = $socialmedias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $socialmedia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li class="w-9"><a href="<?php echo e($socialmedia->link); ?>"><?php echo $socialmedia->medias->svg; ?></a></li>
