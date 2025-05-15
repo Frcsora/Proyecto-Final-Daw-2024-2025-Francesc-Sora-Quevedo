@@ -118,6 +118,7 @@ class NewsController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
+        $newsvar = News::findOrFail($id)->with(['user','tags'])->orderBy('created_at','desc')->get();
         UserValidator::validateAdmin();
         return view('news.show', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
     }
