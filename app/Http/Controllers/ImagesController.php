@@ -15,13 +15,29 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
+        }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
         $logos = Images::where('type', 'logo')->get();
         $fondos = Images::where('type', 'fondo')->get();
-        $socialmedias = Socialmedia::with('medias')->get();        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
         UserValidator::validateAdmin();
         return view('images.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'logos'=>$logos, 'fondos'=>$fondos, 'socialmedias'=>$socialmedias]);
     }
@@ -107,6 +123,7 @@ class ImagesController extends Controller
             foreach($logos as $logo){
                 if($id == $logo->id){
                     Images::findOrFail($logo->id)->update(['active' => 'true']);
+                    session()->put('image', $logo);
                 }else{
                     Images::findOrFail($logo->id)->update(['active' => 'false']);
                 }
@@ -118,6 +135,7 @@ class ImagesController extends Controller
             foreach($fondos as $fondo){
                 if($id == $fondo->id){
                     Images::findOrFail($fondo->id)->update(['active' => 'true']);
+                    session()->put('imageFondo', $fondos);
                 }else{
                     Images::findOrFail($fondo->id)->update(['active' => 'false']);
                 }
