@@ -55,7 +55,9 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.4
 RUN userdel -r ubuntu
 RUN groupadd --force -g 33 sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
-
+COPY package*.json ./
+RUN npm install
+COPY . .
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.4/cli/conf.d/99-sail.ini
