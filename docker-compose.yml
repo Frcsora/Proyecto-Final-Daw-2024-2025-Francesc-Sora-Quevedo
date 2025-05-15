@@ -75,6 +75,7 @@ services:
             - '.:/var/www/html'
             - './docker/8.4/php.ini:/usr/local/etc/php/conf.d/99-overrides.ini'
             - './node_modules:/var/www/html/node_modules'
+        command: sh -c "npm install"
         networks:
             - sail
         depends_on:
