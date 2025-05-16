@@ -16,7 +16,7 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      */
-    public function create(): \Illuminate\Foundation\Application
+    public function create(): View
     {
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();

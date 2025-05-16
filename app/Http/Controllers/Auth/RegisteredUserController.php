@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): \Illuminate\Foundation\Application
+    public function create(): View
     {
         $image = Images::where('type', 'logo')
             ->where('active', 'true')->first();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\SanitizeSVG;
 use App\Http\Controllers\Controller;
 use App\Models\Images;
 use App\Models\Socialmedia;
@@ -17,7 +18,7 @@ class ConfirmablePasswordController extends Controller
     /**
      * Show the confirm password view.
      */
-    public function show(): \Illuminate\Foundation\Application
+    public function show(): View
     {
         if(session()->has('image')){
             $image = session()->get('image');
@@ -46,7 +47,7 @@ class ConfirmablePasswordController extends Controller
     /**
      * Confirm the user's password.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): View
     {
         if (! Auth::guard('web')->validate([
             'email' => $request->user()->email,

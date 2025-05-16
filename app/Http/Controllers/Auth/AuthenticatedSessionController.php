@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Helpers\SanitizeSVG;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Images;
@@ -19,7 +18,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): \Illuminate\Foundation\Application
+    public function create(): View
     {
         if(session()->has('image')){
             $image = session()->get('image');
@@ -48,7 +47,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request): View
     {
         $user = User::where('email', $request->email)->first();
         if($user->active_user == 1){
@@ -62,7 +61,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): \Illuminate\Foundation\Application
+    public function destroy(Request $request): View
     {
         Auth::guard('web')->logout();
 
