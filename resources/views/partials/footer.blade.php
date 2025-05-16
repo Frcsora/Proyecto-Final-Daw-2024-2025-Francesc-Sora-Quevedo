@@ -49,7 +49,7 @@
                 <a href="{{ route('aboutus') }}"><li><p>Nuestro club</p></li></a>
                 <a href="{{ route('teams.index') }}"><li>Equipos</li></a>
                 <a href="{{ route('news.index') }}"><li>Noticias</li></a>
-                @if(\App\Helpers\UserValidator::validateUser())
+                @if(Auth::check() && in_array(Auth::user() ->role, ['admin', 'superadmin']))
                     <a href="{{ route('contactus') }}"><li>Contáctanos</li></a>
                 @endif
             </ul>
