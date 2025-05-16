@@ -6,7 +6,7 @@
             <h2 class="text-5xl text-bold">{{$team->name}}</h2>
             <p>{{$team->games->name}}</p>
             @include('partials.linea')
-            <section class="flex flex-col md:flex-row gap-3">
+            <section class="flex flex-col md:flex-row md:flex-wrap gap-3">
                 @foreach($players as $player)
                     <section class="border border-black p-3 flex flex-col items-center">
                         <h3><a href="{{route('players.show',$player->id)}}">{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}</a></h3>

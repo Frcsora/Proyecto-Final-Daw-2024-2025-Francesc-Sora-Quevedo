@@ -57,7 +57,7 @@
     </section>
     <section class="flex flex-col h-full justify-around items-center">
         <small>Derechos</small>
-        <section class="flex ">
+        <section class="flex flex-row-reverse">
             @if(count($socialmedias) > 0)
                 @foreach($socialmedias as $socialmedia)
                     <a href="{{$socialmedia->link}}">{!! $socialmedia->medias->svg !!}</a>
