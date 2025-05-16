@@ -42,7 +42,7 @@ unset($__defined_vars); ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </p>
     <?php endif; ?>
-    <?php if(\App\Helpers\UserValidator::validateAdmin()): ?>
+    <?php if(Auth::check() && in_array(Auth::User()->role, ['admin', 'superadmin'])): ?>
         <a href="<?php echo e(route("news.edit", $id)); ?>">Editar</a>
         <form method="POST" action="<?php echo e(route('news.destroy', $id)); ?>">
             <?php echo csrf_field(); ?>

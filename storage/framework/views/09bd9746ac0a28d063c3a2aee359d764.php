@@ -56,8 +56,11 @@
         </nav>
     </section>
     <section class="flex flex-col h-full justify-around items-center">
-        <small>Derechos</small>
-        <section class="flex ">
+        <small class="text-sm flex">
+            <a href="https://piopioesports.up.railway.app/">PioPioEsports</a>
+            © 2025
+        </small>
+        <section class="flex flex-row-reverse">
             <?php if(count($socialmedias) > 0): ?>
                 <?php $__currentLoopData = $socialmedias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $socialmedia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <a href="<?php echo e($socialmedia->link); ?>"><?php echo $socialmedia->medias->svg; ?></a>

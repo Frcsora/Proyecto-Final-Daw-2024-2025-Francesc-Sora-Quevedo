@@ -59,15 +59,11 @@
         <small class="text-sm flex">
             <a href="https://piopioesports.up.railway.app/">PioPioEsports</a>
             © 2025 by
-            <a href="www.fsoraquevedo.com">Francesc Sorà</a>
+            <a href="https://www.fsoraquevedo.com"> Francesc Sorà </a>
             is licensed under
             <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                 CC BY-NC-ND 4.0
             </a>
-            <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">
-            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">
-            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">
-            <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">
         </small>
         <section class="flex flex-row-reverse">
             @if(count($socialmedias) > 0)
