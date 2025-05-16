@@ -8,9 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$title}}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <style>
+    <link rel="icon" type="image/png" href="{{asset('favicon.png')}}">    <style>
         body::before{
             background: url({{$imageFondo}}) center/cover;
         }
