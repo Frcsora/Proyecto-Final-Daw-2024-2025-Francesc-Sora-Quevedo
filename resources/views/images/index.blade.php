@@ -16,11 +16,13 @@
                             </form>
                             <label for="checklogo{{$logo->id}}">Active:</label>
                             <a href="{{route('images.show', $logo->id)}}">Preview</a>
-                            <form method="POST" action="{{route('images.destroy', $logo->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <input class="buttonRed" type="submit" value="Eliminar">
-                            </form>
+                            @if(count($logos) > 1)
+                                <form method="POST" action="{{route('images.destroy', $logo->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="buttonRed" type="submit" value="Eliminar">
+                                </form>
+                            @endif
                         </x-card><br>
                     @endforeach
                 </x-cards-div>
@@ -38,11 +40,13 @@
                                 <input class="buttonBlue" value="Cambiar" type="submit">
                             </form>
                             <a href="{{route('images.show', $fondo->id)}}">Preview</a>
-                            <form method="POST" action="{{route('images.destroy', $fondo->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <input class="buttonRed" type="submit" value="Eliminar">
-                            </form>
+                            @if(count($fondos) > 1)
+                                <form method="POST" action="{{route('images.destroy', $fondo->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="buttonRed" type="submit" value="Eliminar">
+                                </form>
+                            @endif
                         </x-card><br>
                     @endforeach
                 </x-cards-div>

@@ -148,8 +148,9 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
+
         Images::findOrFail($id)->delete();
         return redirect()->route('images.index')->with('status', 'Imagen eliminada');
     }
