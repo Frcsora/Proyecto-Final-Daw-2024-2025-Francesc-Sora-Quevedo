@@ -2,7 +2,7 @@
     <x-slot:title>Players</x-slot:title>
     <x-main>
         <x-card>
-            <h3 class="text-3xl"><a href="{{route('players.show',$player->id)}}">{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}</a></h3>
+            <h3 class="text-xl md:text-2xl lg:text-4xl"><a href="{{route('players.show',$player->id)}}">{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}</a></h3>
             <img class="rounded-full w-48" src="{{$player->image}}" alt="{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}">
             @include('partials.linea')
             @if(Auth::check())

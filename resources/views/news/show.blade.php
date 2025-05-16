@@ -3,7 +3,7 @@
     <x-main>
         <x-card>
             <x-slot:show></x-slot:show>
-            <h2 class="text-3xl">{{$newsvar->title}}</h2>
+            <h2 class="text-xl md:text-2xl lg:text-4xl">{{$newsvar->title}}</h2>
             <small>Creado por {{$newsvar->user->name}} el {{$newsvar->created_at}}</small><br>
             <img class="lg:w-96 rounded-lg max-h-96" src="{{$newsvar->image}}" alt="imagen noticia">
             <p class="bg-white p-1">{{$newsvar->text}}</p>

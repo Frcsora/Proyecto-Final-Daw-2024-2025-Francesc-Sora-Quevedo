@@ -4,7 +4,7 @@
         <x-cards-div>
             @forelse($teams as $team)
                 <x-card>
-                    <h2 class="text-4xl"><a href="{{route('teams.show', $team->id)}}">{{$team->name}}</a></h2>
+                    <h2 class="text-xl md:text-2xl lg:text-4xl"><a href="{{route('teams.show', $team->id)}}">{{$team->name}}</a></h2>
                     <p>{{$team->games->name}}</p>
                     @if(Auth::check())
                         @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
