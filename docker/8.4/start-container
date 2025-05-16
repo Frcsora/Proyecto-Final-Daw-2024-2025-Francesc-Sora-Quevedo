@@ -15,6 +15,24 @@ fi
 
 chmod -R ugo+rw /.composer
 
+echo "👉 Instalando dependencias de PHP (Composer)..."
+composer install
+
+echo "👉 Generando clave de aplicación..."
+php artisan key:generate
+
+echo "👉 Ejecutando migraciones y seeders..."
+php artisan migrate --seed
+
+echo "👉 Instalando dependencias de Node..."
+npm install
+
+echo "👉 Compilando assets con Vite..."
+npm run build
+
+echo "✅ Laravel listo."
+
+
 if [ $# -gt 0 ]; then
     if [ "$SUPERVISOR_PHP_USER" = "root" ]; then
         exec "$@"
