@@ -86,6 +86,9 @@
                                     @csrf
                                     <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
                                 </form></li>
+                        @else
+                            <li><x-dropdown-link :href="{{route("login")}}">Login<</x-dropdown-link>/li>
+                            <li><x-dropdown-link :href="{{route("register")}}">Registrate</x-dropdown-link></li>
                         @endif
                     </ul>
                 </x-slot>
