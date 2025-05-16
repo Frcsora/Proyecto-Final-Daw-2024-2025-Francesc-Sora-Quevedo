@@ -57,7 +57,10 @@
                         <ul class="p-2 flex flex-col gap-5">
                             @if(count($socialmedias) > 0)
                                 @foreach($socialmedias as $socialmedia)
-                                    <li><a href="{{$socialmedia->link}}">{!! $socialmedia->medias->svg !!}</a></li>
+                                    <li><x-dropdown-link :href="$socialmedia->link">
+                                            <x-slot:svg></x-slot:svg>
+                                            {!! $socialmedia->medias->svg !!}
+                                        </x-dropdown-link></li>
                                 @endforeach
                             @endif
                         </ul>
