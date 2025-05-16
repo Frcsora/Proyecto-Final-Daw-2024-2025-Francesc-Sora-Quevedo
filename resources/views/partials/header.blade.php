@@ -63,11 +63,13 @@
                         @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'superadmin']))
                             <li><x-dropdown-link :href="route('admin')">Administración</x-dropdown-link></li>
                         @endif
-                        <li><x-dropdown-link :href="route('profile.edit')">Editar perfil</x-dropdown-link></li>
-                        <li><form method="POST" action="{{route('logout')}}">
-                                @csrf
-                                <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
-                            </form></li>
+                        @if(Auth::check())
+                            <li><x-dropdown-link :href="route('profile.edit')">Editar perfil</x-dropdown-link></li>
+                            <li><form method="POST" action="{{route('logout')}}">
+                                    @csrf
+                                    <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
+                                </form></li>
+                        @endif
                     </ul>
                 </x-slot>
             </x-dropdown>
