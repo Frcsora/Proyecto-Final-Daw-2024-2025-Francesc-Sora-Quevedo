@@ -1,7 +1,7 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
     <x-slot:title>aboutus</x-slot:title>
     <x-main>
-        <section class="w-96 lg:w-full rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-70 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
+        <section class="w-96 lg:w-full rounded-lg before:rounded-lg tarjeta p-2 flex md:flex-col justify-around items-center relative before:absolute before:opacity-70 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
             <section class="p-2 flex flex-col justify-around items-center">
                 <h1 class="text-4xl font-bold">Sobre nosotros</h1><br><br>
                 <p>Pio Pio eSports es un club nacido para impulsar a las Islas Canarias en el mundo de los eSports y consolidar los deportes electrónicos como una disciplina legítima.<br><br>
