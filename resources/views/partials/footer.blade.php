@@ -56,7 +56,7 @@
         </nav>
     </section>
     <section class="flex flex-col h-full justify-around items-center">
-        <small class="text-[4px]">
+        <small class="text-[8px]">
             <a href="https://piopioesports.up.railway.app/">PioPioEsports</a>
             © 2025 by
             <a href="https://www.fsoraquevedo.com"> Francesc Sorà </a>

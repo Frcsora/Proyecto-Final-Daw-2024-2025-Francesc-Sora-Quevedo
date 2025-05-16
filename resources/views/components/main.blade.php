@@ -5,11 +5,9 @@
     </section>
     @isset($newsindex)
         @include('partials.status')
-
     @else
         @include('partials.linea')
         @include('partials.status')
         @include('partials.back')
     @endisset
-
 </main>
