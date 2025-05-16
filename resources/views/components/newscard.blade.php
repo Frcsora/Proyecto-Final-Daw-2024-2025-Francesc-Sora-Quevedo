@@ -13,7 +13,7 @@
             @endforeach
         </p>
     @endif
-    @if(\App\Helpers\UserValidator::validateAdmin())
+    @if(Auth::check() && in_array(Auth::User()->role, ['admin', 'superadmin']))
         <a href="{{route("news.edit", $id)}}">Editar</a>
         <form method="POST" action="{{route('news.destroy', $id)}}">
             @csrf
