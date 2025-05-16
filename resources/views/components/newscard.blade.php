@@ -1,5 +1,5 @@
 @props(['title','img','sinopsis','tags', 'name', 'fecha','id'])
-<div class="w-full gap-3 rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-80 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
+<div class="w-64 md:w-full gap-3 rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-80 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
     <h2 class="text-xl md:text-2xl lg:text-4xl"><a href="{{route('news.show', $id)}}">{{$title}}</a></h2>
     <small>Creado por {{$name}} el {{$fecha}}</small>
     <img class="rounded-lg w-80 max-h-48" src="{{$img}}" alt="imagen noticia">
