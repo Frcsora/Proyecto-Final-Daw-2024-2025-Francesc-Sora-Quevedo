@@ -16,7 +16,7 @@
                             </form>
                             <label for="checklogo{{$logo->id}}">Active:</label>
                             <a href="{{route('images.show', $logo->id)}}">Preview</a>
-                            @if(count($logos) > 1)
+                            @if($logo->active == "false")
                                 <form method="POST" action="{{route('images.destroy', $logo->id)}}">
                                     @csrf
                                     @method('DELETE')
@@ -40,7 +40,7 @@
                                 <input class="buttonBlue" value="Cambiar" type="submit">
                             </form>
                             <a href="{{route('images.show', $fondo->id)}}">Preview</a>
-                            @if(count($fondos) > 1)
+                            @if($fondo->active == "false")
                                 <form method="POST" action="{{route('images.destroy', $fondo->id)}}">
                                     @csrf
                                     @method('DELETE')
