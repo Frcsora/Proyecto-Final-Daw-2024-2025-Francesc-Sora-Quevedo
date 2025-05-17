@@ -50,51 +50,54 @@
                     @endforeach
                 @endif
             </ul>
-            <section class="flex md:hidden">
+            <section>
+                <section class="flex md:hidden">
+                    <x-dropdown>
+                        <x-slot name="trigger"><button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M181.3 32.4c17.4 2.9 29.2 19.4 26.3 36.8L197.8 128l95.1 0 11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3s29.2 19.4 26.3 36.8L357.8 128l58.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-68.9 0L325.8 320l58.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-68.9 0-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8l9.8-58.7-95.1 0-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8L90.2 384 32 384c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 21.3-128L64 192c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3zM187.1 192L165.8 320l95.1 0 21.3-128-95.1 0z"/></svg></button></x-slot>
+                        <x-slot name="content">
+                            <ul class="p-2 flex flex-col items-center gap-5">
+                                @if(count($socialmedias) > 0)
+                                    @foreach($socialmedias as $socialmedia)
+                                        <li><x-dropdown-link :href="$socialmedia->link">
+                                                <x-slot:svg></x-slot:svg>
+                                                {!! $socialmedia->medias->svg !!}
+                                            </x-dropdown-link></li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </x-slot>
+                    </x-dropdown>
+                </section>
+            </section>
+            <section class="xl:hidden flex items-center">
                 <x-dropdown>
-                    <x-slot name="trigger"><button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M181.3 32.4c17.4 2.9 29.2 19.4 26.3 36.8L197.8 128l95.1 0 11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3s29.2 19.4 26.3 36.8L357.8 128l58.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-68.9 0L325.8 320l58.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-68.9 0-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8l9.8-58.7-95.1 0-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8L90.2 384 32 384c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 21.3-128L64 192c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3zM187.1 192L165.8 320l95.1 0 21.3-128-95.1 0z"/></svg></button></x-slot>
+                    <x-slot name="trigger"><button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></button></x-slot>
                     <x-slot name="content">
-                        <ul class="p-2 flex flex-col items-center gap-5">
-                            @if(count($socialmedias) > 0)
-                                @foreach($socialmedias as $socialmedia)
-                                    <li><x-dropdown-link :href="$socialmedia->link">
-                                            <x-slot:svg></x-slot:svg>
-                                            {!! $socialmedia->medias->svg !!}
-                                        </x-dropdown-link></li>
-                                @endforeach
+                        <ul class="p-2 flex flex-col gap-5">
+                            <li><x-dropdown-link :href="route('aboutus')">Nuestro club</x-dropdown-link></li>
+                            <li><x-dropdown-link :href="route('teams.index')">Equipos</x-dropdown-link></li>
+                            <li><x-dropdown-link :href="route('news.index')">Noticias</x-dropdown-link></li>
+                            @if(Auth::check())
+                                <li><x-dropdown-link :href="route('contactus')">Contáctanos</x-dropdown-link></li>
+
+                                @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
+                                    <li><x-dropdown-link :href="route('admin')">Administración</x-dropdown-link></li>
+                                @endif
+
+                                <li><x-dropdown-link :href="route('profile.edit')">Editar perfil</x-dropdown-link></li>
+                                <li><form method="POST" action="{{route('logout')}}">
+                                        @csrf
+                                        <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
+                                    </form></li>
+                            @else
+                                <li><x-dropdown-link :href="route('login')">Login</x-dropdown-link></li>
+                                <li><x-dropdown-link :href="route('register')">Registrate</x-dropdown-link></li>
                             @endif
                         </ul>
                     </x-slot>
                 </x-dropdown>
             </section>
         </section>
-        <section class="xl:hidden flex items-center">
-            <x-dropdown>
-                <x-slot name="trigger"><button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></button></x-slot>
-                <x-slot name="content">
-                    <ul class="p-2 flex flex-col gap-5">
-                        <li><x-dropdown-link :href="route('aboutus')">Nuestro club</x-dropdown-link></li>
-                        <li><x-dropdown-link :href="route('teams.index')">Equipos</x-dropdown-link></li>
-                        <li><x-dropdown-link :href="route('news.index')">Noticias</x-dropdown-link></li>
-                        @if(Auth::check())
-                            <li><x-dropdown-link :href="route('contactus')">Contáctanos</x-dropdown-link></li>
 
-                            @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
-                                <li><x-dropdown-link :href="route('admin')">Administración</x-dropdown-link></li>
-                            @endif
-
-                            <li><x-dropdown-link :href="route('profile.edit')">Editar perfil</x-dropdown-link></li>
-                            <li><form method="POST" action="{{route('logout')}}">
-                                    @csrf
-                                    <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
-                                </form></li>
-                        @else
-                            <li><x-dropdown-link :href="route('login')">Login</x-dropdown-link></li>
-                            <li><x-dropdown-link :href="route('register')">Registrate</x-dropdown-link></li>
-                        @endif
-                    </ul>
-                </x-slot>
-            </x-dropdown>
-        </section>
     </section>
 </header>

@@ -1,7 +1,7 @@
 <?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
 $__newAttributes = [];
-$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['align' => 'right', 'width' => '64', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700', 'onmouse'=>false]));
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['align' => 'right', 'width' => '64', 'contentClasses' => 'py-1 bg-white dark:bg-white', 'onmouse'=>false]));
 
 foreach ($attributes->all() as $__key => $__value) {
     if (in_array($__key, $__propNames)) {
@@ -16,7 +16,7 @@ $attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
 unset($__propNames);
 unset($__newAttributes);
 
-foreach (array_filter((['align' => 'right', 'width' => '64', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700', 'onmouse'=>false]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+foreach (array_filter((['align' => 'right', 'width' => '64', 'contentClasses' => 'py-1 bg-white dark:bg-white', 'onmouse'=>false]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
     $$__key = $$__key ?? $__value;
 }
 

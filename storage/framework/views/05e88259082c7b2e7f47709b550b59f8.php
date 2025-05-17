@@ -1,2 +1,0 @@
-<button class="buttonBlue w-40" id="back">Volver</button>
-<?php /**PATH /mnt/c/Users/DEEPGAMING/desktop/pioesportsbueno/Proyecto-Final-Daw-2024-2025-Francesc-Sora-Quevedo/resources/views/partials/back.blade.php ENDPATH**/ ?>

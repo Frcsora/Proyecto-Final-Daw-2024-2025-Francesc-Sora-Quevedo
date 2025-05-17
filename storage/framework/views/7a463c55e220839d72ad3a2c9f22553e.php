@@ -9,7 +9,7 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('patreon', null, []); ?>  <?php $__env->endSlot(); ?>
-    <h1 class="text-['60px'] lg:text-5xl">Unete a nosotros en patreon</h1>
+    <h1 class="text-2xl lg:text-5xl">Unete a nosotros en patreon</h1>
     <p class="text-3xl lg:text-3xl">¡Suscríbete en patreon para formar parte de algo más grande y apoyar el futuro de los eSports!</p>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

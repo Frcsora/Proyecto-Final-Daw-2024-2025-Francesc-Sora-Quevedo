@@ -51,7 +51,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $user = User::where('email', $request->email)->first();
-        if($user->active_user == 1){
+        if($user != null && $user->active_user == 1){
             $request->authenticate();
             $request->session()->regenerate();
         }

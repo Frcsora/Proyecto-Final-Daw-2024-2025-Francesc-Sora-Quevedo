@@ -36,15 +36,14 @@ unset($__defined_vars); ?>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo e($title); ?></title>
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
-
     <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>">
-    <style>
+    <link rel="icon" type="image/png" href="<?php echo e(asset('favicon.png')); ?>">    <style>
         body::before{
             background: url(<?php echo e($imageFondo); ?>) center/cover;
         }
     </style>
 </head>
-<body class="text-3xl w-screen overflow-x-hidden min-h-screen h-auto flex flex-col justify-between items-center gap-3 font-arial relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:opacity-70 before:z-[-1]">
+<body class="text-sm md:text-xl lg:text-3xl w-screen overflow-x-hidden min-h-screen h-auto flex flex-col justify-between items-center gap-3 font-arial relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:opacity-70 before:z-[-1]">
 <?php echo $__env->make("partials.header", array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <?php echo e($slot); ?>
 

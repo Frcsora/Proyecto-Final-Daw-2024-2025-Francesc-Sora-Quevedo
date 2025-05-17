@@ -1,2 +1,0 @@
-<hr class="border-t-4 border-gray-400 my-6 opacity-100 w-full">
-<?php /**PATH /mnt/c/Users/DEEPGAMING/desktop/pioesportsbueno/Proyecto-Final-Daw-2024-2025-Francesc-Sora-Quevedo/resources/views/partials/linea.blade.php ENDPATH**/ ?>

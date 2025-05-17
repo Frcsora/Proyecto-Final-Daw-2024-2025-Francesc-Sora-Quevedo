@@ -49,15 +49,23 @@
                 <a href="<?php echo e(route('aboutus')); ?>"><li><p>Nuestro club</p></li></a>
                 <a href="<?php echo e(route('teams.index')); ?>"><li>Equipos</li></a>
                 <a href="<?php echo e(route('news.index')); ?>"><li>Noticias</li></a>
-                <?php if(\App\Helpers\UserValidator::validateUser()): ?>
+                <?php if(Auth::check() && in_array(Auth::user() ->role, ['admin', 'superadmin'])): ?>
                     <a href="<?php echo e(route('contactus')); ?>"><li>Contáctanos</li></a>
                 <?php endif; ?>
             </ul>
         </nav>
     </section>
     <section class="flex flex-col h-full justify-around items-center">
-        <small>Derechos</small>
-        <section class="flex ">
+        <small class="text-[11px]">
+            <a href="https://piopioesports.up.railway.app/">PioPioEsports</a>
+            © 2025 by
+            <a href="https://www.fsoraquevedo.com"> Francesc Sorà </a>
+            is licensed under
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                CC BY-NC-ND 4.0
+            </a>
+        </small>
+        <section class="flex flex-row-reverse gap-2">
             <?php if(count($socialmedias) > 0): ?>
                 <?php $__currentLoopData = $socialmedias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $socialmedia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <a href="<?php echo e($socialmedia->link); ?>"><?php echo $socialmedia->medias->svg; ?></a>
