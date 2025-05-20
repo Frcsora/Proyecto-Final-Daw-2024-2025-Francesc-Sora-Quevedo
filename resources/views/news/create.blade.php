@@ -1,8 +1,9 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>News</x-slot:title>
     <main class="flex flex-col">
         @include('partials.errors')
         <x-card>
+            <x-slot:show></x-slot:show>
             <form id="formImage" method="post" action="{{route('news.store')}}" enctype="multipart/form-data">
                 @csrf
                 <section class="flex flex-col items-start">

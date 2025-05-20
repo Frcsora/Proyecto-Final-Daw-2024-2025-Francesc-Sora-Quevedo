@@ -10,10 +10,13 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\PlayersMediasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialmediaController;
+use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\AboutusController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\TeamsMediasController;
+use App\Http\Controllers\TournamentsController;
+use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +35,11 @@ Route::resource('/teams', TeamsController::class);
 Route::resource('/teamsmedias', TeamsMediasController::class);
 Route::resource('/players', PlayerController::class);
 Route::resource('/playersmedias', PlayersMediasController::class);
+Route::resource('/sponsors', SponsorController::class);
+Route::resource('/tournaments', TournamentsController::class);
+Route::get('/twitter/redirect', [TwitterController::class, 'redirectToTwitter'])->name('twitter.redirect');
+Route::get('/twitter/callback', [TwitterController::class, 'handleTwitterCallback'])->name('twitter.callback');
+Route::post('/twitter/post-tweet', [TwitterController::class, 'postTweet'])->name('twitter.posttweet');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

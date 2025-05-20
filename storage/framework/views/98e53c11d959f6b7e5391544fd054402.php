@@ -43,6 +43,7 @@ unset($__defined_vars); ?>
         }
     </style>
 </head>
+
 <body class="text-sm md:text-xl lg:text-3xl w-screen overflow-x-hidden min-h-screen h-auto flex flex-col justify-between items-center gap-3 font-arial relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:opacity-70 before:z-[-1]">
 <?php echo $__env->make("partials.header", array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <?php echo e($slot); ?>

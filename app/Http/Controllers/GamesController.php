@@ -8,6 +8,7 @@ use App\Models\Games;
 use App\Models\Images;
 use App\Models\Socialmedia;
 use App\Models\Tags;
+use App\Models\Teams;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,12 @@ class GamesController extends Controller
      */
     public function index()
     {
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
+        }
         if(session()->has('image')){
             $image = session()->get('image');
         }else{
@@ -38,8 +45,12 @@ class GamesController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
-        UserValidator::validateAdmin();
-        return view('games.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'gamesvar'=>$gamesvar, 'socialmedias'=>$socialmedias]);
+        if(UserValidator::validateAdmin()){
+            return view('games.index', ['teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -47,28 +58,38 @@ class GamesController extends Controller
      */
     public function create()
     {
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::validateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            return view('games.create', ['teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            abort(403);
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        UserValidator::validateAdmin();
-        return view('games.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
     }
 
     /**
@@ -86,7 +107,7 @@ class GamesController extends Controller
      */
     public function show(Games $games)
     {
-        return redirect()->route('news.index');
+        abort(404);
     }
 
     /**
@@ -94,29 +115,38 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::validateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            return view('games.edit', ['teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            abort(403);
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        UserValidator::validateAdmin();
-
-        return view('games.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'game'=>$game, 'socialmedias'=>$socialmedias]);
     }
 
     /**

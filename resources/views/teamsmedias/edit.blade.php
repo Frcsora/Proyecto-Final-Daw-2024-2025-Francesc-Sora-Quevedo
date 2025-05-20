@@ -1,4 +1,4 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Socialmedia</x-slot:title>
     <main>
         @include('partials.errors')

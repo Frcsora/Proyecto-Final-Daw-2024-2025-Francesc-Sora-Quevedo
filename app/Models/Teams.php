@@ -11,5 +11,7 @@ class Teams extends Model
     public function games(){
         return $this->belongsTo(Games::class, 'game_id', 'id');
     }
-
+    public function tournaments(){
+        return $this->hasMany(Tournaments::class, 'team_id', 'id');
+    }
 }

@@ -1,4 +1,4 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Reset password</x-slot:title>
     <x-card>
         <form method="POST" action="{{ route('password.store') }}">

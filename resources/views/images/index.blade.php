@@ -1,9 +1,11 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Images</x-slot:title>
     <main class="flex flex-col">
         <section class="flex flex-col items-center">
                 <h1 class="text-4xl">Logos</h1><br>
                 <x-cards-div>
+
+
                     <x-slot:images></x-slot:images>
                     @foreach($logos as $logo)
                         <x-card>

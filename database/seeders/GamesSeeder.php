@@ -14,10 +14,11 @@ class GamesSeeder extends Seeder
     public function run(): void
     {
         $games = ['League of legends', 'Valorant'];
+
         foreach ($games as $game) {
             Games::firstOrCreate(
                 ['name' => $game],
-                ['name' => $game]
+                ['name' => $game],
             );
         }
 

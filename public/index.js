@@ -101,11 +101,27 @@ addEventListener('DOMContentLoaded', () => {
         document.getElementById('dropdown').addEventListener('mouseover', () => {
             document.getElementById('dropdown-user').classList.remove('hidden');
             document.getElementById('dropdown-user').classList.add('flex');
-        })
+        });
         document.getElementById('dropdown').addEventListener('mouseleave', () => {
             document.getElementById('dropdown-user').classList.add('hidden');
             document.getElementById('dropdown-user').classList.remove('flex');
-        })
+        });
     }
-
+    if(document.getElementById('dropdownTeams')){
+        document.getElementById('dropdownTeams').addEventListener('mouseover', () => {
+            document.getElementById('dropdown-team').classList.remove('hidden');
+            document.getElementById('dropdown-team').classList.add('flex');
+        });
+        document.getElementById('dropdownTeams').addEventListener('mouseleave', () => {
+            document.getElementById('dropdown-team').classList.add('hidden');
+            document.getElementById('dropdown-team').classList.remove('flex');
+        });
+    }
+    document.querySelectorAll('.tweet').forEach(section => {
+        section.addEventListener('click', () => {
+            const tweetId = section.dataset.tweetId;
+            const url = `https://x.com/PioPioEC/status/${tweetId}`;
+            window.open(url, '_blank');
+        });
+    });
 })

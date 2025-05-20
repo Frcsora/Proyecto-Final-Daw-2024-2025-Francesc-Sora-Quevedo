@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SanitizeSVG;
+use App\Helpers\TwitterHelper;
 use App\Helpers\UserValidator;
 use App\Models\Images;
 use App\Models\News;
 use App\Models\NewsTags;
 use App\Models\Socialmedia;
+use App\Models\Sponsor;
 use App\Models\Tags;
+use App\Models\Teams;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,23 +23,12 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
-        $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->get();
-
-        $socialmedias = Socialmedia::all();
-        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-        UserValidator::validateAdmin();
-        return view('news.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
+        }
         if(session()->has('image')){
             $image = session()->get('image');
         }else{
@@ -57,9 +49,55 @@ class NewsController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
-        $tags = Tags::all();
-        UserValidator::validateAdmin();
-        return view('news.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'tags'=>$tags, 'socialmedias'=>$socialmedias]);
+        if(session()->has('sponsors')){
+            $sponsors = session()->get('sponsors');
+        }else{
+            $sponsors = Sponsor::orderBy('tier', 'desc')->get();
+            session()->put('sponsors', $sponsors);
+        }
+        $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->limit(4)->get();
+        $tweets = TwitterHelper::getTweets();
+        return view('news.index', ['teams' => $teams, 'sponsors' => $sponsors, 'tweets' => $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        if(UserValidator::ValidateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            $tags = Tags::all();
+            return view('news.create', ['teams' => $teams,'tags' => $tags, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -67,12 +105,14 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['id_user' => 'required',
+        $request->validate([
+            'id_user' => 'required|int|exists:users,id',
             'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'image' => 'required',
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:100',
             'abstract' => 'required|string|max:255',
-            'news' => 'required']);
+            'news' => 'required|string'
+        ]);
 
         $userid = $request->get('id_user');
         $image = $request->get('image');
@@ -83,14 +123,23 @@ class NewsController extends Controller
         News::create(['created_by' => $userid, 'image' => $image, 'title' => $title, 'abstract' => $abstract, 'text' => $text]);
         $newsid = News::all()->last()->id;
         if(isset($tags)){
+            $tagIDs = Tags::all('id');
             foreach ($tags as $tag) {
-                if($tag != ""){
+
+                if($tag != "" && in_array($tag, $tagIDs->id)){
                     NewsTags::create(['news_id' => $newsid, 'tag_id' => $tag]);
                 }
             }
         }
+        $tagString = "";
+        $tags = NewsTags::where('news_id', $newsid)->with("tags")->get();
+        foreach ($tags as $tag) {
+            $tagString .= "#" . $tag->tags->tag . " ";
+        }
+        $tweetText = "¡Entra a ver nuestra ultima notícia!: " . $title . " " . route('news.show', $newsid). " " . $tagString;
+        session()->put('tweetText', $tweetText);
 
-        return redirect()->route('news.index')->with('status', 'Noticia agregada');
+        return redirect()->route('twitter.redirect');
     }
 
     /**
@@ -98,6 +147,12 @@ class NewsController extends Controller
      */
     public function show($id)
     {
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
+        }
         if(session()->has('image')){
             $image = session()->get('image');
         }else{
@@ -118,9 +173,16 @@ class NewsController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
+        if(session()->has('sponsors')){
+            $sponsors = session()->get('sponsors');
+        }else{
+            $sponsors = Sponsor::orderBy('tier', 'desc')->get();
+            session()->put('sponsors', $sponsors);
+        }
+        $tweets = TwitterHelper::getTweets();
+
         $newsvar = News::with(['user','tags'])->findOrFail($id);
-        UserValidator::validateAdmin();
-        return view('news.show', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
+        return view('news.show', ['teams'=>$teams, 'sponsors'=>$sponsors,'tweets'=> $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
     }
 
     /**
@@ -128,30 +190,40 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $newsvar = News::with(['user','tags'])->findOrFail($id);
-        $alltags = Tags::all();
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::ValidateAdmin()){
+            $newsvar = News::with(['user','tags'])->findOrFail($id);
+            $alltags = Tags::all();
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            return view('news.edit', ['teams'=>$teams,'newsvar' => $newsvar, 'alltags' => $alltags, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            abort(403);
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        UserValidator::validateAdmin();
-        return view('news.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, "newsvar"=>$newsvar,"alltags"=>$alltags, 'socialmedias'=>$socialmedias]);
     }
 
     /**
@@ -159,11 +231,13 @@ class NewsController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $request->validate(['id_user' => 'required',
+        $request->validate([
+            'id_user' => 'required|int|exists:users,id',
             'image' => 'required',
             'title' => 'required|string|max:255',
             'abstract' => 'required|string|max:255',
-            'news' => 'required']);
+            'news' => 'required|string'
+        ]);
         $userid = $request->get('id_user');
         $image = $request->get('image');
         $title = $request->get('title');
@@ -175,9 +249,12 @@ class NewsController extends Controller
         News::findOrFail($id)->update(['created_by' => $userid, 'image' => $image, 'title' => $title, 'abstract' => $abstract, 'text' => $text]);
         NewsTags::where('news_id', $id)->delete();
 
-        foreach ($tags as $tag) {
-            if ($tag != "") {
-                NewsTags::create(['news_id' => $id, 'tag_id' => $tag]);
+        if(isset($tags)){
+            $tagIDs = Tags::all('id');
+            foreach ($tags as $tag) {
+                if($tag != "" && in_array($tag, $tagIDs->id)){
+                    NewsTags::create(['news_id' => $id, 'tag_id' => $tag]);
+                }
             }
         }
         return redirect()->route('news.show', $id)->with('status', 'Noticia actualizada');

@@ -17,27 +17,33 @@ class SocialmediaController extends Controller
      */
     public function index()
     {
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::ValidateAdmin()){
+
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            return view('socialmedia.index', ['teams' => $teams ,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            abort(403);
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        return view('socialmedia.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
     }
 
     /**
@@ -45,30 +51,39 @@ class SocialmediaController extends Controller
      */
     public function create()
     {
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::ValidateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            $medias = Medias::all();
+            return view('administracion', ['teams' => $teams,'medias'=>$medias, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            abort(403);
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        $medias = Medias::all();
-        UserValidator::validateAdmin();
-
-        return view('socialmedia.create', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias, 'medias'=>$medias]);
     }
 
     /**
@@ -78,7 +93,8 @@ class SocialmediaController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'link' => 'required|url|max:255'
+            'link' => 'required|url|max:255',
+            'media_id' => 'required|int|exists:medias,id',
         ]);
         $request->validate(['media'=>'required']);
         $media = $request->media;
@@ -86,6 +102,7 @@ class SocialmediaController extends Controller
         $link = $request->link;
         $created_by = $request->created_by;
         Socialmedia::create(['created_by'=>$created_by,'id_media'=>$media, 'name' => $name, 'link'=>$link]);
+        session()->put('socialmedias', SanitizeSVG::sanitizeSVG(Socialmedia::with('medias')->get()));
         return redirect()->route('socialmedia.index')->with('status', 'Red social creada');
     }
 
@@ -94,37 +111,48 @@ class SocialmediaController extends Controller
      */
     public function show()
     {
-        return redirect()->route("news.index");
+        abort(404);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {if(session()->has('image')){
-        $image = session()->get('image');
-    }else{
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        session()->put('image', $image);
-    }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+    {
+        if(UserValidator::ValidateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            $socialmediaEdit = Socialmedia::findOrFail($id);
+            $medias = Medias::all();
+            return view('socialmedia.edit', ['teams' => $teams ,'medias' => $medias, 'socialmediaedit' => $socialmediaEdit, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
+        else{
+            abort(403);
         }
-        $socialmediaEdit = Socialmedia::findOrFail($id);
-        $medias = Medias::all();
-        UserValidator::validateAdmin();
-        return view('socialmedia.edit', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias, 'medias'=>$medias, 'socialmediaEdit'=>$socialmediaEdit]);
     }
 
     /**
@@ -134,12 +162,14 @@ class SocialmediaController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'link' => 'required|url|max:255'
+            'link' => 'required|url|max:255',
+            'media_id' => 'required|int|exists:medias,id',
         ]);
         $media = $request->media;
         $name = $request->name;
         $link = $request->link;
         Socialmedia::findOrFail($id)->update(['id_media'=>$media, 'name' => $name, 'link'=>$link]);
+        session()->put('socialmedias', SanitizeSVG::sanitizeSVG(Socialmedia::with('medias')->get()));
         return redirect()->route('socialmedia.index')->with('status', 'Red social actualizada');
     }
 
@@ -149,6 +179,7 @@ class SocialmediaController extends Controller
     public function destroy($id)
     {
         Socialmedia::findOrFail($id)->delete();
+        session()->put('socialmedias', SanitizeSVG::sanitizeSVG(Socialmedia::with('medias')->get()));
         return redirect()->route('socialmedia.index')->with('status', 'Red social borrada');
     }
 }

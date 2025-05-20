@@ -1,8 +1,10 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Players</x-slot:title>
     <main class="flex- flex-col">
         @include('partials.errors')
         <x-card>
+            <x-slot:show></x-slot:show>
+
             <form id="formImage" method="post" action="{{route('players.store')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->id}}" name="created_by">
@@ -24,18 +26,11 @@
                 </fieldset>
                 <fieldset id="dropeo">
                     <label for="image">Imagen:</label><br>
-                    <input type="file" id="imagen" name="imagen" alt="imagen noticia">
+                    <input type="file" id="imagen" name="imagen">
                     <input type="hidden" name="image" id="image">
                 </fieldset>
-                <fieldset>
-                    <label for="team">Equipo:</label><br>
-                    <select name="team">
-                        @foreach($teams as $team)
-                            <option value="{{$team->id}}">{{$team->name}}</option>
-                        @endforeach
-                    </select>
-                </fieldset>
-                <input class="buttonBlue" type="submit" value="Enviar">
+                <input type="hidden" value="{{session()->get('team_id')}}" name="team_id">
+                <input class="buttonBlue" type="submit" value="Añadir jugador">
             </form>
         </x-card>
         @include('partials.back')

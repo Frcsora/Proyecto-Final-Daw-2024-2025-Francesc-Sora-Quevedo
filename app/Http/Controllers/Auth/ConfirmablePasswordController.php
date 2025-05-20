@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Images;
 use App\Models\Socialmedia;
 
+use App\Models\Teams;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,12 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
+        }
         if(session()->has('image')){
             $image = session()->get('image');
         }else{
@@ -40,7 +47,7 @@ class ConfirmablePasswordController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
-        return view('auth.confirm-password', ["image" => $image->base64, "imageFondo" => $imageFondo->base64, 'socialmedias'=>$socialmedias]);
+        return view('auth.confirm-password', ['teams' => $teams,"image" => $image->base64, "imageFondo" => $imageFondo->base64, 'socialmedias'=>$socialmedias]);
 
     }
 

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SanitizeSVG;
+use App\Helpers\TwitterHelper;
 use App\Models\Images;
 use App\Models\Socialmedia;
+use App\Models\Sponsor;
+use App\Models\Teams;
 use Illuminate\Http\Request;
 
 class AboutusController extends Controller
@@ -34,7 +37,19 @@ class AboutusController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
-
-        return view('aboutus', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
+        if(session()->has('sponsors')){
+            $sponsors = session()->get('sponsors');
+        }else{
+            $sponsors = Sponsor::orderBy('tier', 'desc')->get();
+            session()->put('sponsors', $sponsors);
+        }
+        $tweets = TwitterHelper::getTweets();
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
+        }
+        return view('aboutus', ['teams' => $teams, 'sponsors'=>$sponsors, 'tweets' => $tweets,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
     }
 }

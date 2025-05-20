@@ -1,7 +1,9 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Games</x-slot:title>
     <main class="flex flex-col">
         <x-card>
+            <x-slot:show></x-slot:show>
+
             @include('partials.errors')
             <form method="post" action="{{route('games.store')}}">
                 @csrf

@@ -1,12 +1,12 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>TeamsMedia</x-slot:title>
     <main class="flex flex-col">
         <x-card>
+            <x-slot:show></x-slot:show>
             @include('partials.errors')
-
             <form id="formCreateSocialMedia" method="post" action="{{route('teamsmedias.store')}}">
                 @csrf
-                <input type="hidden" value="{{$id}}" name="team_id">
+                <input type="hidden" value="{{ session() -> get('team_id') }}" name="team_id">
                 <fieldset>
                     <label for="media">Red social:</label><br>
                     <select name="media" class="media" id="media">

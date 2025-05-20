@@ -4,36 +4,46 @@
         <section class="w-full hidden xl:flex justify-between items-center">
             <nav class="w-full flex justify-center items-center lg:text-2xl 2xl:text-4xl">
                 <ul class="flex items-center gap-5">
-                    <a href="{{route('aboutus')}}"><li>Nuestro club</li></a>
-                    <a href="{{route('teams.index')}}"><li>Equipos</li></a>
-                    <a href="{{route('news.index')}}"><li>Noticias</li></a>
+                    <li><a href="{{route('aboutus')}}">Nuestro club</a></li>
+                    <li class="cursor-pointer relative" id="dropdownTeams">
+                        <p class="flex">Equipos<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M2 334.5c-3.8 8.8-2 19 4.6 26l136 144c4.5 4.8 10.8 7.5 17.4 7.5s12.9-2.7 17.4-7.5l136-144c6.6-7 8.4-17.2 4.6-26s-12.5-14.5-22-14.5l-72 0 0-288c0-17.7-14.3-32-32-32L128 0C110.3 0 96 14.3 96 32l0 288-72 0c-9.6 0-18.2 5.7-22 14.5z"/></svg></p>
+                        @foreach($teams as $team)
+                            <section class="w-96 rounded-lg text-black border border-black absolute flex-col items-center p-4 bg-white hidden text-2xl" id="dropdown-team">
+                                <ul class="gap-6 flex flex-col">
+                                    <li><a href="{{route('teams.show', $team->id)}}">{{$team->name}}</a></li>
+                                </ul>
+                            </section>
+                        @endforeach
+                    </li>
+                    <li><a href="{{route('news.index')}}">Noticias</a></li>
                     @if(Auth::check())
-                        <a href="{{route('contactus')}}"><li>Contáctanos</li></a>
+                        <li><a href="{{route('contactus')}}">Contáctanos</a></li>
                     @endif
                     @if(!Auth::check())
-                        <a href="{{route("login")}}"><li>Login</li></a>
-                        <a href="{{route("register")}}"><li>Registrate</li></a>
+                        <li><a href="{{route("login")}}">Login</a></li>
+                        <li><a href="{{route("register")}}">Registrate</a></li>
                     @else
-                                <li class="cursor-pointer relative" id="dropdown">
-                                    <p class="flex">¡Bienvenido, {{Auth::user()->name}}! <svg class="w-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M2 334.5c-3.8 8.8-2 19 4.6 26l136 144c4.5 4.8 10.8 7.5 17.4 7.5s12.9-2.7 17.4-7.5l136-144c6.6-7 8.4-17.2 4.6-26s-12.5-14.5-22-14.5l-72 0 0-288c0-17.7-14.3-32-32-32L128 0C110.3 0 96 14.3 96 32l0 288-72 0c-9.6 0-18.2 5.7-22 14.5z"/></svg></p>
-                                    <section class="z-[20]  rounded border border-black absolute w-full flex-col items-center p-2 bg-[#fac533] hidden dropdown-user" id="dropdown-user">
-                                        <ul class="gap-4">
-                                            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin')
-                                                <li><small><x-dropdown-link><a href="{{route('admin')}}">Administración</a></x-dropdown-link></small></li>
-                                            @endif
-                                            <li><small><x-dropdown-link><a href="{{route('profile.edit')}}">Editar perfil</a></x-dropdown-link></small></li>
-                                            <li><form method="POST" action="{{route('logout')}}">
-                                                    @csrf
-                                                    <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
-                                                </form></li>
-                                        </ul>
-                                    </section>
-                                </li>
+                        <li class="cursor-pointer relative" id="dropdown">
+                            <p class="flex">¡Bienvenido, {{Auth::user()->name}}! <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M2 334.5c-3.8 8.8-2 19 4.6 26l136 144c4.5 4.8 10.8 7.5 17.4 7.5s12.9-2.7 17.4-7.5l136-144c6.6-7 8.4-17.2 4.6-26s-12.5-14.5-22-14.5l-72 0 0-288c0-17.7-14.3-32-32-32L128 0C110.3 0 96 14.3 96 32l0 288-72 0c-9.6 0-18.2 5.7-22 14.5z"/></svg></p>
+                            <section class="rounded-lg border border-black absolute w-full flex-col items-center p-4 bg-white text-black hidden dropdown-user" id="dropdown-user">
+                                <ul class="gap-6 flex flex-col">
+                                    @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
+                                                <li><small><a href="{{route('admin')}}">Administración</a></small></li>
+                                    @endif
+                                    <li><small><a href="{{route('profile.edit')}}">Editar perfil</a></small></li>
+                                        <li>
+                                            <form method="POST" action="{{route('logout')}}">
+                                                @csrf
+                                                <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
+                                            </form>
+                                        </li>
+                                </ul>
+                            </section>
+                        </li>
                     @endif
 
                 </ul>
             </nav>
-
             <ul class="w-12 flex flex-row-reverse z-20">
                 @if(count($socialmedias) > 0)
                     @foreach($socialmedias as $socialmedia)

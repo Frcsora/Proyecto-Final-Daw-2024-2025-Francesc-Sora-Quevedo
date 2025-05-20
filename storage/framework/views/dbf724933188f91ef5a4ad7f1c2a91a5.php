@@ -6,6 +6,7 @@
     <?php if(isset($newsindex)): ?>
         <?php echo $__env->make('partials.status', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     <?php else: ?>
+        <a class="twitter-timeline" href="https://twitter.com/PioPioEC?ref_src=twsrc%5Etfw">PioPioEC</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <?php echo $__env->make('partials.linea', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <?php echo $__env->make('partials.status', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <?php echo $__env->make('partials.back', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>

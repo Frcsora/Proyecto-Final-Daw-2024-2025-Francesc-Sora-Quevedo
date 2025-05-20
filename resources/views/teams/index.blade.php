@@ -1,6 +1,6 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :sponsors="$sponsors" :teams="$teams">
     <x-slot:title>Teams</x-slot:title>
-    <x-main>
+    <x-main :tweets="$tweets" :sponsors="$sponsors">
         <x-cards-div>
             @forelse($teams as $team)
                 <x-card>

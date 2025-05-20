@@ -13,9 +13,14 @@ class UserValidator
         return true;
     }
     public static function validateAdmin(){
-        if (!Auth::check() || !in_array(Auth::user()->role, ['admin', 'superadmin'])) {
-            return Redirect()->route('news.index');
+        if (Auth::check())
+        {
+            if(in_array(Auth::user()->role, ['admin', 'superadmin'])){
+                return true;
+            }
+
         }
-        return true;
+
+        return false;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SanitizeSVG;
+use App\Helpers\UserValidator;
 use App\Models\Images;
 use App\Models\Socialmedia;
 use App\Models\User;
@@ -15,28 +16,40 @@ class UserController extends Controller
      */
     public function index()
     {
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::ValidateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+
+            $users = User::all();
+            return view('users.index', ['teams' => $teams,'users' => $users, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            return Redirect()->route('news.index');
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        $users = User::all();
-        return view('users.index', ['image' => $image->base64, 'imageFondo' => $imageFondo->base64, 'socialmedias' => $socialmedias, 'users' => $users]);
     }
 
     /**
@@ -44,7 +57,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return route('users.index');
+        abort(404);
     }
 
     /**
@@ -60,28 +73,39 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::ValidateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            $user = User::findOrFail($id);
+            return view('users.show', ['teams' => $teams,'user' => $user, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            return Redirect()->route('news.index');
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        $user = User::findOrFail($id);
-        return view('users.show', ['image' => $image->base64, 'imageFondo' => $imageFondo->base64, 'socialmedias' => $socialmedias, 'user' => $user]);
     }
 
     /**
@@ -89,7 +113,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        return route('news.index');
+        abort(404);
     }
 
     /**
@@ -115,6 +139,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        return route('news.index');
+        abort(404);
     }
 }

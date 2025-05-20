@@ -1,7 +1,10 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>PlayersMedia</x-slot:title>
     <main class="flex flex-col">
         <x-card>
+            <x-slot:show></x-slot:show>
+
+
             @include('partials.errors')
             <form id="formCreateSocialMedia" method="post" action="{{route('playersmedias.update', $socialmediaEdit->id)}}">
                 @csrf

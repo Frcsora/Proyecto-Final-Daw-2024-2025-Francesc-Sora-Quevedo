@@ -1,8 +1,10 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>News</x-slot:title>
     <main class="flex flex-col">
         @include('partials.errors')
         <x-card>
+            <x-slot:show></x-slot:show>
+
             <form class="gap-1" id="formImage" method="post" action="{{route('news.update', $newsvar->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

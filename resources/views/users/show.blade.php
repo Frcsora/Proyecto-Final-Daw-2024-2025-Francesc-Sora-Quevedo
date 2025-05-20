@@ -10,7 +10,7 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="role" value="1">
-                    <input class="{{$user->role == 'user' ? 'buttonBlue' : 'buttonRed'}}" type="submit" value="{{$user->role == 'user' ? "Hacer admin": "Quitar admin"}}">
+                    <input type="submit" value="{{$user->role == 'user' ? "Hacer admin": "Quitar admin"}}">
                 </form>
                 @include('partials.linea')
             @endif
@@ -20,7 +20,7 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="status" value="1">
-                    <input class="{{$user->active_user == '1' ? "buttonRed": "buttonBlue"}}" type="submit" value="{{$user->active_user == '1' ? "Bloquear": "Desbloquear"}}">
+                    <input type="submit" value="{{$user->active_user == '1' ? "Bloquear": "Desbloquear"}}">
                 </form>
             @endif
             <p>Usuario: @if($user->active_user == 1)

@@ -1,3 +1,4 @@
-<section class="w-full p-2 gap-2 flex flex-col items-center lg:grid @isset($images) overflow-x-scroll md:grid-cols-4 @else md:grid-cols-2  @endisset">
+<section class="w-full p-2 gap-2 grid grid-cols-1 md:grid-cols-2 justify-items-center @isset($images) overflow-x-scroll md:grid-cols-4 @endisset">
    {{$slot}}
 </section>
+

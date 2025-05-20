@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\SanitizeSVG;
 use App\Http\Controllers\Controller;
 use App\Models\Images;
 use App\Models\Socialmedia;
 
+use App\Models\Teams;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
@@ -23,6 +25,12 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
+        }
         if(session()->has('image')){
             $image = session()->get('image');
         }else{
@@ -43,7 +51,7 @@ class NewPasswordController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
-        return view('auth.reset-password', ['request' => $request, 'socialmedias' => $socialmedias, "image" => $image->base64, "imageFondo" => $imageFondo->base64]);
+        return view('auth.reset-password', ['teams'=>$teans,'request' => $request, 'socialmedias' => $socialmedias, "image" => $image->base64, "imageFondo" => $imageFondo->base64]);
 
     }
 

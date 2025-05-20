@@ -1,8 +1,10 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Teams</x-slot:title>
     <main class="flex flex-col">
         @include('partials.errors')
         <x-card>
+            <x-slot:show></x-slot:show>
+
             <form method="post" action="{{route('teams.store')}}">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->id}}" name="created_by">

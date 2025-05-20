@@ -1,4 +1,4 @@
-@props(['image', 'imageFondo', 'socialmedias'])
+@props(['image', 'imageFondo', 'socialmedias', 'tweets', 'teams'])
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,8 +15,9 @@
         }
     </style>
 </head>
-<body class="text-sm md:text-xl lg:text-3xl w-screen overflow-x-hidden min-h-screen h-auto flex flex-col justify-between items-center gap-3 font-arial relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:opacity-70 before:z-[-1]">
+<body class="text-xl lg:text-3xl w-screen overflow-x-hidden min-h-screen h-auto flex flex-col justify-between items-center gap-3 font-arial relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:opacity-70 before:z-[-1]">
 @include("partials.header")
+
 {{$slot}}
 @include("partials.footer")
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>

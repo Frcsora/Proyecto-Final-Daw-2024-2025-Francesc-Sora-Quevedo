@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Images;
 use App\Models\Socialmedia;
+use App\Models\Teams;
 use App\Models\User;
 
 use Illuminate\Http\RedirectResponse;
@@ -21,6 +22,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
+        }
         if(session()->has('image')){
             $image = session()->get('image');
         }else{
@@ -41,7 +48,7 @@ class AuthenticatedSessionController extends Controller
             $imageFondo = Images::where('type', 'fondo')
                 ->where('active', 'true')->first();
         }
-        return view('auth.login', ["image" => $image->base64, "imageFondo" => $imageFondo->base64, "socialmedias" => $socialmedias]);
+        return view('auth.login', ['teams' => $teams,"image" => $image->base64, "imageFondo" => $imageFondo->base64, "socialmedias" => $socialmedias]);
 
     }
 

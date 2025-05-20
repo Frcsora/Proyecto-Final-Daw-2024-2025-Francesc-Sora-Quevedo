@@ -1,8 +1,9 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :sponsors="$sponsors" :teams="$teams">
     <x-slot:title>Contáctanos</x-slot:title>
-    <x-main>
+    <x-main :tweets="$tweets" :sponsors="$sponsors">
         <section class="w-full flex flex-col items-center">
             <x-card>
+                <x-slot:show></x-slot:show>
                 @include('partials.errors')
                 <form id="formMessage" action="{{route('message')}}" method="POST">
                     @csrf
