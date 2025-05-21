@@ -1,6 +1,4 @@
-<section class="flex flex-col
-  md:w-64
-  ">
+<section class="flex flex-col">
     <x-card>
         <section>
             <x-slot:patreon></x-slot:patreon>
