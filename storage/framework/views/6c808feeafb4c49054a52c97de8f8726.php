@@ -6,7 +6,7 @@
 
         <?php $__currentLoopData = $tweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <section data-tweet-id="<?php echo e($tweet['id']); ?>"
-                     class="tweet border border-gray-800 cursor-pointer md:w-64 rounded-lg gap-2 bg-white shadow-md rounded-2xl p-4 md:p-6 border border-gray-200 transition hover:shadow-lg">
+                     class="tweet border border-gray-800 cursor-pointer md:w-64 w-full rounded-lg gap-2 bg-white shadow-md rounded-2xl p-4 md:p-6 border border-gray-200 transition hover:shadow-lg">
                 <section class="flex flex-col md:flex-row md:items-center justify-between text-gray-500 text-sm">
                 <span class="mb-1 md:mb-0">
                     🗓️ <?php echo e(\Carbon\Carbon::parse($tweet['created_at'])->format('d M Y H:i')); ?>
