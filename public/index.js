@@ -109,12 +109,12 @@ addEventListener('DOMContentLoaded', () => {
     }
     if(document.getElementById('dropdownTeams')){
         document.getElementById('dropdownTeams').addEventListener('mouseover', () => {
-            document.getElementById('dropdownTeams').classList.remove('hidden');
-            document.getElementById('dropdownTeams').classList.add('flex');
+            document.getElementById('dropdown-team').classList.remove('hidden');
+            document.getElementById('dropdown-team').classList.add('flex');
         });
         document.getElementById('dropdownTeams').addEventListener('mouseleave', () => {
-            document.getElementById('dropdownTeams').classList.add('hidden');
-            document.getElementById('dropdownTeams').classList.remove('flex');
+            document.getElementById('dropdown-team').classList.add('hidden');
+            document.getElementById('dropdown-team').classList.remove('flex');
         });
     }
     document.querySelectorAll('.tweet').forEach(section => {

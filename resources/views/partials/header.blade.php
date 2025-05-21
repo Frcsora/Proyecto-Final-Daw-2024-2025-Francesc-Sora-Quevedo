@@ -1,6 +1,6 @@
 <header class="p-4 w-full bg-[#fac533]">
     <section class="flex justify-evenly gap-1">
-        <a href="{{route('welcome')}}" class="w-24 md:w-32"><img class="w-24 md:w-32 lg:w-full logo" src="{{$image}}" alt="Logo del equipo pio pio e-sports"></a>
+        <a href="{{route('welcome')}}" class="w-24 md:w-32"><img class="w-24 md:w-32 lg:w-full logo" src="{{ $image }}" alt="Logo del equipo pio pio e-sports"></a>
         <section class="w-full hidden xl:flex justify-between items-center">
             <nav class="w-full flex justify-center items-center lg:text-2xl 2xl:text-4xl">
                 <ul class="flex items-center gap-5">
@@ -10,7 +10,7 @@
                         @foreach($teams as $team)
                             <section class="w-96 rounded-lg text-black border border-black absolute flex-col items-center p-4 bg-white hidden text-2xl" id="dropdown-team">
                                 <ul class="gap-6 flex flex-col">
-                                    <li><a href="{{route('teams.show', $team->id)}}">{{$team->name}}</a></li>
+                                    <li><a href="{{ route('teams.show', $team->id) }}">{{ $team->name }}</a></li>
                                 </ul>
                             </section>
                         @endforeach
@@ -56,7 +56,7 @@
             <ul class="hidden md:flex gap-2">
                 @if(count($socialmedias) > 0)
                     @foreach($socialmedias as $socialmedia)
-                        <li class="w-9"><a href="{{$socialmedia->link}}">{!! $socialmedia->medias->svg !!}</a></li>
+                        <li class="w-9"><a href="{{ $socialmedia->link }}">{!! $socialmedia->medias->svg !!}</a></li>
                     @endforeach
                 @endif
             </ul>

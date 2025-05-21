@@ -27,9 +27,8 @@ foreach ($attributes->all() as $__key => $__value) {
 }
 
 unset($__defined_vars); ?>
-<?php echo $__env->make('partials.sponsors-div', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-
 <main class="flex flex-col items-center gap-2">
+    <?php echo $__env->make('partials.sponsors-div', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     <section class="flex flex-col lg:flex-row items-center md:items-start gap-4">
         <?php echo $__env->make('partials.patreoncard', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <section class="w-full flex flex-col lg:flex-row items-center justify-around"><?php echo e($slot); ?></section>

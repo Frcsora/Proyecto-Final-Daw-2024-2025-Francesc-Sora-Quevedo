@@ -1,4 +1,4 @@
-<?php if(!empty($sponsors)): ?>
+<?php if(count($sponsors) > 0): ?>
     <h2>Patrocinadores</h2>
     <section class="overflow-x-scroll flex items-center bg-white gap-6">
         <?php $__currentLoopData = $sponsors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sponsor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
