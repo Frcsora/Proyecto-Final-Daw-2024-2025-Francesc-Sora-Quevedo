@@ -1,5 +1,5 @@
 <section class="flex flex-col
-  md:fixed md:top-20 md:left-10 md:w-64
+  md:w-64
   ">
     <x-card>
         <section>
