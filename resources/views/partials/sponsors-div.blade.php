@@ -1,4 +1,4 @@
-@if(!empty($sponsors))
+@if(count($sponsors) > 0)
     <h2>Patrocinadores</h2>
     <section class="overflow-x-scroll flex items-center bg-white gap-6">
         @foreach($sponsors as $sponsor)
