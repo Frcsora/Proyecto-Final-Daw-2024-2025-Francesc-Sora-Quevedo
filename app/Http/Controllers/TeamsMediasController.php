@@ -7,6 +7,7 @@ use App\Helpers\UserValidator;
 use App\Models\Images;
 use App\Models\Medias;
 use App\Models\Socialmedia;
+use App\Models\Teams;
 use App\Models\TeamsMedias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ class TeamsMediasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create($team_id)
     {
         if(UserValidator::ValidateAdmin()){
             if(session()->has('teams')){
@@ -76,6 +77,7 @@ class TeamsMediasController extends Controller
         $media = $request->media;
         $name = $request->name;
         $link = $request->link;
+
         TeamsMedias::create(['team_id'=>$teamid ,'media_id'=>$media, 'name' => $name, 'link'=>$link]);
         return redirect()->route('teams.index')->with('status', 'Red social creada');
     }

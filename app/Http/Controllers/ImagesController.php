@@ -111,7 +111,7 @@ class ImagesController extends Controller
         $request->validate([
             'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'name' => 'required|string|max:255',
-            'type' => ['required', 'in:logo, fondo'],
+            'type' => ['required', 'in:logo,fondo'],
             'created_by' => 'required|int|exists:users,id',
 
         ]);
@@ -172,7 +172,7 @@ class ImagesController extends Controller
         $request->validate([
             'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'name' => 'required|string|max:255',
-            'type' => ['required', 'in:logo, fondo'],
+            'type' => ['required', 'in:logo,fondo'],
             'created_by' => 'required|int|exists:users,id',
 
         ]);

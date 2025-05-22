@@ -6,6 +6,7 @@ use App\Helpers\SanitizeSVG;
 use App\Helpers\TwitterHelper;
 use App\Helpers\UserValidator;
 use App\Models\Images;
+use App\Models\Matches;
 use App\Models\News;
 use App\Models\NewsTags;
 use App\Models\Socialmedia;
@@ -147,6 +148,14 @@ class NewsController extends Controller
      */
     public function show($id)
     {
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
         if(session()->has('teams')){
             $teams = session()->get('teams');
         }else{
@@ -182,7 +191,7 @@ class NewsController extends Controller
         $tweets = TwitterHelper::getTweets();
 
         $newsvar = News::with(['user','tags'])->findOrFail($id);
-        return view('news.show', ['teams'=>$teams, 'sponsors'=>$sponsors,'tweets'=> $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
+        return view('news.show', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter, 'teams'=>$teams, 'sponsors'=>$sponsors,'tweets'=> $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
     }
 
     /**
