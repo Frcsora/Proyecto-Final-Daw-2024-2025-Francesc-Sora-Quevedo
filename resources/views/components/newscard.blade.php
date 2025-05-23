@@ -3,8 +3,7 @@
     <h2 class="text-xl md:text-2xl lg:text-4xl"><a href="{{route('news.show', $id)}}">{{$title}}</a></h2>
     <small>Creado por {{$name}} el {{\Carbon\Carbon::parse($fecha)->format('d/m/y H:i')}}</small>
     <img class="rounded-lg w-80 max-h-48" src="{{$img}}" alt="{{$name}}">
-    <p class="bg-white">{{$sinopsis}}</p>
-
+    <p class="bg-white text-xl p-1">{{$sinopsis}}</p>
     @if(count($tags) > 0)
         <p>
             Etiquetas:
