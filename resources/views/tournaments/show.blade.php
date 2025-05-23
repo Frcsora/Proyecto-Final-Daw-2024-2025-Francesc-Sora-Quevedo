@@ -1,6 +1,6 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :sponsors="$sponsors" :teams="$teams">
     <x-slot:title>Tournaments</x-slot:title>
-    <x-main :tweets="$tweets" :sponsors="$sponsors">
+    <x-main :tweets="$tweets" :sponsors="$sponsors" :matchesBefore="$matchesBefore" :matchesAfter="$matchesAfter">
         <x-card>
             <x-slot:show></x-slot:show>
             <h1>{{ $tournament->name }}</h1>

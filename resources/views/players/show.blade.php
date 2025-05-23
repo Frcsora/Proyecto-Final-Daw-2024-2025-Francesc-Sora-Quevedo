@@ -1,6 +1,6 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :sponsors="$sponsors" :teams="$teams">
     <x-slot:title>Players</x-slot:title>
-    <x-main :tweets="$tweets" :sponsors="$sponsors">
+    <x-main :tweets="$tweets" :sponsors="$sponsors" :matchesBefore="$matchesBefore" :matchesAfter="$matchesAfter">
         <x-card>
             <h3 class="text-xl md:text-2xl lg:text-4xl"><a href="{{route('players.show',$player->id)}}">{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}</a></h3>
             <img class="rounded-full w-48" src="{{$player->image}}" alt="{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}">

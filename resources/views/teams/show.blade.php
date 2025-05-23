@@ -1,7 +1,7 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :sponsors="$sponsors" :teams="$teams">
     <x-slot:title>Teams</x-slot:title>
 
-    <x-main :tweets="$tweets" :sponsors="$sponsors">
+    <x-main :tweets="$tweets" :sponsors="$sponsors" :matchesBefore="$matchesBefore" :matchesAfter="$matchesAfter">
         <x-card>
             <x-slot:show></x-slot:show>
             <h2 class="text-5xl text-bold">{{$team->name}}</h2>

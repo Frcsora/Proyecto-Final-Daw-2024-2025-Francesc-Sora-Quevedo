@@ -23,7 +23,10 @@
         </section>
         <section class="w-full flex flex-col lg:flex-row items-center justify-around">{{$slot}}</section>
     </section>
-    @include('partials.linea')
+    @if(!isset($news))
+        @include('partials.linea')
+    @endif
+
     @include('partials.tweets')
     @include('partials.linea')
     @include('partials.status')

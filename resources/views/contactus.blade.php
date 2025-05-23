@@ -1,6 +1,6 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :sponsors="$sponsors" :teams="$teams">
     <x-slot:title>Contáctanos</x-slot:title>
-    <x-main :tweets="$tweets" :sponsors="$sponsors">
+    <x-main :tweets="$tweets" :sponsors="$sponsors" :matchesBefore="$matchesBefore" :matchesAfter="$matchesAfter">
         <section class="w-full flex flex-col items-center">
             <x-card>
                 <x-slot:show></x-slot:show>
