@@ -7,6 +7,7 @@ use App\Helpers\UserValidator;
 use App\Models\Images;
 use App\Models\Medias;
 use App\Models\Socialmedia;
+use App\Models\Teams;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,12 @@ class SocialmediaController extends Controller
     public function index()
     {
         if(UserValidator::ValidateAdmin()){
-
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
             if(session()->has('image')){
                 $image = session()->get('image');
             }else{
