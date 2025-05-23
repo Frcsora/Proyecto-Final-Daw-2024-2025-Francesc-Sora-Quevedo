@@ -1,6 +1,6 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Socialmedia</x-slot:title>
-    <main>
+    <main class="flex flex-col items-center">
         @include('partials.errors')
 
         <form id="formCreateSocialMedia" method="post" action="{{route('teamsmedias.update', $socialmediaEdit->id)}}">

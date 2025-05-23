@@ -1,6 +1,6 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
         <x-slot:title>PlayersMedia</x-slot:title>
-    <main class="flex flex-col">
+    <main class="flex flex-col items-center">
         <x-card>
             <x-slot:show></x-slot:show>
 
