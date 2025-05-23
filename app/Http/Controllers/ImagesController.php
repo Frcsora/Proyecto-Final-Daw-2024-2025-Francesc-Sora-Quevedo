@@ -163,25 +163,14 @@ class ImagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'name' => 'required|string|max:255',
-            'type' => ['required', 'in:logo,fondo'],
-            'created_by' => 'required|int|exists:users,id',
-
-        ]);
         if($request->type == 'logo'){
             $logos = Images::where('type', 'logo')->get();
 
             foreach($logos as $logo){
-                @dd($id, $logo->id);
                 if($id == $logo->id){
-                    @dd($logo, 1);
                     Images::findOrFail($logo->id)->update(['active' => 'true']);
                     session()->put('image', $logo);
                 }else{
-                    @dd($logo,2);
-
                     Images::findOrFail($logo->id)->update(['active' => 'false']);
                 }
             }
