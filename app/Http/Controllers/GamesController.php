@@ -19,34 +19,36 @@ class GamesController extends Controller
      */
     public function index()
     {
-        if(session()->has('teams')){
-            $teams = session()->get('teams');
-        }else{
-            $teams = Teams::all();
-            session()->put('teams', $teams);
-        }
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
-        }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
-        }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
+
         if(UserValidator::validateAdmin()){
-            return view('games.index', ['teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            $gamesvar = Games::all();
+            return view('games.index', ['gamesvar' => $gamesvar, 'teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
             abort(403);
