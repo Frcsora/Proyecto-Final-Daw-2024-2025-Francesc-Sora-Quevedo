@@ -18,7 +18,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\App\View\Components\Main::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['tweets' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($tweets),'sponsors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sponsors)]); ?>
+<?php $component->withAttributes(['tweets' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($tweets),'sponsors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sponsors),'matchesBefore' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesBefore),'matchesAfter' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesAfter)]); ?>
         <section class="w-64 md:w-full rounded-lg before:rounded-lg p-2 flex md:flex-col justify-around items-center relative before:absolute before:opacity-70 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
             <section class="gap-4 p-2 flex flex-col justify-around items-center">
                 <h1 class="text-xl md:text-2xl lg:text-4xl font-bold">Sobre nosotros</h1><br><br>

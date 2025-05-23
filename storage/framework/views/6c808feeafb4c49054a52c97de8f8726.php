@@ -2,7 +2,7 @@
     use Illuminate\Support\Str;
 ?>
     <?php if(!empty($tweets)): ?>
-    <section class="w-32 gap-4 text-md lg:text-2xl flex flex-col justify-around items-center">
+    <section class="w-64 md:w-96 max-h-[90vh] overflow-y-scroll gap-4 text-base lg:text-2xl flex flex-col justify-around items-center">
 
         <?php $__currentLoopData = $tweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <section data-tweet-id="<?php echo e($tweet['id']); ?>"
