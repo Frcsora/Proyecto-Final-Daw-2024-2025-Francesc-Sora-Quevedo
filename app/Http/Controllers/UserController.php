@@ -19,8 +19,6 @@ class UserController extends Controller
     public function index()
     {
         if(UserValidator::ValidateAdmin()){
-            $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
-
             if(session()->has('teams')){
                 $teams = session()->get('teams');
             }else{

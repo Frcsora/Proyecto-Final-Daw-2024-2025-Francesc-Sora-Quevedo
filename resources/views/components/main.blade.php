@@ -2,7 +2,7 @@
 <main class="flex flex-col items-center gap-2">
     @include('partials.sponsors-div')
     <section class="flex flex-col lg:flex-row items-center md:items-start gap-4 items-center">
-        <section class="flex flex-col gap-5">
+        <section class="flex flex-col gap-5 text-center">
             @include('partials.patreoncard')
             <x-card>
                 <x-slot:show></x-slot:show>
