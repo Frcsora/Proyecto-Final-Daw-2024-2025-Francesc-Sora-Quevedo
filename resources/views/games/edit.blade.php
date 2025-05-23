@@ -11,7 +11,7 @@
                 @csrf
                 @method('PUT')
                 <label for="name">Nombre del juego</label>
-            <input type="text" id="game" name="name" value="{{$game->name}}">
+            <input type="text" id="game" name="name" value="{{$game->name}}"><br>
             <input class="buttonBlue" type="submit" value="Crear">
             </form>
             @include('partials.back')

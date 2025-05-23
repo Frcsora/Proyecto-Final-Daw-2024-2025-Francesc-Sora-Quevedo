@@ -10,8 +10,8 @@
             <form method="post" action="{{route('tags.store')}}">
                 @csrf
                 <label for="tag">Nombre del tag</label>
-                <input type="text" id="tag" name="tag">
-                <input type="submit" value="Crear">
+                <input type="text" id="tag" name="tag"><br>
+                <input class="buttonBlue" type="submit" value="Crear">
             </form>
             @include('partials.linea')
             @include('partials.back')

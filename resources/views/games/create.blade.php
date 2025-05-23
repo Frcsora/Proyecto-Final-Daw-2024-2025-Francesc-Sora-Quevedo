@@ -8,7 +8,7 @@
             <form method="post" action="{{route('games.store')}}">
                 @csrf
                 <label for="name">Nombre del juego</label>
-                <input type="text" id="tag" name="name">
+                <input type="text" id="tag" name="name"><br>
                 <input class="buttonBlue" type="submit" value="Crear">
             </form>
             @include('partials.back')

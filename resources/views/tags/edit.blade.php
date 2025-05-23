@@ -9,8 +9,8 @@
             @csrf
             @method('PUT')
             <label for="tag">Nombre del tag</label>
-            <input type="text" id="tag" name="tag" value="{{$tag->tag}}">
-            <input type="submit" value="Editar">
+            <input type="text" id="tag" name="tag" value="{{$tag->tag}}"><br>
+            <input class="buttonBlue" type="submit" value="Editar">
         </form>
         @include('partials.linea')
         @include('partials.back')
