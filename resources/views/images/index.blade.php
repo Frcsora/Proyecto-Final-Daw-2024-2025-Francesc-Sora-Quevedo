@@ -16,7 +16,6 @@
                                 <input name="type" type="hidden" value="logo">
                                 <input class="buttonBlue" value="Cambiar" type="submit">
                             </form>
-                            <label for="checklogo{{$logo->id}}">Active:</label>
                             <a href="{{route('images.show', $logo->id)}}">Preview</a>
                             @if($logo->active == "false")
                                 <form method="POST" action="{{route('images.destroy', $logo->id)}}">

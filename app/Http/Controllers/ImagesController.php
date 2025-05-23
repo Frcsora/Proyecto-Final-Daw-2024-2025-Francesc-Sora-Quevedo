@@ -172,7 +172,9 @@ class ImagesController extends Controller
         ]);
         if($request->type == 'logo'){
             $logos = Images::where('type', 'logo')->get();
+
             foreach($logos as $logo){
+                @dd($id, $logo->id);
                 if($id == $logo->id){
                     @dd($logo, 1);
                     Images::findOrFail($logo->id)->update(['active' => 'true']);
