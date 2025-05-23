@@ -2,7 +2,7 @@
     use Illuminate\Support\Str;
 @endphp
     @if(!empty($tweets))
-    <section class="w-64 md:w-[400px] max-h-[90vh] overflow-y-scroll gap-4 text-base lg:text-2xl flex flex-col justify-around items-center">
+    <section class="w-64 md:w-[600px] max-h-[90vh] overflow-y-scroll gap-4 text-base lg:text-2xl flex flex-col justify-around items-center">
 
         @foreach ($tweets as $tweet)
             <section data-tweet-id="{{ $tweet['id'] }}"
