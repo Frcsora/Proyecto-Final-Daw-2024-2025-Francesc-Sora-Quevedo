@@ -3,7 +3,7 @@
     <main class="flex flex-col items-center">
         <x-card>
             <h1 class="text-4xl">{{$user->name}}</h1>
-            <small>Usuario creado el {{$user->created_at->format('d M Y H:m:s')}}</small>
+            <small>Usuario creado el {{\Carbon\Carbon::parse($user->created_at->format('d M Y H:m:s'))}}</small>
             @include('partials.linea')
             @if(Auth::check() && Auth::user()->role === 'superadmin' && $user->role !== 'superadmin')
                 <form action="{{route('users.update', $user->id)}}" method="POST">
@@ -28,7 +28,7 @@
                             @else
                           Bloqueado
                 @endif</p>
-            <p>Correo: {{$user->email}}</p>
+            <p class="text-base">Correo: {{$user->email}}</p>
             @include('partials.linea')
             @include('partials.back')
         </x-card>
