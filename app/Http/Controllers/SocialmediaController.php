@@ -85,7 +85,7 @@ class SocialmediaController extends Controller
                     ->where('active', 'true')->first();
             }
             $medias = Medias::all();
-            return view('administracion', ['teams' => $teams,'medias'=>$medias, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+            return view('socialmedia.create', ['teams' => $teams,'medias'=>$medias, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
             abort(403);
