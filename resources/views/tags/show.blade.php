@@ -1,4 +1,4 @@
-<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams" :teams="$teams">
+<x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :teams="$teams">
     <x-slot:title>Tags</x-slot:title>
     <main class="flex flex-col">
         <x-cards-div>
