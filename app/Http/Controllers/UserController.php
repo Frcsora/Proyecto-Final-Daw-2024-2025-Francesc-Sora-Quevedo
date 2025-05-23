@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Helpers\SanitizeSVG;
 use App\Helpers\UserValidator;
 use App\Models\Images;
+use App\Models\Matches;
 use App\Models\Socialmedia;
+use App\Models\Teams;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,6 +19,8 @@ class UserController extends Controller
     public function index()
     {
         if(UserValidator::ValidateAdmin()){
+            $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+
             if(session()->has('teams')){
                 $teams = session()->get('teams');
             }else{

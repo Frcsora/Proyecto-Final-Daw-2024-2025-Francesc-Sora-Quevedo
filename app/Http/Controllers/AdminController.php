@@ -6,6 +6,7 @@ use App\Helpers\SanitizeSVG;
 use App\Helpers\UserValidator;
 use App\Models\Images;
 use App\Models\Socialmedia;
+use App\Models\Teams;
 use App\Models\TeamsMedias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

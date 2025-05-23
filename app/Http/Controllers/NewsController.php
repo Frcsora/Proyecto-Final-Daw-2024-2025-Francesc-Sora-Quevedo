@@ -58,7 +58,15 @@ class NewsController extends Controller
         }
         $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->limit(4)->get();
         $tweets = TwitterHelper::getTweets();
-        return view('news.index', ['teams' => $teams, 'sponsors' => $sponsors, 'tweets' => $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        return view('news.index', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter, 'teams' => $teams, 'sponsors' => $sponsors, 'tweets' => $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'newsvar'=>$newsvar, 'socialmedias'=>$socialmedias]);
     }
 
     /**

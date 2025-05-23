@@ -7,6 +7,7 @@ use App\Helpers\TwitterHelper;
 use App\Helpers\UserValidator;
 use App\Models\Games;
 use App\Models\Images;
+use App\Models\Matches;
 use App\Models\Player;
 use App\Models\Socialmedia;
 use App\Models\Sponsor;
@@ -24,6 +25,15 @@ class TeamsController extends Controller
      */
     public function index()
     {
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+
         $teams = Teams::with('games')->get();
         if(session()->has('image')){
             $image = session()->get('image');
@@ -53,7 +63,7 @@ class TeamsController extends Controller
         }
         $tweets = TwitterHelper::getTweets();
 
-        return view('teams.index', ['sponsors'=>$sponsors, 'tweets'=>$tweets,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'teams'=>$teams, 'socialmedias'=>$socialmedias]);
+        return view('teams.index', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter,'sponsors'=>$sponsors, 'tweets'=>$tweets,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'teams'=>$teams, 'socialmedias'=>$socialmedias]);
     }
 
     /**
@@ -107,6 +117,8 @@ class TeamsController extends Controller
             'created_by' => 'required|int|exists:users,id',
         ]);
         Teams::create($request->all());
+        $teams = Teams::all();
+        session()->put('teams', $teams);
         return redirect()->route('teams.index')->with('success', 'Equipo creado satisfactoriamente');
     }
 
@@ -115,6 +127,14 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
         if(session()->has('teams')){
             $teams = session()->get('teams');
         }else{
@@ -155,7 +175,7 @@ class TeamsController extends Controller
         $tweets = TwitterHelper::getTweets();
         $tournaments = Tournaments::where('team_id', $id)->get();
         session() -> put('team_id', $team->id);
-        return view('teams.show', ['teams' => $teams, 'tournaments' => $tournaments, 'tweets' => $tweets,'sponsors' => $sponsors, 'players' => $players,'medias'=>$medias,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'games'=>$games, 'socialmedias'=>$socialmedias, 'team'=>$team]);
+        return view('teams.show', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter,'teams' => $teams, 'tournaments' => $tournaments, 'tweets' => $tweets,'sponsors' => $sponsors, 'players' => $players,'medias'=>$medias,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'games'=>$games, 'socialmedias'=>$socialmedias, 'team'=>$team]);
     }
 
     /**
@@ -209,6 +229,8 @@ class TeamsController extends Controller
             'created_by' => 'required|int|exists:users,id',
         ]);
         Teams::findOrFail($id)->update($request->all());
+        $teams = Teams::all();
+        session()->put('teams', $teams);
         return redirect()->route('teams.index')->with('success', 'Equipo actualizado satisfactoriamente');
     }
 
@@ -218,6 +240,8 @@ class TeamsController extends Controller
     public function destroy($id)
     {
         Teams::findOrFail($id)->delete();
+        $teams = Teams::all();
+        session()->put('teams', $teams);
         return redirect()->route('teams.index')->with('success', 'Equipo eliminado satisfactoriamente');
     }
 }

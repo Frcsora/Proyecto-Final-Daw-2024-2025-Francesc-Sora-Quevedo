@@ -6,6 +6,7 @@ use App\Helpers\SanitizeSVG;
 use App\Helpers\TwitterHelper;
 use App\Helpers\UserValidator;
 use App\Models\Images;
+use App\Models\Matches;
 use App\Models\Socialmedia;
 use App\Models\Sponsor;
 use App\Models\Teams;
@@ -18,7 +19,16 @@ class ContactUsController extends Controller
      */
     public function __invoke(Request $request)
     {
-        if(UserValidator::validateAdmin()){
+        if(UserValidator::validateUser()){
+            $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+                ->orderBy('date', 'desc')
+                ->limit(5)
+                ->get();
+            $matchesAfter = Matches::where('result', 'Pendiente')
+                ->orderBy('date', 'desc')
+                ->limit(5)
+                ->get();
+
             if(session()->has('image')){
                 $image = session()->get('image');
             }else{
@@ -52,7 +62,7 @@ class ContactUsController extends Controller
                 $teams = Teams::all();
                 session()->put('teams', $teams);
             }
-            return view('contactus', ['teams' => $teams,'sponsors' => $sponsors, 'tweets' => $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+            return view('contactus', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter,'teams' => $teams,'sponsors' => $sponsors, 'tweets' => $tweets, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
             abort(403);

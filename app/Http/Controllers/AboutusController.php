@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\SanitizeSVG;
 use App\Helpers\TwitterHelper;
 use App\Models\Images;
+use App\Models\Matches;
 use App\Models\Socialmedia;
 use App\Models\Sponsor;
 use App\Models\Teams;
@@ -17,6 +18,15 @@ class AboutusController extends Controller
      */
     public function __invoke()
     {
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+
         if(session()->has('image')){
             $image = session()->get('image');
         }else{
@@ -50,6 +60,6 @@ class AboutusController extends Controller
             $teams = Teams::all();
             session()->put('teams', $teams);
         }
-        return view('aboutus', ['teams' => $teams, 'sponsors'=>$sponsors, 'tweets' => $tweets,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
+        return view('aboutus', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter,'teams' => $teams, 'sponsors'=>$sponsors, 'tweets' => $tweets,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
     }
 }

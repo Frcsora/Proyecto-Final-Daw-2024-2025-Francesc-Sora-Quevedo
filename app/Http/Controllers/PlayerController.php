@@ -6,6 +6,7 @@ use App\Helpers\SanitizeSVG;
 use App\Helpers\TwitterHelper;
 use App\Helpers\UserValidator;
 use App\Models\Images;
+use App\Models\Matches;
 use App\Models\Player;
 use App\Models\PlayersMedias;
 use App\Models\Socialmedia;
@@ -95,6 +96,15 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+
         if(session()->has('teams')){
             $teams = session()->get('teams');
         }else{
@@ -132,7 +142,7 @@ class PlayerController extends Controller
         $medias = SanitizeSVG::sanitizeSVG($medias);
         $tweets = TwitterHelper::getTweets();
 
-        return view('players.show', ['teams' => $teams,'sponsors'=>$sponsors, 'tweets'=>$tweets,'image' => $image->base64, 'imageFondo' =>$imageFondo->base64, 'socialmedias'=>$socialmedias, 'player'=>$player, 'medias'=>$medias]);
+        return view('players.show', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter,'teams' => $teams,'sponsors'=>$sponsors, 'tweets'=>$tweets,'image' => $image->base64, 'imageFondo' =>$imageFondo->base64, 'socialmedias'=>$socialmedias, 'player'=>$player, 'medias'=>$medias]);
     }
 
     /**

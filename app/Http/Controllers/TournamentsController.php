@@ -83,6 +83,14 @@ class TournamentsController extends Controller
      */
     public function show($id)
     {
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
         if(session()->has('sponsors')){
             $sponsors = session()->get('sponsors');
         }else{
@@ -120,7 +128,7 @@ class TournamentsController extends Controller
         $tournament = Tournaments::findOrFail($id);
         session()->put('tournament_id', $id);
         $matches = Matches::where('tournaments_id', $id)->orderBy('date','desc')->limit(5)->get();
-        return view('tournaments.show',  ['matches'=>$matches,'tweets' => $tweets,'sponsors' =>$sponsors, 'tournament' => $tournament,'teams' => $teams, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+        return view('tournaments.show',  ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter,'matches'=>$matches,'tweets' => $tweets,'sponsors' =>$sponsors, 'tournament' => $tournament,'teams' => $teams, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
     }
 
     /**
