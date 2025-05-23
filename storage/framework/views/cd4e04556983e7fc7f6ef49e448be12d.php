@@ -29,7 +29,7 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars); ?>
 <div class="w-64 sm:w-full gap-3 rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-80 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
     <h2 class="text-xl md:text-2xl lg:text-4xl"><a href="<?php echo e(route('news.show', $id)); ?>"><?php echo e($title); ?></a></h2>
-    <small>Creado por <?php echo e($name); ?> el <?php echo e($fecha); ?></small>
+    <small>Creado por <?php echo e($name); ?> el <?php echo e(\Carbon\Carbon::parse($fecha)->format('d/m/y H:I')); ?></small>
     <img class="rounded-lg w-80 max-h-48" src="<?php echo e($img); ?>" alt="<?php echo e($name); ?>">
     <p class="bg-white"><?php echo e($sinopsis); ?></p>
 

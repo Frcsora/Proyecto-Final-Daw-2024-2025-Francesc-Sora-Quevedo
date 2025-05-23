@@ -29,8 +29,8 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars); ?>
 <main class="flex flex-col items-center gap-2">
     <?php echo $__env->make('partials.sponsors-div', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    <section class="flex flex-col lg:flex-row items-center md:items-start gap-4">
-        <section class="flex flex-col gap-5">
+    <section class="flex flex-col lg:flex-row items-center md:items-start gap-4 items-center">
+        <section class="flex flex-col gap-5 text-center">
             <?php echo $__env->make('partials.patreoncard', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <?php if (isset($component)) { $__componentOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $attributes; } ?>
@@ -42,10 +42,11 @@ unset($__defined_vars); ?>
 <?php $attributes = $attributes->except(\App\View\Components\Card::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+                 <?php $__env->slot('show', null, []); ?>  <?php $__env->endSlot(); ?>
                 <p class="text-md">Próximos encuentros</p>
                 <?php if(isset($matchesAfter)): ?>
                     <?php $__currentLoopData = $matchesAfter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $match): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <p class="text-sm">PioPio Esports vs <?php echo e($match->rival); ?> <?php echo e(\Carbon\Carbon::parse($match->date)->format('d/m/y')); ?>} <?php echo e($match->time); ?></p>
+                        <p class="text-sm">PioPio Esports vs <?php echo e($match->rival); ?> <?php echo e(\Carbon\Carbon::parse($match->date)->format('d/m/y')); ?> <?php echo e($match->time); ?>🔜</p>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php endif; ?>
              <?php echo $__env->renderComponent(); ?>
@@ -68,6 +69,7 @@ unset($__defined_vars); ?>
 <?php $attributes = $attributes->except(\App\View\Components\Card::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+                 <?php $__env->slot('show', null, []); ?>  <?php $__env->endSlot(); ?>
                 <p class="text-md">Últimos encuentros</p>
                 <?php if(isset($matchesBefore)): ?>
                     <?php $__currentLoopData = $matchesBefore; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $match): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -86,11 +88,12 @@ unset($__defined_vars); ?>
 <?php endif; ?>
         </section>
         <section class="w-full flex flex-col lg:flex-row items-center justify-around"><?php echo e($slot); ?></section>
+        <?php echo $__env->make('partials.tweets', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </section>
-    <?php echo $__env->make('partials.linea', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    <?php echo $__env->make('partials.tweets', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php if(!isset($news)): ?>
+        <?php echo $__env->make('partials.linea', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php endif; ?>
     <?php echo $__env->make('partials.linea', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     <?php echo $__env->make('partials.status', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    <?php echo $__env->make('partials.back', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 </main>
 <?php /**PATH /mnt/c/Users/DEEPGAMING/desktop/pioesportsbueno/Proyecto-Final-Daw-2024-2025-Francesc-Sora-Quevedo/resources/views/components/main.blade.php ENDPATH**/ ?>

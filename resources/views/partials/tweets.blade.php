@@ -2,11 +2,11 @@
     use Illuminate\Support\Str;
 @endphp
     @if(!empty($tweets))
-    <section class="w-64 gap-4 sm:w-full text-md lg:text-2xl flex flex-col justify-around items-center">
+    <section class="w-32 gap-4 text-md lg:text-2xl flex flex-col justify-around items-center">
 
         @foreach ($tweets as $tweet)
             <section data-tweet-id="{{ $tweet['id'] }}"
-                     class="tweet border border-gray-800 cursor-pointer w-64 md:w-full rounded-lg gap-2 bg-white shadow-md rounded-2xl p-4 md:p-6 border border-gray-200 transition hover:shadow-lg">
+                     class="tweet border border-gray-800 cursor-pointer w-full rounded-lg gap-2 bg-white shadow-md rounded-2xl p-4 md:p-6 border border-gray-200 transition hover:shadow-lg">
                 <section class="flex flex-col md:flex-row md:items-center justify-between text-gray-500 text-sm">
                 <span class="mb-1 md:mb-0">
                     🗓️ {{ \Carbon\Carbon::parse($tweet['created_at'])->format('d M Y H:i') }}
