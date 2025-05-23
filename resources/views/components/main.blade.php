@@ -9,7 +9,7 @@
                 <p class="text-md">Próximos encuentros</p>
                 @isset($matchesAfter)
                     @foreach($matchesAfter as $match)
-                        <p class="text-sm">PioPio Esports vs {{$match->rival}} {{\Carbon\Carbon::parse($match->date)->format('d/m/y h:M')}} 🔜</p>
+                        <p class="text-sm">PioPio Esports vs {{$match->rival}} {{\Carbon\Carbon::parse($match->date)->format('d/m/y')}} {{$match->time}}🔜</p>
                     @endforeach
                 @endisset
             </x-card>
