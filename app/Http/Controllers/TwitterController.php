@@ -66,7 +66,7 @@ class TwitterController extends Controller
                 ->post('https://api.twitter.com/2/tweets', [
                     'text' => $text,
                 ]);
-            @dd($response);
+            @dd($accessToken);
             if ($response->successful()) {
                 return redirect() -> route('news.index');
             } else {
