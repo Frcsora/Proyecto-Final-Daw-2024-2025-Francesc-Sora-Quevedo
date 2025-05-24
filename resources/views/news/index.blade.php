@@ -8,6 +8,9 @@
             @empty
                 <h1>No hay noticias que mostrar</h1>
             @endforelse
+            <section>
+                {{$newsvar->links()}}
+            </section>
         </x-cards-div>
     </x-main>
 </x-layout>

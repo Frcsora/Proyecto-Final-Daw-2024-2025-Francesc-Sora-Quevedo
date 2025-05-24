@@ -56,7 +56,7 @@ class NewsController extends Controller
             $sponsors = Sponsor::orderBy('tier', 'desc')->get();
             session()->put('sponsors', $sponsors);
         }
-        $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->limit(4)->get();
+        $newsvar = News::with(['user','tags'])->orderBy('created_at','desc')->paginate(4);
         $tweets = TwitterHelper::getTweets();
         $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
             ->orderBy('date', 'desc')

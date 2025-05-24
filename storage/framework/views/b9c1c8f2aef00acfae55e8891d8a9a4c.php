@@ -53,6 +53,10 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <h1>No hay noticias que mostrar</h1>
             <?php endif; ?>
+            <section>
+                <?php echo e($newsvar->links()); ?>
+
+            </section>
          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalcee70f1acfea662afbe7691878e7b99e)): ?>

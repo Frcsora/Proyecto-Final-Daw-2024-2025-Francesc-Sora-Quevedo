@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SanitizeSVG;
+use App\Helpers\TwitterHelper;
 use App\Helpers\UserValidator;
 use App\Models\Images;
+use App\Models\Matches;
 use App\Models\News;
 use App\Models\Socialmedia;
+use App\Models\Sponsor;
 use App\Models\Tags;
 use App\Models\Teams;
 use Illuminate\Http\Request;
@@ -109,41 +112,46 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        if(UserValidator::ValidateAdmin()){
-            if(session()->has('teams')){
-                $teams = session()->get('teams');
-            }else{
-                $teams = Teams::all();
-                session()->put('teams', $teams);
-            }
-            if(session()->has('image')){
-                $image = session()->get('image');
-            }else{
-                $image = Images::where('type', 'logo')
-                    ->where('active', 'true')->first();
-                session()->put('image', $image);
-            }
-            if(session()->has('socialmedia')){
-                $socialmedias = session()->get('socialmedia');
-            }else{
-                $socialmedias = Socialmedia::with('medias')->get();
-                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-                session()->put('socialmedias', $socialmedias);
-            }
-            if(session()->has('imageFondo')){
-                $imageFondo = session()->get('imageFondo');
-            }else{
-                $imageFondo = Images::where('type', 'fondo')
-                    ->where('active', 'true')->first();
-            }
-            $newsvar = News::whereHas('tags', function ($query) use ($id) {
-                $query->where('tags.id', $id);
-            })->orderBy('created_at', 'desc')->get();
-            return view('tags.show', ['teams' => $teams,'newsvar' => $newsvar,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+        $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        $matchesAfter = Matches::where('result', 'Pendiente')
+            ->orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+        if(session()->has('teams')){
+            $teams = session()->get('teams');
+        }else{
+            $teams = Teams::all();
+            session()->put('teams', $teams);
         }
-        else{
-            abort(403);
+        if(session()->has('image')){
+            $image = session()->get('image');
+        }else{
+            $image = Images::where('type', 'logo')
+                ->where('active', 'true')->first();
+            session()->put('image', $image);
         }
+        if(session()->has('socialmedia')){
+            $socialmedias = session()->get('socialmedia');
+        }else{
+            $socialmedias = Socialmedia::with('medias')->get();
+            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+            session()->put('socialmedias', $socialmedias);
+        }
+        if(session()->has('imageFondo')){
+            $imageFondo = session()->get('imageFondo');
+        }else{
+            $imageFondo = Images::where('type', 'fondo')
+                ->where('active', 'true')->first();
+        }
+        $newsvar = News::whereHas('tags', function ($query) use ($id) {
+            $query->where('tags.id', $id);
+        })->orderBy('created_at', 'desc')->paginate(4);
+        $tweets = TwitterHelper::getTweets();
+        $sponsors = Sponsor::all();
+        return view('tags.show', ['matchesAfter' => $matchesAfter,'matchesBefore' => $matchesBefore,'sponsors' =>$sponsors,'tweets'=>$tweets,'teams' => $teams,'newsvar' => $newsvar,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
 
     }
 

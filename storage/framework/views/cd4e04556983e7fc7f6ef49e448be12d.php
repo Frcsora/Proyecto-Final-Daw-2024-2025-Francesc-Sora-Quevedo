@@ -29,10 +29,9 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars); ?>
 <div class="w-64 sm:w-full gap-3 rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-80 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
     <h2 class="text-xl md:text-2xl lg:text-4xl"><a href="<?php echo e(route('news.show', $id)); ?>"><?php echo e($title); ?></a></h2>
-    <small>Creado por <?php echo e($name); ?> el <?php echo e(\Carbon\Carbon::parse($fecha)->format('d/m/y H:I')); ?></small>
+    <small>Creado por <?php echo e($name); ?> el <?php echo e(\Carbon\Carbon::parse($fecha)->format('d/m/y H:i')); ?></small>
     <img class="rounded-lg w-80 max-h-48" src="<?php echo e($img); ?>" alt="<?php echo e($name); ?>">
-    <p class="bg-white"><?php echo e($sinopsis); ?></p>
-
+    <p class="bg-white text-xl p-1"><?php echo e($sinopsis); ?></p>
     <?php if(count($tags) > 0): ?>
         <p>
             Etiquetas:
@@ -49,7 +48,7 @@ unset($__defined_vars); ?>
         <form method="POST" action="<?php echo e(route('news.destroy', $id)); ?>">
             <?php echo csrf_field(); ?>
             <?php echo method_field('DELETE'); ?>
-            <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></button>
+            <button title="Eliminar noticia" type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></button>
         </form>
     <?php endif; ?>
 </div>
