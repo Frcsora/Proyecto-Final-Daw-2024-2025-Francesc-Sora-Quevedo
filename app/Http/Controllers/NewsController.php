@@ -133,9 +133,8 @@ class NewsController extends Controller
         $newsid = News::all()->last()->id;
         if(isset($tags)){
             $tagIDs = Tags::all('id');
-            @dd($tagIDs);
             foreach ($tags as $tag) {
-                if($tag != "" && in_array($tag, $tagIDs->id)){
+                if($tag != "" && in_array($tag, $tagIDs->toArray())){
                     NewsTags::create(['news_id' => $newsid, 'tag_id' => $tag]);
                 }
             }
@@ -269,7 +268,7 @@ class NewsController extends Controller
         if(isset($tags)){
             $tagIDs = Tags::all('id');
             foreach ($tags as $tag) {
-                if($tag != "" && in_array($tag, $tagIDs->id)){
+                if($tag != "" && in_array($tag, $tagIDs->toArray())){
                     NewsTags::create(['news_id' => $id, 'tag_id' => $tag]);
                 }
             }
