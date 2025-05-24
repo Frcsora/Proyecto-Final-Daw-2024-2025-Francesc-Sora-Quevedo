@@ -48,10 +48,8 @@ class TwitterController extends Controller
             'redirect_uri' => env('TWITTER_REDIRECT_URI'),
             'code_verifier' => $codeVerifier,
         ]);
-        @dd($response);
         if ($response->successful()) {
             $data = $response->json();
-
             session([
                 'twitter_access_token' => $data['access_token'],
                 'twitter_refresh_token' => $data['refresh_token'],
@@ -68,13 +66,14 @@ class TwitterController extends Controller
                 ->post('https://api.twitter.com/2/tweets', [
                     'text' => $text,
                 ]);
+            @dd($response);
             if ($response->successful()) {
                 return redirect() -> route('news.index');
             } else {
                 return redirect() -> route('news.create');
             }
         } else {
-            return redirect()->route('twitter.posttweet')->with('error', 'Error al obtener token');
+            return redirect()->route('teams.index')->with('error', 'Error al obtener token');
         }
     }
     public function postTweet(Request $request)
