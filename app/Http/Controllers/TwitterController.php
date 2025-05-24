@@ -48,6 +48,7 @@ class TwitterController extends Controller
             'redirect_uri' => env('TWITTER_REDIRECT_URI'),
             'code_verifier' => $codeVerifier,
         ]);
+        @dd($response);
         if ($response->successful()) {
             $data = $response->json();
 
