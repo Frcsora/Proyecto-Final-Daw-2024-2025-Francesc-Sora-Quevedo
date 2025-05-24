@@ -25,7 +25,7 @@ class TeamsMediasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($team_id)
+    public function create()
     {
         if(UserValidator::ValidateAdmin()){
             if(session()->has('teams')){
