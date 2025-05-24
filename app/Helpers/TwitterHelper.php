@@ -10,7 +10,7 @@ class TwitterHelper
     public static function getTweets(int $count = 5)
     {
         $userName = env('TWITTER_USERNAME');
-        return Cache::remember("tweets_{$userName}", now()->addHours(720), function () use ($userName, $count) {
+        return Cache::remember("tweets_{$userName}", now()->addHours(8), function () use ($userName, $count) {
             $bearerToken = env('TWITTER_BEARER_TOKEN');
 
             $userResponse = Http::withToken($bearerToken)
