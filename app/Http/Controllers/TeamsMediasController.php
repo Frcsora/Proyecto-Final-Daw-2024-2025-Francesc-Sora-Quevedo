@@ -71,7 +71,7 @@ class TeamsMediasController extends Controller
             'name' => 'required|string|max:255',
             'link' => 'required|url|max:255',
             'team_id' => 'required|int|exists:teams,id',
-            'media_id' => 'required|int|exists:medias,id',
+            'media' => 'required|int|exists:medias,id',
         ]);
         $teamid = $request->team_id;
         $media = $request->media;
