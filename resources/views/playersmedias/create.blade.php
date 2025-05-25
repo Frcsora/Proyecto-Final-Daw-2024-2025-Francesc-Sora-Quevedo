@@ -5,11 +5,11 @@
             <x-slot:show></x-slot:show>
 
             @include('partials.errors')
-            <form id="formCreateSocialMedia" method="post" action="{{route('playersmedias.store')}}">
+            <form method="post" action="{{route('playersmedias.store')}}">
                 @csrf
                 <input type="hidden" value="{{session()->get('player_id')}}" name="player_id">
                 <fieldset>
-                    <label for="media">Red social:</label><br>
+                    <label for="media_id">Red social:</label><br>
                     <select name="media_id" class="media" id="media">
                         @foreach($medias as $media)
                             <option value="{{$media->id}}">{{$media->name}}</option>
