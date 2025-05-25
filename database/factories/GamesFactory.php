@@ -17,10 +17,7 @@ class GamesFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => 1,
             'name' =>'League of Legends',
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

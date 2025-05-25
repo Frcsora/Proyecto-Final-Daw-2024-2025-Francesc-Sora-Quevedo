@@ -20,7 +20,7 @@ class PlayersMediasController extends Controller
      */
     public function index()
     {
-        return redirect()->route('news.index');
+        abort(404);
     }
 
     /**
@@ -59,7 +59,7 @@ class PlayersMediasController extends Controller
             return view('playersmedias.create', ['teams' => $teams,'medias' => $medias, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
-            return Redirect()->route('news.index');
+            abort(403);
         }
     }
 
@@ -86,7 +86,7 @@ class PlayersMediasController extends Controller
      */
     public function show(PlayersMedias $players_Medias)
     {
-        return redirect()->route('news.index');
+        abort(404);
 
     }
 
@@ -127,7 +127,7 @@ class PlayersMediasController extends Controller
             return view('playersmedias.edit', ['teams' => $teams,'medias' => $medias,'socialmediaedit' => $socialmediaEdit,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
-            return Redirect()->route('news.index');
+            abort(403);
         }
     }
 

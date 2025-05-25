@@ -5,40 +5,87 @@ use Tests\TestCase;
 
 class ImagesControllerTest extends TestCase
 {
-    public function testImageUpload()
+    public function testImageIndex()
     {
-        $response = $this->post('/images/upload', [
-            'image' => UploadedFile::fake()->image('test.jpg'),
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
         ]);
-
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('images', [
-            'filename' => 'test.jpg',
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
         ]);
-    }
-
-    public function testImageRetrieval()
-    {
-        $image = Images::factory()->create();
-
-        $response = $this->get('/images/' . $image->id);
-
+        $response = $this->get('/images');
         $response->assertStatus(200);
-        $response->assertJson([
-            'id' => $image->id,
-            'filename' => $image->filename,
-        ]);
     }
-
-    public function testImageDeletion()
+    public function testImageIndexNoAdmin()
     {
-        $image = Images::factory()->create();
-
-        $response = $this->delete('/images/' . $image->id);
-
-        $response->assertStatus(204);
-        $this->assertDatabaseMissing('images', [
-            'id' => $image->id,
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
         ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/images');
+        $response->assertStatus(403);
+    }
+    public function testImageCreate(){
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/images/create');
+        $response->assertStatus(200);
+    }
+    public function testImageCreateNoAdmin(){
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/images/create');
+        $response->assertStatus(403);
+    }
+    public function testImageShow(){
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        $image = \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/images/'. $image->id);
+        $response->assertStatus(200);
+    }
+    public function testImageShowNoAdmin(){
+        $user = \App\Models\User::factory()->create();
+        $image = \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/images/'. $image->id);
+        $response->assertStatus(403);
+    }
+    public function testImageEdit(){
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        $image = \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/images/'. $image->id .'/edit');
+        $response->assertStatus(404);
     }
 }

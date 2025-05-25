@@ -17,7 +17,11 @@ class MatchesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'date' => now(),
+            'time' => now(),
+            'rival' => 'Pepe',
+            'best_of' => 'BO1',
+            'result' => 'Pendiente'
         ];
     }
 }

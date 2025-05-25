@@ -13,7 +13,6 @@ class TournamentsFactory extends Factory
     {
         return [
             'name' => 'Spring Cup',
-            'team_id' => 5,
             'event' => 'Spring Event',
             'date' => now()->toDateString(),
             'time' => now()->toTimeString(),

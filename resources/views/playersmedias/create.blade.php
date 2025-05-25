@@ -7,7 +7,7 @@
             @include('partials.errors')
             <form id="formCreateSocialMedia" method="post" action="{{route('playersmedias.store')}}">
                 @csrf
-                <input type="hidden" value="{{$id}}" name="player_id">
+                <input type="hidden" value="{{$player->id}}" name="player_id">
                 <fieldset>
                     <label for="media">Red social:</label><br>
                     <select name="media" class="media" id="media">

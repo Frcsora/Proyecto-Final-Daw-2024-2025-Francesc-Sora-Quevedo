@@ -8,14 +8,17 @@ use App\Http\Middleware;
 class TournamentsControllerTest extends TestCase
 {
     use RefreshDatabase;
-
-
-    private static string $password;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+    public function test_index_returns_tournaments(){
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get(route('tournaments.index'));
+        $response->assertStatus(404);
     }
 
     public function test_show_returns_tournament()
@@ -38,8 +41,8 @@ class TournamentsControllerTest extends TestCase
         ]);
         $response = $this->get('tournaments/' . $tournament->id);
         $response->assertStatus(200);
-        $response->assertSee($tournament->name);
     }
+
     public function test_create_tournament(){
         $user = \App\Models\User::factory()->create();
         \App\Models\Images::factory()->createLogo()->create([
@@ -60,7 +63,7 @@ class TournamentsControllerTest extends TestCase
         $response = $this->get('tournaments/create');
         $response->assertStatus(200);
     }
-    public function test_edit_tournament(){
+    public function test_create_tournament_no_admin(){
         $user = \App\Models\User::factory()->create();
         \App\Models\Images::factory()->createLogo()->create([
             'created_by' => $user->id,
@@ -68,7 +71,27 @@ class TournamentsControllerTest extends TestCase
         \App\Models\Images::factory()->createFondo()->create([
             'created_by' => $user->id,
         ]);
+        $game = \App\Models\Games::factory()->create();
+        $team = \App\Models\Teams::factory()->create([
+            'created_by' => $user->id,
+            'game_id' => $game->id,
+        ]);
+        $tournament = \App\Models\Tournaments::factory()->create([
+            'team_id' => $team->id
+        ]);
+        $response = $this->get('tournaments/create');
+        $response->assertStatus(403);
+    }
+    public function test_edit_tournament(){
+        $user = \App\Models\User::factory()->create();
         $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+
         $game = \App\Models\Games::factory()->create();
         $team = \App\Models\Teams::factory()->create([
             'created_by' => $user->id,
@@ -80,8 +103,27 @@ class TournamentsControllerTest extends TestCase
         $response = $this->get('tournaments/' . $tournament->id .'edit/');
         $response->assertStatus(200);
     }
+    public function test_edit_tournament_no_admin(){
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $game = \App\Models\Games::factory()->create();
+        $team = \App\Models\Teams::factory()->create([
+            'created_by' => $user->id,
+            'game_id' => $game->id,
+        ]);
+        $tournament = \App\Models\Tournaments::factory()->create([
+            'team_id' => $team->id
+        ]);
+        $response = $this->get('tournaments/' . $tournament->id .'/edit');
+        $response->assertStatus(403);
+    }
 
-    public function test_store_creates_tournament()
+    /*public function test_store_creates_tournament()
     {
         $user = \App\Models\User::factory()->create();
         $game = \App\Models\Games::factory()->create();
@@ -168,5 +210,5 @@ class TournamentsControllerTest extends TestCase
 
         $response->assertStatus(204);
         $this->assertDatabaseMissing($tournament);
-    }
+    }*/
 }

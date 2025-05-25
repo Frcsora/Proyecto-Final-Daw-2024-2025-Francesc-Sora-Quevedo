@@ -144,7 +144,8 @@ class GamesController extends Controller
                 $imageFondo = Images::where('type', 'fondo')
                     ->where('active', 'true')->first();
             }
-            return view('games.edit', ['teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+            $game = Games::findOrFail($id);
+            return view('games.edit', ['game'=>$game,'teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
             abort(403);

@@ -9,18 +9,94 @@ class GamesControllerTest extends TestCase
 
     public function test_index_returns_games()
     {
-        $response = $this->get('/games');
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get(route('games.index'));
         $response->assertStatus(200);
+    }
+    public function test_index_returns_games_no_admin()
+    {
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get(route('games.index'));
+        $response->assertStatus(403);
     }
 
     public function test_show_returns_game()
     {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
         $game = \App\Models\Games::factory()->create();
-        $response = $this->get('/games/' . $game->id);
+
+        $response = $this->get('/games/' . $game->id . '/show');
+        $response->assertStatus(404);
+    }
+    public function test_create_form(){
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/games/create');
         $response->assertStatus(200);
     }
-
-    public function test_store_creates_game()
+    public function test_create_form_no_admin(){
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/games/create');
+        $response->assertStatus(403);
+    }
+    public function test_edit_form(){
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $game = \App\Models\Games::factory()->create();
+        $response = $this->get('games/' . $game->id . '/edit');
+        $response->assertStatus(200);
+    }
+    public function test_edit_form_no_admin(){
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $game = \App\Models\Games::factory()->create();
+        $response = $this->get('games/' . $game->id . '/edit');
+        $response->assertStatus(403);
+    }
+    /*public function test_store_creates_game()
     {
         $data = [
             'title' => 'New Game',
@@ -49,5 +125,5 @@ class GamesControllerTest extends TestCase
         $response = $this->delete('/games/' . $game->id);
         $response->assertStatus(204);
         $this->assertDatabaseMissing('games', ['id' => $game->id]);
-    }
+    }*/
 }

@@ -18,7 +18,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\App\View\Components\Main::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['tweets' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($tweets),'sponsors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sponsors)]); ?>
+<?php $component->withAttributes(['tweets' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($tweets),'sponsors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sponsors),'matchesBefore' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesBefore),'matchesAfter' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesAfter)]); ?>
         <section class="w-full flex flex-col items-center">
             <?php if (isset($component)) { $__componentOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $attributes; } ?>
@@ -39,7 +39,7 @@
                     <h2 class="text-bold text-5xl text-bold"><?php echo e(Auth::user()->name); ?></h2>
                     <fieldset>
                         <label for="text">Mensaje:</label><br>
-                        <textarea name="text" class="w-96 md:w-[600px] xl:w-[850px] 2xl:w-[1200px] text-4xl"></textarea>
+                        <textarea name="text" class="w-[300px] md:w-[450px] 2xl:w-[700px] text-4xl"></textarea>
                     </fieldset>
                     <input class="buttonBlue" type="submit" value="Enviar">
                 </form>
