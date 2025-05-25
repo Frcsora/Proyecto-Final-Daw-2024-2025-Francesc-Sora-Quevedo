@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tags extends Model
 {
+    use HasFactory;
     public function news()
     {
         return $this->hasManyThrough(News::class, NewsTags::class, 'tag_id', 'id', 'id', 'news_id');

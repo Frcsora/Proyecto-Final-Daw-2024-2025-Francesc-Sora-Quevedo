@@ -154,7 +154,7 @@ class SocialmediaController extends Controller
             }
             $socialmediaEdit = Socialmedia::findOrFail($id);
             $medias = Medias::all();
-            return view('socialmedia.edit', ['teams' => $teams ,'medias' => $medias, 'socialmediaedit' => $socialmediaEdit, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+            return view('socialmedia.edit', ['socialmediaEdit' => $socialmediaEdit,'teams' => $teams ,'medias' => $medias, 'socialmediaedit' => $socialmediaEdit, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
             abort(403);

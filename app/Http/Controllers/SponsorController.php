@@ -17,7 +17,6 @@ class SponsorController extends Controller
      */
     public function index()
     {
-
         if(UserValidator::ValidateAdmin()){
             if(session()->has('teams')){
                 $teams = session()->get('teams');

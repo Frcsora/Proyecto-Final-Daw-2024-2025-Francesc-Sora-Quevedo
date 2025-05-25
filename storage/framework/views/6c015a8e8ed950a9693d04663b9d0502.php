@@ -26,10 +26,9 @@
             <form id="formCreateSocialMedia" method="post" action="<?php echo e(route('playersmedias.update', $socialmediaEdit->id)); ?>">
                 <?php echo csrf_field(); ?>
                 <?php echo method_field('PUT'); ?>
-                <input type="hidden" name="player_id" value="<?php echo e($socialmediaEdit->player_id); ?>">
                 <fieldset>
                     <label for="media">Red social:</label><br>
-                    <select name="media" class="media" id="media">
+                    <select name="media_id" class="media" id="media">
 
                         <?php $__currentLoopData = $medias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $media): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($media->id); ?>"

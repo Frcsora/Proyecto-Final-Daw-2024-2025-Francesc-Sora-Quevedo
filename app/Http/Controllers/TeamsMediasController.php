@@ -87,7 +87,7 @@ class TeamsMediasController extends Controller
      */
     public function show(TeamsMedias $teamsMedias)
     {
-        return redirect()->route('news.index');
+        abort(404);
     }
 
     /**
@@ -124,7 +124,7 @@ class TeamsMediasController extends Controller
             }
             $socialmediaEdit = TeamsMedias::findOrFail($id);
             $medias = Medias::all();
-            return view('teamsmedias.edit', ['teams' => $teams,'socialmediaedit' => $socialmediaEdit, 'medias' => $medias, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+            return view('teamsmedias.edit', ['socialmediaEdit' => $socialmediaEdit,'teams' => $teams,'socialmediaedit' => $socialmediaEdit, 'medias' => $medias, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
             abort(403);

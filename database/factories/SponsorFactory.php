@@ -17,7 +17,10 @@ class SponsorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'link' => $this->faker->url(),
+            'tier' => $this->faker->numberBetween(1, 3),
+            'base64' => 'a'
         ];
     }
 }

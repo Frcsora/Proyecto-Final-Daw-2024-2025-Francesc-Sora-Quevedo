@@ -99,6 +99,32 @@ class PlayersMediasControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_edit_returns_403_response(){
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $game = \App\Models\Games::factory()->create();
+        $team = \App\Models\Teams::factory()->create([
+            'game_id' => $game->id,
+            'created_by' => $user->id,
+        ]);
+        $player = \App\Models\Player::factory()->create([
+            'created_by' => $user->id,
+            'team_id' => $team->id,
+        ]);
+        $media = \App\Models\Medias::factory()->create();
+        $playersmedias = \App\Models\PlayersMedias::factory()->create([
+            'player_id' => $player->id,
+            'media_id' => $media->id,
+        ]);
+        $response = $this->get('/playersmedias/'. $playersmedias->id . '/edit');
+        $response->assertStatus(403);
+    }
+
     /*public function test_store_creates_media_successfully()
     {
         $response = $this->post('/players/media', [

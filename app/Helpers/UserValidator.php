@@ -8,7 +8,7 @@ class UserValidator
 {
     public static function validateUser(){
         if(!Auth::check()){
-            return Redirect()->route('news.index');
+            return false;
         }
         return true;
     }

@@ -23,12 +23,12 @@
              <?php $__env->slot('show', null, []); ?>  <?php $__env->endSlot(); ?>
 
             <?php echo $__env->make('partials.errors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <form id="formCreateSocialMedia" method="post" action="<?php echo e(route('playersmedias.store')); ?>">
+            <form method="post" action="<?php echo e(route('playersmedias.store')); ?>">
                 <?php echo csrf_field(); ?>
                 <input type="hidden" value="<?php echo e(session()->get('player_id')); ?>" name="player_id">
                 <fieldset>
-                    <label for="media">Red social:</label><br>
-                    <select name="media" class="media" id="media">
+                    <label for="media_id">Red social:</label><br>
+                    <select name="media_id" class="media" id="media">
                         <?php $__currentLoopData = $medias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $media): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($media->id); ?>"><?php echo e($media->name); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

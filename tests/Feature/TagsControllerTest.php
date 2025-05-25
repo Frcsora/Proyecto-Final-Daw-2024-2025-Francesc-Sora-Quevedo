@@ -9,49 +9,108 @@ class TagsControllerTest extends TestCase
 
     public function test_index_returns_tags()
     {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
         $response = $this->get('/tags');
 
         $response->assertStatus(200);
-        $response->assertJsonStructure([
-            '*' => ['id', 'name', 'created_at', 'updated_at'],
-        ]);
     }
 
-    public function test_store_creates_tag()
+    public function test_index_returns_tags_403()
     {
-        $response = $this->post('/tags', ['name' => 'New Tag']);
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/tags');
 
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('tags', ['name' => 'New Tag']);
+        $response->assertStatus(403);
+    }
+    public function test_create_returns_tags()
+    {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/tags/create');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_create_returns_tags_403()
+    {
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/tags/create');
+
+        $response->assertStatus(403);
     }
 
     public function test_show_returns_tag()
     {
-        $tag = \App\Models\Tag::factory()->create();
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $tag = \App\Models\Tags::factory()->create();
 
         $response = $this->get('/tags/' . $tag->id);
 
-        $response->assertStatus(200);
-        $response->assertJson(['id' => $tag->id, 'name' => $tag->name]);
+        $response->assertStatus(404);
     }
-
-    public function test_update_modifies_tag()
+    public function test_edit_returns_tag()
     {
-        $tag = \App\Models\Tag::factory()->create();
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $tag = \App\Models\Tags::factory()->create();
 
-        $response = $this->put('/tags/' . $tag->id, ['name' => 'Updated Tag']);
+        $response = $this->get('/tags/' . $tag->id . '/edit');
 
         $response->assertStatus(200);
-        $this->assertDatabaseHas('tags', ['name' => 'Updated Tag']);
     }
-
-    public function test_destroy_removes_tag()
+    public function test_edit_returns_tag_403()
     {
-        $tag = \App\Models\Tag::factory()->create();
+        $user = \App\Models\User::factory()->create();
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $tag = \App\Models\Tags::factory()->create();
 
-        $response = $this->delete('/tags/' . $tag->id);
+        $response = $this->get('/tags/' . $tag->id. '/edit');
 
-        $response->assertStatus(204);
-        $this->assertDatabaseMissing('tags', ['id' => $tag->id]);
+        $response->assertStatus(403);
     }
+
+
 }

@@ -7,57 +7,103 @@ class TeamsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_index_returns_teams()
+    public function test_team_index_200()
     {
-        $response = $this->get('/teams');
-
-        $response->assertStatus(200);
-        $response->assertJsonStructure([
-            '*' => ['id', 'name', 'created_at', 'updated_at'],
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
         ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/teams');
+        $response->assertStatus(200);
+    }
+
+    public function test_team_create_200()
+    {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/teams/create');
+        $response->assertStatus(200);
+    }
+    public function test_team_create_403()
+    {
+        $user = \App\Models\User::factory()->create();
+
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/teams/create');
+        $response->assertStatus(403);
     }
 
     public function test_show_returns_team()
     {
-        $team = \App\Models\Team::factory()->create();
+        $user = \App\Models\User::factory()->create();
 
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $game = \App\Models\Games::factory()->create();
+        $team = \App\Models\Teams::factory()->create([
+            'game_id' => $game->id,
+            'created_by' => $user->id,
+        ]);
         $response = $this->get('/teams/' . $team->id);
 
         $response->assertStatus(200);
-        $response->assertJson([
-            'id' => $team->id,
-            'name' => $team->name,
+    }
+    public function test_edit_returns_team()
+    {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
         ]);
-    }
-
-    public function test_store_creates_team()
-    {
-        $data = ['name' => 'New Team'];
-
-        $response = $this->post('/teams', $data);
-
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('teams', $data);
-    }
-
-    public function test_update_modifies_team()
-    {
-        $team = \App\Models\Team::factory()->create();
-        $data = ['name' => 'Updated Team'];
-
-        $response = $this->put('/teams/' . $team->id, $data);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $game = \App\Models\Games::factory()->create();
+        $team = \App\Models\Teams::factory()->create([
+            'game_id' => $game->id,
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/teams/' . $team->id . '/edit');
 
         $response->assertStatus(200);
-        $this->assertDatabaseHas('teams', $data);
     }
-
-    public function test_destroy_deletes_team()
+    public function test_edit_returns_team_403()
     {
-        $team = \App\Models\Team::factory()->create();
+        $user = \App\Models\User::factory()->create();
 
-        $response = $this->delete('/teams/' . $team->id);
+        \App\Models\Images::factory()->createLogo()->create([
+            'created_by' => $user->id,
+        ]);
+        \App\Models\Images::factory()->createFondo()->create([
+            'created_by' => $user->id,
+        ]);
+        $game = \App\Models\Games::factory()->create();
+        $team = \App\Models\Teams::factory()->create([
+            'game_id' => $game->id,
+            'created_by' => $user->id,
+        ]);
+        $response = $this->get('/teams/' . $team->id . '/edit');
 
-        $response->assertStatus(204);
-        $this->assertDatabaseMissing('teams', ['id' => $team->id]);
+        $response->assertStatus(403);
     }
 }

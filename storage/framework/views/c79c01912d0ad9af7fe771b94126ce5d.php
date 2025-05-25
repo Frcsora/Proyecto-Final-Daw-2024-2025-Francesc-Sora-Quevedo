@@ -56,7 +56,7 @@
                         <p class="flex text-2xl"><?php echo e($media->name); ?> - <a href="<?php echo e($media->link); ?>"><?php echo $media->medias->svg; ?></a>
                             <?php if(Auth::check()): ?>
                                 <?php if(in_array(Auth::user()->role, ['admin', 'superadmin'])): ?>
-                                    <a href="<?php echo e(route('playersmedias.edit', $media->id)); ?>">Editar</a></p>
+
                         <form method="post" action="<?php echo e(route('playersmedias.destroy', $media->id)); ?>">
                             <?php echo csrf_field(); ?>
                             <?php echo method_field('DELETE'); ?>

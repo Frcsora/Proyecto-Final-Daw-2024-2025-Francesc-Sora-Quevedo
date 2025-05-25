@@ -50,7 +50,7 @@ class UserController extends Controller
             return view('users.index', ['teams' => $teams,'users' => $users, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
-            return Redirect()->route('news.index');
+            abort(403);
         }
     }
 
@@ -67,7 +67,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return route('news.index');
+        abort(404);
     }
 
     /**
@@ -106,7 +106,7 @@ class UserController extends Controller
             return view('users.show', ['teams' => $teams,'user' => $user, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
-            return Redirect()->route('news.index');
+            abort(403);
         }
     }
 
