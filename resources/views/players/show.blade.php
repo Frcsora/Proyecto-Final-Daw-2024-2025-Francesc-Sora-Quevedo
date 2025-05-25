@@ -29,7 +29,7 @@
                         <p class="flex text-2xl">{{$media->name}} - <a href="{{$media->link}}">{!! $media->medias->svg !!}</a>
                             @if(Auth::check())
                                 @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
-                                    <a href="{{route('playersmedias.edit', $media->id)}}">Editar</a></p>
+
                         <form method="post" action="{{route('playersmedias.destroy', $media->id)}}">
                             @csrf
                             @method('DELETE')

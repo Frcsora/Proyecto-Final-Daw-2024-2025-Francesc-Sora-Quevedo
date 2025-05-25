@@ -126,7 +126,7 @@ class PlayersMediasController extends Controller
             }
             $socialmediaEdit = PlayersMedias::findOrFail($id);
             $medias = Medias::all();
-            return view('playersmedias.edit', ['teams' => $teams,'medias' => $medias,'socialmediaedit' => $socialmediaEdit,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+            return view('playersmedias.edit', ['socialmediaEdit' => $socialmediaEdit,'teams' => $teams,'medias' => $medias,'socialmediaedit' => $socialmediaEdit,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
             abort(403);
