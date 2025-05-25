@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Teams extends Model
 {
+    use HasFactory;
     protected $table = 'teams';
     protected $fillable = ["created_by", 'name', 'game_id'];
     public function games(){

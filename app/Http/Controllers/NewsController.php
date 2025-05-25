@@ -114,6 +114,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'id_user' => 'required|int|exists:users,id',
             'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',

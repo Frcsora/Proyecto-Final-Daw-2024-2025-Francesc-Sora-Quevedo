@@ -7,7 +7,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\App\View\Components\Layout::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($image),'imageFondo' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($imageFondo),'socialmedias' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($socialmedias)]); ?>
+<?php $component->withAttributes(['image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($image),'imageFondo' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($imageFondo),'socialmedias' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($socialmedias),'tweets' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($tweets),'sponsors' => '$sponsors','teams' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($teams)]); ?>
      <?php $__env->slot('title', null, []); ?> aboutus <?php $__env->endSlot(); ?>
     <?php if (isset($component)) { $__componentOriginal65e0bd0aeed8a21b598c76606db79d38 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal65e0bd0aeed8a21b598c76606db79d38 = $attributes; } ?>
@@ -18,7 +18,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\App\View\Components\Main::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes([]); ?>
+<?php $component->withAttributes(['tweets' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($tweets),'sponsors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sponsors),'matchesBefore' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesBefore),'matchesAfter' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesAfter)]); ?>
         <section class="w-64 md:w-full rounded-lg before:rounded-lg p-2 flex md:flex-col justify-around items-center relative before:absolute before:opacity-70 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
             <section class="gap-4 p-2 flex flex-col justify-around items-center">
                 <h1 class="text-xl md:text-2xl lg:text-4xl font-bold">Sobre nosotros</h1><br><br>

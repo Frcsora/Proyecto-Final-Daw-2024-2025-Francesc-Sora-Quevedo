@@ -97,6 +97,7 @@ addEventListener('DOMContentLoaded', () => {
             document.getElementById('formImage').submit();
         })
     }
+
     if(document.getElementById('dropdown')){
         document.getElementById('dropdown').addEventListener('mouseover', () => {
             document.getElementById('dropdown-user').classList.remove('hidden');

@@ -30,6 +30,7 @@ class TwitterController extends Controller
 
         return redirect($authorizationUrl);
     }
+
     public function handleTwitterCallback(Request $request)
     {
         $state = $request->input('state');
@@ -67,33 +68,12 @@ class TwitterController extends Controller
                     'text' => $text,
                 ]);
             if ($response->successful()) {
-                return redirect() -> route('news.index');
+                return redirect()->route('news.index');
             } else {
-                return redirect() -> route('news.create');
+                return redirect()->route('news.create');
             }
         } else {
             return redirect()->route('teams.index')->with('error', 'Error al obtener token');
-        }
-    }
-    public function postTweet(Request $request)
-    {
-
-        $text = $request->input('text');
-
-        $accessToken = session('twitter_access_token');
-
-        if (!$accessToken) {
-            return redirect()->route('twitter.redirect');
-        }
-        $response = Http::withToken($accessToken)
-            ->post('https://api.twitter.com/2/tweets', [
-                'text' => $text,
-            ]);
-
-        if ($response->successful()) {
-            return route('news.index')->with('success', 'Tweet publicado correctamente!');
-        } else {
-            return route('news.create')->with('error', 'Error al publicar el tweet.');
         }
     }
 }

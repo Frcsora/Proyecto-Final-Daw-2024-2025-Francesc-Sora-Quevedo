@@ -1,7 +1,7 @@
 <?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
 $__newAttributes = [];
-$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['image', 'imageFondo', 'socialmedias']));
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['image', 'imageFondo', 'socialmedias', 'tweets', 'teams']));
 
 foreach ($attributes->all() as $__key => $__value) {
     if (in_array($__key, $__propNames)) {
@@ -16,7 +16,7 @@ $attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
 unset($__propNames);
 unset($__newAttributes);
 
-foreach (array_filter((['image', 'imageFondo', 'socialmedias']), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+foreach (array_filter((['image', 'imageFondo', 'socialmedias', 'tweets', 'teams']), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
     $$__key = $$__key ?? $__value;
 }
 
@@ -43,9 +43,9 @@ unset($__defined_vars); ?>
         }
     </style>
 </head>
-
-<body class="text-sm md:text-xl lg:text-3xl w-screen overflow-x-hidden min-h-screen h-auto flex flex-col justify-between items-center gap-3 font-arial relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:opacity-70 before:z-[-1]">
+<body class="text-xl lg:text-3xl w-screen overflow-x-hidden min-h-screen h-auto flex flex-col justify-between items-center gap-3 font-arial relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:opacity-70 before:z-[-1]">
 <?php echo $__env->make("partials.header", array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 <?php echo e($slot); ?>
 
 <?php echo $__env->make("partials.footer", array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>

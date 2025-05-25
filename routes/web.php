@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\ManualController;
 use App\Http\Controllers\MatchesController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NewsController;
@@ -42,6 +43,7 @@ Route::resource('/matches', MatchesController::class);
 Route::get('/twitter/redirect', [TwitterController::class, 'redirectToTwitter'])->name('twitter.redirect');
 Route::get('/twitter/callback', [TwitterController::class, 'handleTwitterCallback'])->name('twitter.callback');
 Route::post('/twitter/post-tweet', [TwitterController::class, 'postTweet'])->name('twitter.posttweet');
+Route::get('/manual',ManualController::class)->name('manual');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

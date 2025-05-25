@@ -4,72 +4,46 @@
         <section class="w-full hidden xl:flex justify-between items-center">
             <nav class="w-full flex justify-center items-center lg:text-2xl 2xl:text-4xl">
                 <ul class="flex items-center gap-5">
-                    <a href="<?php echo e(route('aboutus')); ?>"><li>Nuestro club</li></a>
-                    <a href="<?php echo e(route('teams.index')); ?>"><li>Equipos</li></a>
-                    <a href="<?php echo e(route('news.index')); ?>"><li>Noticias</li></a>
+                    <li><a href="<?php echo e(route('aboutus')); ?>">Nuestro club</a></li>
+                    <li class="cursor-pointer relative" id="dropdownTeams">
+                        <p class="flex">Equipos<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M2 334.5c-3.8 8.8-2 19 4.6 26l136 144c4.5 4.8 10.8 7.5 17.4 7.5s12.9-2.7 17.4-7.5l136-144c6.6-7 8.4-17.2 4.6-26s-12.5-14.5-22-14.5l-72 0 0-288c0-17.7-14.3-32-32-32L128 0C110.3 0 96 14.3 96 32l0 288-72 0c-9.6 0-18.2 5.7-22 14.5z"/></svg></p>
+                        <?php $__currentLoopData = $teams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $team): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <section class="w-96 rounded-lg text-black border border-black absolute flex-col items-center p-4 bg-white hidden text-2xl" id="dropdown-team">
+                                <ul class="gap-6 flex flex-col">
+                                    <li><a href="<?php echo e(route('teams.show', $team->id)); ?>"><?php echo e($team->name); ?></a></li>
+                                </ul>
+                            </section>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </li>
+                    <li><a href="<?php echo e(route('news.index')); ?>">Noticias</a></li>
                     <?php if(Auth::check()): ?>
-                        <a href="<?php echo e(route('contactus')); ?>"><li>Contáctanos</li></a>
+                        <li><a href="<?php echo e(route('contactus')); ?>">Contáctanos</a></li>
                     <?php endif; ?>
                     <?php if(!Auth::check()): ?>
-                        <a href="<?php echo e(route("login")); ?>"><li>Login</li></a>
-                        <a href="<?php echo e(route("register")); ?>"><li>Registrate</li></a>
+                        <li><a href="<?php echo e(route("login")); ?>">Login</a></li>
+                        <li><a href="<?php echo e(route("register")); ?>">Registrate</a></li>
                     <?php else: ?>
-                                <li class="cursor-pointer relative" id="dropdown">
-                                    <p class="flex">¡Bienvenido, <?php echo e(Auth::user()->name); ?>! <svg class="w-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M2 334.5c-3.8 8.8-2 19 4.6 26l136 144c4.5 4.8 10.8 7.5 17.4 7.5s12.9-2.7 17.4-7.5l136-144c6.6-7 8.4-17.2 4.6-26s-12.5-14.5-22-14.5l-72 0 0-288c0-17.7-14.3-32-32-32L128 0C110.3 0 96 14.3 96 32l0 288-72 0c-9.6 0-18.2 5.7-22 14.5z"/></svg></p>
-                                    <section class="z-[20]  rounded border border-black absolute w-full flex-col items-center p-2 bg-[#fac533] hidden dropdown-user" id="dropdown-user">
-                                        <ul class="gap-4">
-                                            <?php if(Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin'): ?>
-                                                <li><small><?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('dropdown-link'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?><a href="<?php echo e(route('admin')); ?>">Administración</a> <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal68cb1971a2b92c9735f83359058f7108)): ?>
-<?php $attributes = $__attributesOriginal68cb1971a2b92c9735f83359058f7108; ?>
-<?php unset($__attributesOriginal68cb1971a2b92c9735f83359058f7108); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal68cb1971a2b92c9735f83359058f7108)): ?>
-<?php $component = $__componentOriginal68cb1971a2b92c9735f83359058f7108; ?>
-<?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
-<?php endif; ?></small></li>
-                                            <?php endif; ?>
-                                            <li><small><?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('dropdown-link'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?><a href="<?php echo e(route('profile.edit')); ?>">Editar perfil</a> <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal68cb1971a2b92c9735f83359058f7108)): ?>
-<?php $attributes = $__attributesOriginal68cb1971a2b92c9735f83359058f7108; ?>
-<?php unset($__attributesOriginal68cb1971a2b92c9735f83359058f7108); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal68cb1971a2b92c9735f83359058f7108)): ?>
-<?php $component = $__componentOriginal68cb1971a2b92c9735f83359058f7108; ?>
-<?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
-<?php endif; ?></small></li>
-                                            <li><form method="POST" action="<?php echo e(route('logout')); ?>">
-                                                    <?php echo csrf_field(); ?>
-                                                    <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
-                                                </form></li>
-                                        </ul>
-                                    </section>
-                                </li>
+                        <li class="cursor-pointer relative" id="dropdown">
+                            <p class="flex">¡Bienvenido, <?php echo e(Auth::user()->name); ?>! <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M2 334.5c-3.8 8.8-2 19 4.6 26l136 144c4.5 4.8 10.8 7.5 17.4 7.5s12.9-2.7 17.4-7.5l136-144c6.6-7 8.4-17.2 4.6-26s-12.5-14.5-22-14.5l-72 0 0-288c0-17.7-14.3-32-32-32L128 0C110.3 0 96 14.3 96 32l0 288-72 0c-9.6 0-18.2 5.7-22 14.5z"/></svg></p>
+                            <section class="z-20 rounded-lg border border-black absolute w-full flex-col items-center p-4 bg-white text-black hidden dropdown-user" id="dropdown-user">
+                                <ul class="gap-6 flex flex-col">
+                                    <?php if(in_array(Auth::user()->role, ['admin', 'superadmin'])): ?>
+                                                <li><small><a href="<?php echo e(route('admin')); ?>">Administración</a></small></li>
+                                    <?php endif; ?>
+                                    <li><small><a href="<?php echo e(route('profile.edit')); ?>">Editar perfil</a></small></li>
+                                        <li>
+                                            <form method="POST" action="<?php echo e(route('logout')); ?>">
+                                                <?php echo csrf_field(); ?>
+                                                <input class="cursor-pointer buttonRed" type="submit" value="Cerrar sesión">
+                                            </form>
+                                        </li>
+                                </ul>
+                            </section>
+                        </li>
                     <?php endif; ?>
 
                 </ul>
             </nav>
-
             <ul class="w-12 flex flex-row-reverse z-20">
                 <?php if(count($socialmedias) > 0): ?>
                     <?php $__currentLoopData = $socialmedias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $socialmedia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -72,7 +72,7 @@ class TournamentsController extends Controller
             'event' => 'required|string|max:255',
             'team_id' => 'required|integer|exists:teams,id',
             'date' => 'required|date|date_format:Y-m-d|after_or_equal:2025-01-01',
-            'time' => 'required|date_format:H:i',
+            'time' => 'required|date_format:H:i:s',
         ]);
         Tournaments::create($request->all());
         return redirect()->route('teams.show', $request->team_id)->with('status', 'Torneo creado satisfactoriamente');
