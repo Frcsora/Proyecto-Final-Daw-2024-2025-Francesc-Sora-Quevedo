@@ -9,10 +9,10 @@
                     @csrf
                     <input name="email" type="hidden" value="{{Auth::user()->email}}">
                     <input type="hidden" name="name" value="{{Auth::user()->name}}">
-                    <h2 class="text-bold text-5xl text-bold">{{Auth::user()->name}}</h2>
+                    <h2 class="text-bold text-3xl text-bold">{{Auth::user()->name}}</h2>
                     <fieldset>
-                        <label for="text">Mensaje:</label><br>
-                        <textarea name="text" class="w-[300px] md:w-[450px] 2xl:w-[700px] text-4xl"></textarea>
+                        <label for="text-base">Mensaje:</label><br>
+                        <textarea name="text" class="w-[150px] md:w-[450px] 2xl:w-[700px] text-base"></textarea>
                     </fieldset>
                     <input class="buttonBlue" type="submit" value="Enviar">
                 </form>
