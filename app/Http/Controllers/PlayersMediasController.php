@@ -76,7 +76,7 @@ class PlayersMediasController extends Controller
                 'media_id' => 'required|int|exists:medias,id',
             ]);
             $playerid = $request->player_id;
-            $media = explode('-',$request->media)[0];
+            $media = $request->media_id;
             $name = $request->name;
             $link = $request->link;
             PlayersMedias::create(['player_id'=>$playerid ,'media_id'=>$media, 'name' => $name, 'link'=>$link]);
