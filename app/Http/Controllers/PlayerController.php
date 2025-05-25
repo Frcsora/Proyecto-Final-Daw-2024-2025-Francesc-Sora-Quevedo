@@ -138,6 +138,7 @@ class PlayerController extends Controller
             session()->put('sponsors', $sponsors);
         }
         $player = Player::findOrFail($id);
+        session()->put('player_id', $id);
         $medias = PlayersMedias::where('player_id', $id)->with('medias')->get();
         $medias = SanitizeSVG::sanitizeSVG($medias);
         $tweets = TwitterHelper::getTweets();
