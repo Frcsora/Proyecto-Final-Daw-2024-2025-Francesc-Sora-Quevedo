@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PlayersMedias>
  */
-class PlayerMediasFactory extends Factory
+class PlayersMediasFactory extends Factory
 {
     /**
      * Define the model's default state.

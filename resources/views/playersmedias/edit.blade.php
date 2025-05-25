@@ -4,14 +4,13 @@
         <x-card>
             <x-slot:show></x-slot:show>
 
-
             @include('partials.errors')
             <form id="formCreateSocialMedia" method="post" action="{{route('playersmedias.update', $socialmediaEdit->id)}}">
                 @csrf
                 @method('PUT')
                 <fieldset>
                     <label for="media">Red social:</label><br>
-                    <select name="media" class="media" id="media">
+                    <select name="media_id" class="media" id="media">
 
                         @foreach($medias as $media)
                             <option value="{{$media->id}}"

@@ -8,7 +8,7 @@
 <?php $attributes = $attributes->except(\App\View\Components\Layout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($image),'imageFondo' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($imageFondo),'socialmedias' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($socialmedias),'teams' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($teams)]); ?>
-         <?php $__env->slot('title', null, []); ?> PlayersMedia <?php $__env->endSlot(); ?>
+     <?php $__env->slot('title', null, []); ?> PlayersMedia <?php $__env->endSlot(); ?>
     <main class="flex flex-col items-center">
         <?php if (isset($component)) { $__componentOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $attributes; } ?>
@@ -23,28 +23,34 @@
              <?php $__env->slot('show', null, []); ?>  <?php $__env->endSlot(); ?>
 
             <?php echo $__env->make('partials.errors', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <form id="formCreateSocialMedia" method="post" action="<?php echo e(route('playersmedias.store')); ?>">
+            <form id="formCreateSocialMedia" method="post" action="<?php echo e(route('playersmedias.update', $socialmediaEdit->id)); ?>">
                 <?php echo csrf_field(); ?>
-                <input type="hidden" value="<?php echo e(session()->get('player_id')); ?>" name="player_id">
+                <?php echo method_field('PUT'); ?>
+                <input type="hidden" name="player_id" value="<?php echo e($socialmediaEdit->player_id); ?>">
                 <fieldset>
                     <label for="media">Red social:</label><br>
                     <select name="media" class="media" id="media">
+
                         <?php $__currentLoopData = $medias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $media): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($media->id); ?>"><?php echo e($media->name); ?></option>
+                            <option value="<?php echo e($media->id); ?>"
+                                    <?php if($media->id == $socialmediaEdit->id): ?>
+                                        selected
+                                <?php endif; ?>><?php echo e($media->name); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </fieldset>
                 <fieldset>
                     <label for="name">Nombre:</label><br>
-                    <input id="name" type="text" name="name">
+                    <input id="name" type="text" name="name" value="<?php echo e($socialmediaEdit->name); ?>">
                 </fieldset>
                 <fieldset>
                     <label for="link">Link:</label><br>
-                    <input id="link" type="url" name="link">
+                    <input id="link" type="url" name="link" value="<?php echo e($socialmediaEdit->link); ?>">
                 </fieldset>
                 <input class="buttonBlue" type="submit" value="Enviar">
             </form>
             <?php echo $__env->make('partials.back', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64)): ?>
@@ -66,4 +72,4 @@
 <?php $component = $__componentOriginal1f9e5f64f242295036c059d9dc1c375c; ?>
 <?php unset($__componentOriginal1f9e5f64f242295036c059d9dc1c375c); ?>
 <?php endif; ?>
-<?php /**PATH C:\Users\DEEPGAMING\Desktop\pioesportsbueno\Proyecto-Final-Daw-2024-2025-Francesc-Sora-Quevedo\resources\views/playersmedias/create.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\DEEPGAMING\Desktop\pioesportsbueno\Proyecto-Final-Daw-2024-2025-Francesc-Sora-Quevedo\resources\views/playersmedias/edit.blade.php ENDPATH**/ ?>

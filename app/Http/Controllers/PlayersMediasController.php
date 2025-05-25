@@ -67,18 +67,20 @@ class PlayersMediasController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-        {$request->validate([
-            'name' => 'required|string|max:255',
-            'link' => 'required|url|max:255',
-            'player_id' => 'required|int|exists:players,id',
-            'media_id' => 'required|int|exists:medias,id',
-        ]);
-        $playerid = $request->player_id;
-        $media = explode('-',$request->media)[0];
-        $name = $request->name;
-        $link = $request->link;
-        PlayersMedias::create(['player_id'=>$playerid ,'media_id'=>$media, 'name' => $name, 'link'=>$link]);
-        return redirect()->route('players.show', $playerid)->with('status', 'Red social creada');
+        {
+
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'link' => 'required|url|max:255',
+                'player_id' => 'required|int|exists:players,id',
+                'media_id' => 'required|int|exists:medias,id',
+            ]);
+            $playerid = $request->player_id;
+            $media = explode('-',$request->media)[0];
+            $name = $request->name;
+            $link = $request->link;
+            PlayersMedias::create(['player_id'=>$playerid ,'media_id'=>$media, 'name' => $name, 'link'=>$link]);
+            return redirect()->route('players.show', $playerid)->with('status', 'Red social creada');
     }
 
     /**
