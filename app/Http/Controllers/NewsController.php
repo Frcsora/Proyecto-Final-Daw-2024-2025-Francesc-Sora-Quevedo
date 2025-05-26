@@ -132,12 +132,17 @@ class NewsController extends Controller
         $tags = explode("-", $request->get('taginput'));
         News::create(['created_by' => $userid, 'image' => $image, 'title' => $title, 'abstract' => $abstract, 'text' => $text]);
         $newsid = News::all()->last()->id;
+
         if(isset($tags)){
+
             $tagIDs = Tags::all('id');
             foreach ($tags as $tag) {
-                if($tag != "" && in_array($tag, $tagIDs->toArray())){
-                    NewsTags::create(['news_id' => $newsid, 'tag_id' => $tag]);
-                }
+                 foreach ($tagIDs as $tagID) {
+                     if($tag != "" && $tag == $tagID->id){
+                         NewsTags::create(['news_id' => $newsid, 'tag_id' => $tag]);
+                     }
+
+                 }
             }
         }
         $tagString = "";
@@ -267,10 +272,14 @@ class NewsController extends Controller
         NewsTags::where('news_id', $id)->delete();
 
         if(isset($tags)){
+
             $tagIDs = Tags::all('id');
             foreach ($tags as $tag) {
-                if($tag != "" && in_array($tag, $tagIDs->toArray())){
-                    NewsTags::create(['news_id' => $id, 'tag_id' => $tag]);
+                foreach ($tagIDs as $tagID) {
+                    if($tag != "" && $tag == $tagID->id){
+                        NewsTags::create(['news_id' => $id, 'tag_id' => $tag]);
+                    }
+
                 }
             }
         }
