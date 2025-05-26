@@ -24,7 +24,7 @@ services:
             APP_NAME: Laravel
             APP_ENV: local
             APP_DEBUG: true
-            APP_URL: http://piopioesports.test
+            APP_URL: npm run de
             APP_LOCALE: en
             APP_FALLBACK_LOCALE: en
             APP_FAKER_LOCALE: en_US
