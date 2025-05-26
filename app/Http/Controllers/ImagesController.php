@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Helpers\SanitizeSVG;
 use App\Models\Images;
 use App\Models\Socialmedia;
+use App\Models\Teams;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\UserValidator;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
+
 class ImagesController extends Controller
 {
     /**
@@ -15,15 +19,41 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
-        $logos = Images::where('type', 'logo')->get();
-        $fondos = Images::where('type', 'fondo')->get();
-        $socialmedias = Socialmedia::with('medias')->get();        $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-        UserValidator::validateAdmin();
-        return view('images.index', ['image'=>$image->base64,'imageFondo'=>$imageFondo->base64, 'logos'=>$logos, 'fondos'=>$fondos, 'socialmedias'=>$socialmedias]);
+        if(UserValidator::validateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            };
+            $logos = Images::where('type', 'logo')->get();
+            $fondos = Images::where('type', 'fondo')->get();
+            return view('images.index', ['teams' => $teams,'logos' => $logos, 'fondos' => $fondos, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -31,14 +61,40 @@ class ImagesController extends Controller
      */
     public function create()
     {
-        $image = Images::where('type', 'logo')
-            ->where('active', 'true')->first();
-        $imageFondo = Images::where('type', 'fondo')
-            ->where('active', 'true')->first();
-        $socialmedias = Socialmedia::with('medias')->get();
-        UserValidator::validateAdmin();
+        if(UserValidator::validateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'logo')
+                    ->where('active', 'true')->first();
+                session()->put('image', $image);
+            }
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
 
-        return view('images.create', ['image'=>$image->base64, 'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            };
+
+            return view('images.create', ['teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -46,11 +102,12 @@ class ImagesController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'name' => 'required|string|max:255',
-            'type' => 'required|string|max:255'
+            'type' => ['required', 'in:logo,fondo'],
+            'created_by' => 'required|int|exists:users,id',
+
         ]);
         $base64 = $request->image;
         $name = $request->name;
@@ -65,28 +122,32 @@ class ImagesController extends Controller
      */
     public function show($id)
     {
-        if(session()->has('image')){
-            $image = session()->get('image');
-        }else{
-            $image = Images::where('type', 'logo')
-                ->where('active', 'true')->first();
-            session()->put('image', $image);
+        if(UserValidator::validateAdmin()){
+            if(session()->has('teams')){
+                $teams = session()->get('teams');
+            }else{
+                $teams = Teams::all();
+                session()->put('teams', $teams);
+            }
+            $image = Images::findOrFail($id);
+            if(session()->has('socialmedia')){
+                $socialmedias = session()->get('socialmedia');
+            }else{
+                $socialmedias = Socialmedia::with('medias')->get();
+                $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
+                session()->put('socialmedias', $socialmedias);
+            }
+            if(session()->has('imageFondo')){
+                $imageFondo = session()->get('imageFondo');
+            }else{
+                $imageFondo = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
+            return view('images.show', ['teams' => $teams,'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
-        if(session()->has('socialmedia')){
-            $socialmedias = session()->get('socialmedia');
-        }else{
-            $socialmedias = Socialmedia::with('medias')->get();
-            $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
-            session()->put('socialmedias', $socialmedias);
+        else{
+            abort(403);
         }
-        if(session()->has('imageFondo')){
-            $imageFondo = session()->get('imageFondo');
-        }else{
-            $imageFondo = Images::where('type', 'fondo')
-                ->where('active', 'true')->first();
-        }
-        UserValidator::validateAdmin();
-        return view('images.show', ['image'=>$image->base64, 'imageFondo'=>$imageFondo->base64, 'socialmedias'=>$socialmedias]);
     }
 
     /**
@@ -94,7 +155,7 @@ class ImagesController extends Controller
      */
     public function edit(string $id)
     {
-        return redirect()->route('news.index');
+        abort(404);
     }
 
     /**
@@ -104,9 +165,11 @@ class ImagesController extends Controller
     {
         if($request->type == 'logo'){
             $logos = Images::where('type', 'logo')->get();
+
             foreach($logos as $logo){
                 if($id == $logo->id){
                     Images::findOrFail($logo->id)->update(['active' => 'true']);
+                    session()->put('image', $logo);
                 }else{
                     Images::findOrFail($logo->id)->update(['active' => 'false']);
                 }
@@ -118,6 +181,7 @@ class ImagesController extends Controller
             foreach($fondos as $fondo){
                 if($id == $fondo->id){
                     Images::findOrFail($fondo->id)->update(['active' => 'true']);
+                    session()->put('imageFondo', $fondos);
                 }else{
                     Images::findOrFail($fondo->id)->update(['active' => 'false']);
                 }
@@ -130,7 +194,7 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         Images::findOrFail($id)->delete();
         return redirect()->route('images.index')->with('status', 'Imagen eliminada');
