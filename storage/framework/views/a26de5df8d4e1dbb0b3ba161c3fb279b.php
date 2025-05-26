@@ -8,7 +8,7 @@
 <?php $attributes = $attributes->except(\App\View\Components\Layout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($image),'imageFondo' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($imageFondo),'socialmedias' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($socialmedias),'sponsors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sponsors),'teams' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($teams)]); ?>
-     <?php $__env->slot('title', null, []); ?> News <?php $__env->endSlot(); ?>
+     <?php $__env->slot('title', null, []); ?> Teams <?php $__env->endSlot(); ?>
     <?php if (isset($component)) { $__componentOriginal65e0bd0aeed8a21b598c76606db79d38 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal65e0bd0aeed8a21b598c76606db79d38 = $attributes; } ?>
 <?php $component = App\View\Components\Main::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -19,7 +19,6 @@
 <?php $attributes = $attributes->except(\App\View\Components\Main::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['tweets' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($tweets),'sponsors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($sponsors),'matchesBefore' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesBefore),'matchesAfter' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($matchesAfter)]); ?>
-         <?php $__env->slot('news', null, []); ?>   <?php $__env->endSlot(); ?>
         <?php if (isset($component)) { $__componentOriginalcee70f1acfea662afbe7691878e7b99e = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalcee70f1acfea662afbe7691878e7b99e = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.cards-div','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -30,33 +29,44 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-            <?php $__empty_1 = true; $__currentLoopData = $newsvar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $news): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                <?php if (isset($component)) { $__componentOriginal71e3226cf3fe2778b596d213467290d3 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal71e3226cf3fe2778b596d213467290d3 = $attributes; } ?>
-<?php $component = App\View\Components\Newscard::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('newscard'); ?>
+            <?php $__empty_1 = true; $__currentLoopData = $teams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $team): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                <?php if (isset($component)) { $__componentOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64 = $attributes; } ?>
+<?php $component = App\View\Components\Card::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('card'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\App\View\Components\Newscard::ignoredParameterNames()); ?>
+<?php $attributes = $attributes->except(\App\View\Components\Card::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['id' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($news->id),'fecha' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($news->created_at->format('d M Y H:m:s')),'tags' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($news->tags),'name' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($news->user->name),'title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($news->title),'img' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($news->image),'sinopsis' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($news->abstract)]); ?> <?php echo $__env->renderComponent(); ?>
+<?php $component->withAttributes([]); ?>
+                    <h2 class="text-xl md:text-2xl lg:text-4xl"><a href="<?php echo e(route('teams.show', $team->id)); ?>"><?php echo e($team->name); ?></a></h2>
+                    <p><?php echo e($team->games->name); ?></p>
+                    <?php if(Auth::check()): ?>
+                        <?php if(in_array(Auth::user()->role, ['admin', 'superadmin'])): ?>
+                            <form action="<?php echo e(route('teams.edit', $team->id)); ?>">
+                                <button title="Editar equipo" type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg></button>
+                            </form>
+                            <form method="POST" action="<?php echo e(route('teams.destroy', $team->id)); ?>">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
+                                <button title="Eliminar equipo" type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></button>
+                            </form>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-<?php if (isset($__attributesOriginal71e3226cf3fe2778b596d213467290d3)): ?>
-<?php $attributes = $__attributesOriginal71e3226cf3fe2778b596d213467290d3; ?>
-<?php unset($__attributesOriginal71e3226cf3fe2778b596d213467290d3); ?>
+<?php if (isset($__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64)): ?>
+<?php $attributes = $__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64; ?>
+<?php unset($__attributesOriginal740c66ff9bbfcb19a96a45ba2fa42d64); ?>
 <?php endif; ?>
-<?php if (isset($__componentOriginal71e3226cf3fe2778b596d213467290d3)): ?>
-<?php $component = $__componentOriginal71e3226cf3fe2778b596d213467290d3; ?>
-<?php unset($__componentOriginal71e3226cf3fe2778b596d213467290d3); ?>
+<?php if (isset($__componentOriginal740c66ff9bbfcb19a96a45ba2fa42d64)): ?>
+<?php $component = $__componentOriginal740c66ff9bbfcb19a96a45ba2fa42d64; ?>
+<?php unset($__componentOriginal740c66ff9bbfcb19a96a45ba2fa42d64); ?>
 <?php endif; ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                <h1>No hay noticias que mostrar</h1>
+                <h1>No existe ningún equipo creado</h1>
             <?php endif; ?>
-            <section>
-                <?php echo e($newsvar->links()); ?>
-
-            </section>
          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalcee70f1acfea662afbe7691878e7b99e)): ?>
@@ -88,4 +98,4 @@
 <?php unset($__componentOriginal1f9e5f64f242295036c059d9dc1c375c); ?>
 <?php endif; ?>
 
-<?php /**PATH /var/www/html/resources/views/news/index.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/html/resources/views/teams/index.blade.php ENDPATH**/ ?>
