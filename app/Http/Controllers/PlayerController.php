@@ -143,7 +143,16 @@ class PlayerController extends Controller
         $medias = SanitizeSVG::sanitizeSVG($medias);
         $tweets = TwitterHelper::getTweets();
 
-        return view('players.show', ['matchesBefore'=>$matchesBefore, 'matchesAfter' => $matchesAfter,'teams' => $teams,'sponsors'=>$sponsors, 'tweets'=>$tweets,'image' => $image->base64, 'imageFondo' =>$imageFondo->base64, 'socialmedias'=>$socialmedias, 'player'=>$player, 'medias'=>$medias]);
+        return view('players.show', ['matchesBefore'=>$matchesBefore,
+            'matchesAfter' => $matchesAfter,
+            'teams' => $teams
+            ,'sponsors'=>$sponsors,
+            'tweets'=>$tweets,
+            'image' => $image->base64,
+            'imageFondo' =>$imageFondo->base64,
+            'socialmedias'=>$socialmedias,
+            'player'=>$player,
+            'medias'=>$medias]);
     }
 
     /**
