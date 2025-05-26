@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class TwitterHelper
 {
-    public static function getTweets(int $count = 5)
+    public static function getTweets(int $count = 100)
     {
         $userName = env('TWITTER_USERNAME');
         /*return Cache::remember("tweets_{$userName}", now()->addHours(8), function () use ($userName, $count) {
