@@ -10,32 +10,32 @@ class TwitterHelper
     public static function getTweets(int $count = 100)
     {
         $userName = env('TWITTER_USERNAME');
-        /*return Cache::remember("tweets_{$userName}", now()->addHours(8), function () use ($userName, $count) {
+        return Cache::remember("tweets_{$userName}", now()->addHours(8), function () use ($userName, $count) {
+            $bearerToken = env('TWITTER_BEARER_TOKEN');
 
-        });*/
-        $bearerToken = env('TWITTER_BEARER_TOKEN');
+            $userResponse = Http::withToken($bearerToken)
+                ->get("https://api.twitter.com/2/users/by/username/{$userName}");
 
-        $userResponse = Http::withToken($bearerToken)
-            ->get("https://api.twitter.com/2/users/by/username/{$userName}");
+            if ($userResponse->failed()) {
+                return [];
+            }
 
-        if ($userResponse->failed()) {
-            return [];
-        }
+            $userId = $userResponse->json('data.id');
 
-        $userId = $userResponse->json('data.id');
+            $tweetsResponse = Http::withToken($bearerToken)
+                ->get("https://api.twitter.com/2/users/{$userId}/tweets", [
+                    'max_results' => $count,
+                    'tweet.fields' => 'created_at,text',
+                    'exclude'=>'replies'
+                ]);
 
-        $tweetsResponse = Http::withToken($bearerToken)
-            ->get("https://api.twitter.com/2/users/{$userId}/tweets", [
-                'max_results' => $count,
-                'tweet.fields' => 'created_at,text',
-                'exclude'=>'replies'
-            ]);
+            if ($tweetsResponse->failed()) {
+                return [];
+            }
 
-        if ($tweetsResponse->failed()) {
-            return [];
-        }
+            return $tweetsResponse->json('data');
+        });
 
-        return $tweetsResponse->json('data');
     }
 
 
