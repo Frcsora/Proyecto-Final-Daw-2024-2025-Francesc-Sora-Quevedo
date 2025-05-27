@@ -10,6 +10,7 @@ limpiar.ps1
 /storage/pail
 /vendor
 .env
+.env.testing
 .env.backup
 .env.production
 .phpactor.json
