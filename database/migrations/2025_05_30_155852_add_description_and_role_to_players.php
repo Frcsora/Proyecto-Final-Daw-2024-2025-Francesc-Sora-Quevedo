@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->string('description')->after('nickname');
-            $table->string('role')->after('description');
+            $table->string('description')->after('nickname')->nullable();
+            $table->string('role')->after('description')->nullable();
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->dropColumn('description')->after('nickname')->nullable();
-            $table->dropColumn('role')->after('description')->nullable();
+            $table->dropColumn('description');
+            $table->dropColumn('role');
         });
     }
 };
