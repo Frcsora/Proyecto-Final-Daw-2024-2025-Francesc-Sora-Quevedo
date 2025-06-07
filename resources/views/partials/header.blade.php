@@ -47,7 +47,7 @@
             <ul class="w-12 flex flex-row-reverse z-20">
                 @if(count($socialmedias) > 0)
                     @foreach($socialmedias as $socialmedia)
-                        <li class="z-20 w-full"><a class="z-20" href="{{$socialmedia->link}}">{!! $socialmedia->medias->svg !!}</a></li>
+                        <li class="z-20 w-full"><a class="z-20" href="{{$socialmedia->link}}" target="_blank" rel="noopener noreferrer">{!! $socialmedia->medias->svg !!}</a></li>
                     @endforeach
                 @endif
             </ul>
