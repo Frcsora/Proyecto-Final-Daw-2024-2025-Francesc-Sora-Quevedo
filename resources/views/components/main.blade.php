@@ -2,7 +2,7 @@
 <main class="flex flex-col items-center justify-start gap-2">
     @include('partials.sponsors-div')
     <section class="flex flex-col lg:flex-row items-center lg:items-start gap-4">
-        <section class="flex flex-col gap-5 text-center items-center w-full xl:w-[25%]">
+        <section class="flex flex-col gap-5 text-center items-center w-full lg:w-[25%]">
             @include('partials.patreoncard')
             <x-card>
                 <x-slot:show></x-slot:show>
@@ -23,7 +23,7 @@
                 @endisset
             </x-card>
         </section>
-        <section id="main-container" class="w-full flex flex-col lg:flex-row items-center justify-around xl:w-[50%]">{{$slot}}</section>
+        <section id="main-container" class="w-full flex flex-col lg:flex-row items-center justify-around lg:w-[50%]">{{$slot}}</section>
         @include('partials.tweets')
     </section>
     @if(!isset($news))
