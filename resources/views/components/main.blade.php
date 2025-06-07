@@ -23,7 +23,7 @@
                 @endisset
             </x-card>
         </section>
-        <section class="w-full flex flex-col lg:flex-row items-center justify-around">{{$slot}}</section>
+        <section class="w-full flex flex-col lg:flex-row items-center justify-around md:w-[50%]">{{$slot}}</section>
         @include('partials.tweets')
     </section>
     @if(!isset($news))
