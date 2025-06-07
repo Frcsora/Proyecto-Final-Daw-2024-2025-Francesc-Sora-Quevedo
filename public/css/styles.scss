@@ -57,20 +57,20 @@ button, input[type="submit"]{
     }
 }
 svg{
-    width: 45px;
-    height: 45px;
+    width: 25px;
+    height: 25px;
 }
 .sticky{
     align-self:flex-start;
 }
 @media screen and (max-width:768px){
     svg{
-        width: 30px;
+        width: 20px;
     }
 }
 @media screen and (max-widht:450px){
     svg{
-        width:15px;
+        width:8px;
     }
 }
 @keyframes LogoOut {
