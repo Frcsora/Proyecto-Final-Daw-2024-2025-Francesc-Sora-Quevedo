@@ -18,6 +18,9 @@ function convertToBase64(image){
     })
 }
 addEventListener('DOMContentLoaded', () => {
+    if(document.getElementById('tweets') && document.getElementById('main-container')){
+        document.getElementById('tweets').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
+    }
     if(document.getElementById("back")){
         document.getElementById("back").addEventListener('click', ()=>{
             history.back();
