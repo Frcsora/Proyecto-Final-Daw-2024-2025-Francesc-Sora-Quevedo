@@ -1,7 +1,7 @@
 <footer class="bg-[#fac533] w-full p-4 text-3xl md:text-md gap-4 flex flex-col items-center md:flex-row md:items:center md:justify-around">
     <section>
         <section x-data="{ open: false }">
-            <button @click="open = true" class="buttonBlue p-2">Ver Políticas</button>
+            <button @click="open = true" class="buttonBlue p-2 text-base">Ver Políticas</button>
             <section x-show="open" x-transition class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                 <section class="bg-white rounded-lg w-96 md:w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 relative">
                     <button @click="open = false"
@@ -43,7 +43,7 @@
         </section>
     </section>
     <section>
-        <nav>
+        <nav class="text-base">
             <p>Menú </p>
             <ul class="nav-list flex flex-col gap-2">
                 <a href="{{ route('aboutus') }}"><li><p>Nuestro club</p></li></a>
@@ -56,7 +56,7 @@
         </nav>
     </section>
     <section class="flex flex-col h-full justify-around items-center">
-        <small class="text-[11px]">
+        <small class="text-[11px] md:text-[13px]">
             <a href="https://piopioesports.up.railway.app/">PioPioEsports</a>
             © 2025 by
             <a href="https://www.fsoraquevedo.com"> Francesc Sorà </a>
