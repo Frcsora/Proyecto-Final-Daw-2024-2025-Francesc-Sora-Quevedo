@@ -29,7 +29,16 @@
                     <input type="file" id="imagen" name="imagen">
                     <input type="hidden" name="image" id="image">
                 </fieldset>
+                <fieldset>
+                    <label for="role">Rol:</label><br>
+                    <input type="text" id="role" name="role">
+                </fieldset>
+                <fieldset>
+                    <label for="description">Descripción</label>
+                    <input type="text" name="description" id="description">
+                </fieldset>
                 <input type="hidden" value="{{session()->get('team_id')}}" name="team_id">
+
                 <input class="buttonBlue" type="submit" value="Añadir jugador">
             </form>
         </x-card>

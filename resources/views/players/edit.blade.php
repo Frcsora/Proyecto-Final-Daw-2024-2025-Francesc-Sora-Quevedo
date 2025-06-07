@@ -37,6 +37,14 @@
                         @endforeach
                     </select>
                 </fieldset>
+                <fieldset>
+                    <label for="role">Rol:</label><br>
+                    <input type="text" id="role" name="role" value="{{$player->role}}">
+                </fieldset>
+                <fieldset>
+                    <label for="description">Descripción</label>
+                    <input type="text" name="description" id="description" value="{{$player->description}}">
+                </fieldset>
                 <input class="buttonBlue" type="submit" value="Enviar">
             </form>
             @include('partials.back')
