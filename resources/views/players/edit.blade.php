@@ -42,7 +42,7 @@
                     <input type="text" id="role" name="role" value="{{$player->role}}">
                 </fieldset>
                 <fieldset>
-                    <label for="description">Descripción</label>
+                    <label for="description">Descripción:</label><br>
                     <input type="text" name="description" id="description" value="{{$player->description}}">
                 </fieldset>
                 <input class="buttonBlue" type="submit" value="Enviar">

@@ -34,7 +34,7 @@
                     <input type="text" id="role" name="role">
                 </fieldset>
                 <fieldset>
-                    <label for="description">Descripción</label>
+                    <label for="description">Descripción:</label><br>
                     <input type="text" name="description" id="description">
                 </fieldset>
                 <input type="hidden" value="{{session()->get('team_id')}}" name="team_id">
