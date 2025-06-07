@@ -2,7 +2,7 @@
     <section class="flex justify-evenly gap-1">
         <a href="{{route('welcome')}}" class="w-24 md:w-32"><img class="w-24 md:w-32 lg:w-full logo" src="{{ $image }}" alt="Logo del equipo pio pio e-sports"></a>
         <section class="w-full hidden xl:flex justify-between items-center">
-            <nav class="w-full flex justify-center items-center lg:text-2xl 2xl:text-4xl">
+            <nav class="w-full flex justify-center items-center lg:text-2xl ">
                 <ul class="flex items-center gap-5">
                     <li><a href="{{route('aboutus')}}">Nuestro club</a></li>
                     <li class="cursor-pointer relative" id="dropdownTeams">
