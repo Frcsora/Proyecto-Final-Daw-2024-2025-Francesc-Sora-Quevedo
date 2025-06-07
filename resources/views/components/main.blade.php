@@ -1,7 +1,7 @@
 @props(['tweets', 'sponsors','matchesBefore', 'matchesAfter'])
 <main class="flex flex-col items-center justify-start gap-2">
     @include('partials.sponsors-div')
-    <section class="flex flex-col lg:flex-row items-center md:items-start gap-4">
+    <section class="flex flex-col lg:flex-row items-center lg:items-start gap-4">
         <section class="flex flex-col gap-5 text-center w-full md:w-[25%]">
             @include('partials.patreoncard')
             <x-card>
