@@ -8,6 +8,7 @@
                             class="buttonRed">
                         Cerrar
                     </button>
+                    @include('partials.linea')
                     <section class="overflow-x-hidden text-gray-800 w-full">
                         <h2 class="text-md md:text-xl lg:text-3xl font-bold mb-6 text-center">Política de Privacidad – PioPioEsports</h2>
                         <p class="text-sm text-center text-gray-500 mb-8">Última actualización: 10 de mayo de 2025</p>
