@@ -5,7 +5,7 @@
         <section class="flex flex-col gap-5 text-center w-full md:w-[25%]">
             @include('partials.patreoncard')
             <x-card>
-
+                <x-slot:show></x-slot:show>
                 <p class="text-md">Próximos encuentros</p>
                 @isset($matchesAfter)
                     @foreach($matchesAfter as $match)
@@ -14,7 +14,7 @@
                 @endisset
             </x-card>
             <x-card>
-
+                <x-slot:show></x-slot:show>
                 <p class="text-md">Últimos encuentros</p>
                 @isset($matchesBefore)
                     @foreach($matchesBefore as $match)
