@@ -2,10 +2,10 @@
 <main class="flex flex-col items-center justify-start gap-2">
     @include('partials.sponsors-div')
     <section class="flex flex-col lg:flex-row items-start gap-4">
-        <section class="flex flex-col gap-5 text-center">
+        <section class="flex flex-col gap-5 text-center w-full md:w-[25vw]">
             @include('partials.patreoncard')
             <x-card>
-                <x-slot:show></x-slot:show>
+
                 <p class="text-md">Próximos encuentros</p>
                 @isset($matchesAfter)
                     @foreach($matchesAfter as $match)
@@ -14,7 +14,7 @@
                 @endisset
             </x-card>
             <x-card>
-                <x-slot:show></x-slot:show>
+
                 <p class="text-md">Últimos encuentros</p>
                 @isset($matchesBefore)
                     @foreach($matchesBefore as $match)
