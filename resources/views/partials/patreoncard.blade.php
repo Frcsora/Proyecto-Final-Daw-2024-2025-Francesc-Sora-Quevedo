@@ -1,4 +1,4 @@
-<section class="flex flex-col w-full">
+{{--<section class="flex flex-col w-full">
     <x-card>
         <section>
             <x-slot:patreon></x-slot:patreon>
@@ -6,4 +6,6 @@
             <p class="text-lg lg:text-xl">¡Suscríbete en patreon para formar parte de algo más grande y apoyar el futuro de los eSports!</p>
         </section>
     </x-card>
-</section>
+</section> --}}
+
+<img src="{{asset('images/patreon.png')}}" alt="Banner patreon" class="w-full" target="_blank" rel="noopener noreferrer">

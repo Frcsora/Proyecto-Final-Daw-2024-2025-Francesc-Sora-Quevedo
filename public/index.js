@@ -22,9 +22,8 @@ addEventListener('DOMContentLoaded', () => {
         document.getElementById('tweets').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
     }
     if(document.getElementById('left-container') && document.getElementById('main-container') && window.innerWidth >= 768){
-        console.log("hola")
         document.getElementById('left-container').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
-        document.getElementById('left-container-top').style.height = (document.getElementById('main-container').offsetHeight * 0.6) + 'px';
+        document.getElementById('left-container-top').style.height = (document.getElementById('main-container').offsetHeight * 0.4) + 'px';
     }
     if(document.getElementById("back")){
         document.getElementById("back").addEventListener('click', ()=>{
