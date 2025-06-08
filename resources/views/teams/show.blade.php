@@ -5,9 +5,9 @@
         <x-card>
             <x-slot:show></x-slot:show>
             <h2 class="text-5xl text-bold">{{$team->name}}</h2>
-            <p>{{$team->games->name}}</p>
+            <p class="text-lg"><b>{{$team->games->name}}</b></p>
             @include('partials.linea')
-            <h2 class="text-md md:text-lg lg:text-2xl">Jugadores</h2>
+            <h2 class="text-lg lg:text-2xl">Jugadores</h2>
             <section class="flex flex-col md:flex-row md:flex-wrap gap-3">
 
                 @foreach($players as $player)
@@ -27,7 +27,7 @@
 
             @isset($tournaments)
                 @include('partials.linea')
-                <h1>Torneos</h1>
+                <h1 class="text-lg"><b>Torneos</b></h1>
                 @foreach($tournaments as $tournament)
                     <section class="flex flex-wrap gap-2">
                         <p><a href="{{route('tournaments.show', $tournament->id)}}">{{$tournament->event}}: {{$tournament->name}}.</a> Fecha de inicio: {{\Carbon\Carbon::parse($tournament->date)->format('d/m/Y')}} {{$tournament->time}} @isset($tournament->result) Posición: {{$tournament->result}} @endif</p>
@@ -51,7 +51,7 @@
             @endisset
             @include('partials.linea')
             @isset($medias)
-                <h2>Redes sociales del equipo</h2>
+                <h2 class="text-lg"><b>Redes sociales del equipo</b></h2>
                 @foreach($medias as $media)
                     <section class="flex flex-col gap-1">
                         <section class="flex flex-wrap gap-2">{{$media->name}} - <a href="{{$media->link}}" target="_blank" rel="noopener noreferrer">{!! $media->medias->svg !!}</a>

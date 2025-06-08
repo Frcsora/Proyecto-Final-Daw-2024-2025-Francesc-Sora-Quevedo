@@ -6,7 +6,7 @@
             @include('partials.patreoncard')
             <x-card>
                 <x-slot:show></x-slot:show>
-                <p class="text-md"><b>Próximos encuentros</b></p>
+                <p class="text-lg"><b>Próximos encuentros</b></p>
                 @isset($matchesAfter)
                     @foreach($matchesAfter as $match)
                         <p class="text-sm">PioPio Esports vs {{$match->rival}} {{\Carbon\Carbon::parse($match->date)->format('d/m/y')}} {{$match->time}}🔜</p>
@@ -15,7 +15,7 @@
             </x-card>
             <x-card>
                 <x-slot:show></x-slot:show>
-                <p class="text-md"><b>Últimos encuentros</b></p>
+                <p class="text-lg"><b>Últimos encuentros</b></p>
                 @isset($matchesBefore)
                     @foreach($matchesBefore as $match)
                         <p class="text-sm">PioPio Esports vs {{$match->rival}} @isset($match->result) @if($match->result == 'Victoria') ✅ @elseif($match->result == 'Empate') 🟰 @elseif($match->result == 'Derrota') ❌ @else 🔜 @endif @endisset</p>

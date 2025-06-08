@@ -2,10 +2,15 @@
     <x-slot:title>Players</x-slot:title>
     <x-main :tweets="$tweets" :sponsors="$sponsors" :matchesBefore="$matchesBefore" :matchesAfter="$matchesAfter">
         <x-card>
+            <x-slot:show></x-slot:show>
             <h3 class="text-xl md:text-2xl lg:text-4xl"><a href="{{route('players.show',$player->id)}}">{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}</a></h3>
-            <img class="rounded-full w-48" src="{{$player->image}}" alt="{{$player->name}} "{{$player->nickname}}" {{$player->surname1}} {{$player->surname2}}">
+            <img class="rounded-full w-48" src="{{$player->image}}" alt="{{$player->name}} {{$player->nickname}} {{$player->surname1}} {{$player->surname2}}">
+            @include('partials.linea')
+            <p><b>Posición:</b></p>
             <p>{{$player->role}}</p>
-            <p>{{$player->description}}</p>
+            @include('partials.linea')
+            <p><b>Descripción</b></p>
+            <p class="rounded bg-white">{{$player->description}}</p>
 
             @if(Auth::check())
                 @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
@@ -22,7 +27,7 @@
                 </form>
             @endif
             @include('partials.linea')
-            <h2>Redes sociales del jugador</h2>
+            <h2><b>Redes sociales del jugador</b></h2>
             @if(Auth::check())
 
             @endif
