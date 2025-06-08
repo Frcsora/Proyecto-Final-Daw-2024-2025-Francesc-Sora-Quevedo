@@ -1,11 +1,1 @@
-{{--<section class="flex flex-col w-full">
-    <x-card>
-        <section>
-            <x-slot:patreon></x-slot:patreon>
-            <h1 class="text-2xl lg:text-3xl">Unete a nosotros en <a href="https://www.patreon.com/PioPioeSports" target="_blank" rel="noopener noreferrer">patreon</a></h1>
-            <p class="text-lg lg:text-xl">¡Suscríbete en patreon para formar parte de algo más grande y apoyar el futuro de los eSports!</p>
-        </section>
-    </x-card>
-</section> --}}
-
-<a href="https://www.patreon.com/PioPioeSports" target="_blank" rel="noopener noreferrer"><img src="{{asset('images/patreon.png')}}" alt="Banner patreon" class="w-full"></a>
+<a href="https://www.patreon.com/PioPioeSports" target="_blank" rel="noopener noreferrer"><img src="{{asset('images/patreon.png')}}" alt="Banner patreon" class="w-full rounded-lg"></a>
