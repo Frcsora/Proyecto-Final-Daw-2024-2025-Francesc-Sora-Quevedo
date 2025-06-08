@@ -23,7 +23,9 @@
                     @endisset
                 </x-card>
             </section>
-            @include('partials.sponsors-div')
+            <section>
+                @include('partials.sponsors-div')
+            </section>
         </section>
         <section id="main-container" class="w-full flex flex-col lg:flex-row items-center justify-around lg:w-[50%]">{{$slot}}</section>
         @include('partials.tweets')
