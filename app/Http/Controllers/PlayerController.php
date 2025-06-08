@@ -205,12 +205,14 @@ class PlayerController extends Controller
     public function update($id,Request $request)
     {
         $request->validate([
-            'name' => 'string|max:255',
+            'name' => 'string|max:255|nullable',
             'created_by' => 'required|int|exists:users,id',
-            'surname1' => 'string|max:255',
+            'surname1' => 'string|max:255|nullable',
             'surname2' => 'string|max:255|nullable',
             'nickname' => 'required|string|max:255',
-            'team_id' => 'required|int|exists:teams,id',
+            'role' => 'string|max:255|nullable',
+            'description' => 'string|max:255|nullable',
+            'team_id' => 'required|integer|exists:teams,id',
             'imagen' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
         $name = $request->name;
