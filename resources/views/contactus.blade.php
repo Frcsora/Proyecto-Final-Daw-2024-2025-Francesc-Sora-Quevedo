@@ -5,7 +5,7 @@
             <x-card>
                 <x-slot:show></x-slot:show>
                 @include('partials.errors')
-                <form class="h-[70vw]" id="formMessage" action="{{route('message')}}" method="POST">
+                <form class="h-[100%]" id="formMessage" action="{{route('message')}}" method="POST">
                     @csrf
                     <input name="email" type="hidden" value="{{Auth::user()->email}}">
                     <input type="hidden" name="name" value="{{Auth::user()->name}}">
