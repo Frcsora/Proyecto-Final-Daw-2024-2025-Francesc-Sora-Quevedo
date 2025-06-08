@@ -1,9 +1,9 @@
 @props(['title','img','sinopsis','tags', 'name', 'fecha','id'])
-<div class="w-64 sm:w-full gap-3 rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-80 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
+<div class="w-64 sm:w-full shadow-md border border-gray-200 gap-3 rounded-lg before:rounded-lg tarjeta p-2 flex flex-col justify-around items-center relative before:absolute before:opacity-80 before:bg-[wheat] before:p-2 before:w-full before:h-full before:content[''] before:z-[-1]">
     <h2 class="text-lg lg:text-2xl"><a href="{{route('news.show', $id)}}">{{$title}}</a></h2>
     <small>Creado por {{$name}} el {{\Carbon\Carbon::parse($fecha)->format('d/m/y H:i')}}</small>
     <img class="rounded-lg w-80 max-h-48" src="{{$img}}" alt="{{$name}}">
-    <p class="bg-white text-base p-2">{{$sinopsis}}</p>
+    <p class="md:w-[60%] bg-white text-base p-2">{{$sinopsis}}</p>
     @if(count($tags) > 0)
         <p>
             Etiquetas:
