@@ -54,7 +54,7 @@
                 <h2>Redes sociales del equipo</h2>
                 @foreach($medias as $media)
                     <section class="flex flex-col gap-1">
-                        <section class="flex flex-wrap gap-2">{{$media->name}} - <a href="{{$media->link}}">{!! $media->medias->svg !!}</a>
+                        <section class="flex flex-wrap gap-2">{{$media->name}} - <a href="{{$media->link}}" target="_blank" rel="noopener noreferrer">{!! $media->medias->svg !!}</a>
                             @if(Auth::check())
                                 @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
                                     <form action="{{route('teamsmedias.edit', $media->id)}}">

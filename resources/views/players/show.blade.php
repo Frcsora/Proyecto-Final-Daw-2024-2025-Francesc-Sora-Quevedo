@@ -29,7 +29,7 @@
             @isset($medias)
                 @foreach($medias as $media)
                     <section class="flex gap-1">
-                        <p class="flex text-2xl">{{$media->name}} - <a href="{{$media->link}}">{!! $media->medias->svg !!}</a>
+                        <p class="flex text-2xl">{{$media->name}} - <a href="{{$media->link}}" target="_blank" rel="noopener noreferrer">{!! $media->medias->svg !!}</a>
                             @if(Auth::check())
                                 @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
 
