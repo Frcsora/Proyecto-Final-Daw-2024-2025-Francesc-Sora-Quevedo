@@ -22,6 +22,7 @@ addEventListener('DOMContentLoaded', () => {
         document.getElementById('tweets').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
     }
     if(document.getElementById('left-container') && document.getElementById('main-container') && window.innerWidth >= 768){
+        document.getElementById('left-container').style.height = document.getElementById('main-container').offsetHeight + 'px';
         document.getElementById('left-container').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
         document.getElementById('left-container-top').style.height = (document.getElementById('main-container').offsetHeight * 0.4) + 'px';
     }
