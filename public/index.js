@@ -21,11 +21,16 @@ addEventListener('DOMContentLoaded', () => {
     if(document.getElementById('tweets') && document.getElementById('main-container') && window.innerWidth >= 768){
         document.getElementById('tweets').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
     }
+    if(document.getElementById('left-container') && document.getElementById('main-container') && window.innerWidth >= 768){
+        document.getElementById('left-container').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
+        document.getElementById('left-container-top').style.height = (document.getElementById('left-container').offsetHeight * 0.6) + 'px';
+    }
     if(document.getElementById("back")){
         document.getElementById("back").addEventListener('click', ()=>{
             history.back();
         })
     }
+
     if(document.getElementById('tagdiv')){
         const children = document.getElementById("tagdiv").children;
         Array.from(children).forEach(element => {
