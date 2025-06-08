@@ -206,23 +206,21 @@ class PlayerController extends Controller
     {
         $request->validate([
             'name' => 'string|max:255|nullable',
-            'created_by' => 'required|int|exists:users,id',
             'surname1' => 'string|max:255|nullable',
             'surname2' => 'string|max:255|nullable',
             'nickname' => 'required|string|max:255',
             'role' => 'string|max:255|nullable',
             'description' => 'string|max:255|nullable',
-            'team_id' => 'required|integer|exists:teams,id',
             'imagen' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
         $name = $request->name;
-        $created_by = $request->created_by;
         $surname1 = $request->surname1;
         $surname2 = $request->surname2;
         $nickname = $request->nickname;
-        $team_id = $request->team;
+        $role = $request->role;
+        $description = $request->description;
         $image = $request->image;
-        Player::findOrFail($id)->update(['created_by' => $created_by,'name' => $name,'surname1' => $surname1, 'surname2' => $surname2,'nickname' => $nickname, 'image' => $image, 'team_id' => $team_id]);
+        Player::findOrFail($id)->update(['name' => $name,'surname1' => $surname1, 'surname2' => $surname2,'nickname' => $nickname, 'image' => $image,'role' => $role, 'description' => $description]);
         return redirect()->route('players.show', $id)->with('status', 'Jugador actualizado');
     }
 
