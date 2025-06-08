@@ -30,8 +30,5 @@
         <section id="main-container" class="w-full flex flex-col lg:flex-row items-center justify-around lg:w-[50%]">{{$slot}}</section>
         @include('partials.tweets')
     </section>
-    @if(!isset($news))
-        @include('partials.linea')
-    @endif
     @include('partials.status')
 </main>
