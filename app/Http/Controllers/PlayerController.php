@@ -210,7 +210,7 @@ class PlayerController extends Controller
             'surname2' => 'string|max:255|nullable',
             'nickname' => 'required|string|max:255',
             'role' => 'string|max:255|nullable',
-            'description' => 'string|max:255|nullable',
+            'description' => 'string|nullable',
             'imagen' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
         $name = $request->name;

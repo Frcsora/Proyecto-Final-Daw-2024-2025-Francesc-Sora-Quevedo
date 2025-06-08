@@ -25,25 +25,57 @@
         </x-card>
         <x-card>
             <x:slot:show></x:slot:show>
-            <p>Como visitante solo puedes ver las vistas principales de noticias, sobre nosotros y equipos (de primeras no hay ningún equipo creado).<br><br>
+            <section class="space-y-4 p-4 bg-gray-50 rounded-md border border-gray-200">
+                <ul class="list-disc list-inside text-sm text-gray-800 space-y-1">
+                    <li>Puede añadir y modificar contenido.</li>
+                    <li>
+                        Acceso al <strong class="font-semibold">Panel de Administración</strong> desde el mismo desplegable de usuario.
+                    </li>
+                    <li>
+                        Excepción: los jugadores se crean dentro de la vista de <strong class="font-semibold">Equipos</strong>.
+                    </li>
+                </ul>
+            </section>
 
-                Como usuario puedes además acceder a la vista de contáctanos, en la versión local el mensaje enviado no iría a ningún lugar, en la de railway me llegaría el mensaje, además, como usuario, podrás a través de un desplegable acceder al formulario para editar perfil.<br><br>
+            <section class="mt-6 p-4 bg-gray-50 rounded-md border border-gray-200 space-y-4">
+                <ul class="list-disc list-inside text-sm text-gray-800 space-y-2">
+                    <li>
+                        Los <strong class="font-semibold">tags</strong> y <strong class="font-semibold">juegos</strong> se seleccionan desde desplegables en formularios de equipos y noticias.
+                    </li>
+                    <li>
+                        Las <strong class="font-semibold">redes sociales disponibles</strong> son las que están en la tabla <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">medias</code>:
+                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                            <li>Se insertan con SVG directamente en HTML.</li>
+                            <li>Para evitar vulnerabilidades, no se permite que el usuario añada redes sociales libremente.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Noticias y equipos:
+                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                            <li>Se pueden crear y visualizar desde el menú principal.</li>
+                            <li>Desde sus vistas también se pueden añadir redes sociales asociadas.</li>
+                            <li>Un club como <strong class="font-semibold">PioPio eSports</strong> puede tener múltiples equipos, incluso en un mismo juego.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Gestión de imágenes desde el panel de administración:
+                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                            <li>Permite subir logos o fondos.</li>
+                            <li>Puede seleccionarse cuál está activa.</li>
+                            <li>Eliminar todas las imágenes puede causar errores si no hay ninguna activa, especialmente tras reiniciar sesión.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Desde la vista de un equipo:
+                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                            <li>Se pueden añadir torneos en los que participa.</li>
+                            <li>Y desde los torneos, añadir partidos.</li>
+                        </ul>
+                    </li>
+                    <li>Este manual puede visualizarse desde el panel de administración.</li>
+                </ul>
+            </section>
 
-                Como administrador podrás añadir o cambiar contenido, en el mismo desplegable encontrarás el panel de administración, que te permitirá controlar el contenido de la página, a excepción de los jugadores, que el menú para crearlos está dentro de los equipos en esta versión.<br><br>
-
-                Los tags y los juegos introducidos aparecerán en los desplegables que encontrarás en los formularios de equipos y noticias.<br><br>
-
-                Las redes sociales seleccionables son las que están en la tabla medias, ya que pongo el SVG directamente en el HTML y eso puede causar vulnerabilidades, por eso prefiero no dejar añadir redes sociales que elegir.<br><br>
-
-                Las noticias y equipos pueden ser creados y ver una vista general de todos los disponibles desde el propio menú. Desde equipos y desde jugadores se pueden añadir redes sociales pertenecientes al equipo o a los jugadores (la idea es que piopio eSports puede tener varios equipos en diferentes, o incluso en el mismo juego).<br><br>
-
-                Desde el panel de administración también se puede acceder a imágenes, desde donde se pueden añadir imágenes como logo o como fondo y luego cambiar la imagen que está activa. Eliminar todas las imágenes puede dar problemas al no encontrar en la base de datos ninguna activa (igual no saltaría el error enseguida porque el controlador que lleva a la vista cacha la imagen, pero al acabarse la sesión se quedaría sin imagen y saltaría un error 500).<br><br>
-
-                Desde la vista de un equipo concreto se pueden añadir torneos en los que participa dicho equipo, y desde la vista del torneo se pueden añadir partidos.<br><br>
-
-                Se ha añadido para poder ver este manual desde el panel de administración.
-
-            </p>
         </x-card>
     </main>
 </x-layout>

@@ -146,7 +146,7 @@ class TagsController extends Controller
         }
         $newsvar = News::whereHas('tags', function ($query) use ($id) {
             $query->where('tag_id', $id);
-        })->with('user')->paginate(4);
+        })->with('user')->paginate(3);
         $tweets = TwitterHelper::getTweets();
         $matchesBefore = Matches::whereIn('result', ['Victoria','Empate','Derrota'])
             ->orderBy('date', 'desc')
