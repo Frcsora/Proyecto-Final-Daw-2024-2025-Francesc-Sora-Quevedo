@@ -25,57 +25,81 @@
         </x-card>
         <x-card>
             <x:slot:show></x:slot:show>
-            <section class="space-y-4 p-4 bg-gray-50 rounded-md border border-gray-200">
-                <ul class="list-disc list-inside text-sm text-gray-800 space-y-1">
-                    <li>Puede añadir y modificar contenido.</li>
-                    <li>
-                        Acceso al <strong class="font-semibold">Panel de Administración</strong> desde el mismo desplegable de usuario.
-                    </li>
-                    <li>
-                        Excepción: los jugadores se crean dentro de la vista de <strong class="font-semibold">Equipos</strong>.
-                    </li>
-                </ul>
-            </section>
+            <section class="space-y-6 p-4 bg-gray-50 rounded-md border border-gray-200">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-900">Visitante</h2>
+                    <ul class="list-disc list-inside text-sm text-gray-800 mt-2 space-y-1">
+                        <li>Acceso a las vistas principales:
+                            <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                                <li>Noticias</li>
+                                <li>Sobre Nosotros</li>
+                                <li>Equipos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
 
-            <section class="mt-6 p-4 bg-gray-50 rounded-md border border-gray-200 space-y-4">
-                <ul class="list-disc list-inside text-sm text-gray-800 space-y-2">
-                    <li>
-                        Los <strong class="font-semibold">tags</strong> y <strong class="font-semibold">juegos</strong> se seleccionan desde desplegables en formularios de equipos y noticias.
-                    </li>
-                    <li>
-                        Las <strong class="font-semibold">redes sociales disponibles</strong> son las que están en la tabla <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">medias</code>:
-                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
-                            <li>Se insertan con SVG directamente en HTML.</li>
-                            <li>Para evitar vulnerabilidades, no se permite que el usuario añada redes sociales libremente.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Noticias y equipos:
-                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
-                            <li>Se pueden crear y visualizar desde el menú principal.</li>
-                            <li>Desde sus vistas también se pueden añadir redes sociales asociadas.</li>
-                            <li>Un club como <strong class="font-semibold">PioPio eSports</strong> puede tener múltiples equipos, incluso en un mismo juego.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Gestión de imágenes desde el panel de administración:
-                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
-                            <li>Permite subir logos o fondos.</li>
-                            <li>Puede seleccionarse cuál está activa.</li>
-                            <li>Eliminar todas las imágenes puede causar errores si no hay ninguna activa, especialmente tras reiniciar sesión.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Desde la vista de un equipo:
-                        <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
-                            <li>Se pueden añadir torneos en los que participa.</li>
-                            <li>Y desde los torneos, añadir partidos.</li>
-                        </ul>
-                    </li>
-                    <li>Este manual puede visualizarse desde el panel de administración.</li>
-                </ul>
-            </section>
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-900">Usuario registrado</h2>
+                    <ul class="list-disc list-inside text-sm text-gray-800 mt-2 space-y-1">
+                        <li>Acceso a todas las vistas anteriores.</li>
+                        <li>Acceso a la vista <strong class="font-semibold">Contáctanos</strong>:
+                            <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                                <li>Los mensajes llegan al correo del club</li>
+                            </ul>
+                        </li>
+                        <li>Acceso al formulario de edición de perfil mediante un menú desplegable.</li>
+                    </ul>
+                </div>
 
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-900">Administrador</h2>
+                    <ul class="list-disc list-inside text-sm text-gray-800 mt-2 space-y-2">
+                        <li>Puede añadir y modificar contenido.</li>
+                        <li>Acceso al <strong class="font-semibold">Panel de Administración</strong> desde el mismo desplegable de usuario.</li>
+                        <li>Excepción: los jugadores se crean dentro de la vista de <strong class="font-semibold">Equipos</strong>.</li>
+                        <li>
+                            <h3 class="text-base font-medium mt-2">Funcionalidades adicionales</h3>
+                            <ul class="list-disc list-inside mt-2 ml-5 space-y-2">
+                                <li>
+                                    Los <strong class="font-semibold">tags</strong> y <strong class="font-semibold">juegos</strong> se seleccionan desde desplegables en formularios de equipos y noticias.
+                                </li>
+                                <li>
+                                    Las <strong class="font-semibold">redes sociales disponibles</strong> son las que están en la tabla <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">medias</code>:
+                                    <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                                        <li>Se insertan con SVG directamente en HTML.</li>
+                                        <li>No se permite que el usuario añada redes sociales libremente.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Noticias y equipos:
+                                    <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                                        <li>Se pueden crear y visualizar desde el menú principal.</li>
+                                        <li>Desde sus vistas también se pueden añadir redes sociales asociadas.</li>
+                                        <li>Un club puede tener múltiples equipos, incluso en un mismo juego.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Gestión de imágenes desde el panel de administración:
+                                    <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                                        <li>Permite subir logos o fondos.</li>
+                                        <li>Puede seleccionarse cuál está activa.</li>
+                                        <li>Eliminar todas las imágenes puede causar errores si no hay ninguna activa.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Desde la vista de un equipo:
+                                    <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                                        <li>Se pueden añadir torneos en los que participa.</li>
+                                        <li>Y desde los torneos, añadir partidos.</li>
+                                    </ul>
+                                </li>
+                                <li>Este manual puede visualizarse desde el panel de administración.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
         </x-card>
     </main>
 </x-layout>
