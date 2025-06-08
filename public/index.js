@@ -21,9 +21,23 @@ addEventListener('DOMContentLoaded', () => {
     if(document.getElementById('tweets') && document.getElementById('main-container') && window.innerWidth >= 768){
         document.getElementById('tweets').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
     }
-    if(document.getElementById('left-container') && document.getElementById('main-container') && window.innerWidth >= 768){
-        document.getElementById('left-container').style.height = document.getElementById('main-container').offsetHeight + 'px';
-        document.getElementById('left-container').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
+    if(document.getElementById('left-container') && document.getElementById('main-container')){
+        if(window.innerWidth >= 768){
+            document.getElementById('left-container').style.height = document.getElementById('main-container').offsetHeight + 'px';
+            document.getElementById('left-container').style.maxHeight = document.getElementById('main-container').offsetHeight + 'px';
+            document.getElementById('left-container').addEventListener('resize', () => {
+                if(window.innerWidth < 768){
+                    document.getElementById('left-container').style.height = 'auto';
+                }
+            });
+        }else{
+            document.getElementById('left-container').style.height = 'auto';
+            document.getElementById('left-container').addEventListener('resize', () => {
+                if(window.innerWidth >= 768){
+                    document.getElementById('left-container').style.height = document.getElementById('main-container').offsetHeight + 'px';
+                }
+            });
+        }
     }
     if(document.getElementById("back")){
         document.getElementById("back").addEventListener('click', ()=>{
