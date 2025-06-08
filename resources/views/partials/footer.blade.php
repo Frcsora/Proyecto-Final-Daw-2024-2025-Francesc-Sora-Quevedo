@@ -69,7 +69,7 @@
         <section class="flex flex-row-reverse gap-2">
             @if(count($socialmedias) > 0)
                 @foreach($socialmedias as $socialmedia)
-                    <a href="{{$socialmedia->link}}">{!! $socialmedia->medias->svg !!}</a>
+                    <a href="{{$socialmedia->link}}" target="_blank" rel="noopener noreferrer">{!! $socialmedia->medias->svg !!}</a>
                 @endforeach
             @endif
         </section>

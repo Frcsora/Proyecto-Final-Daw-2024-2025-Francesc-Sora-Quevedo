@@ -223,7 +223,6 @@ class PlayerController extends Controller
         Player::findOrFail($id)->update(['name' => $name,'surname1' => $surname1, 'surname2' => $surname2,'nickname' => $nickname, 'image' => $image,'role' => $role, 'description' => $description]);
         return redirect()->route('players.show', $id)->with('status', 'Jugador actualizado');
     }
-
     /**
      * Remove the specified resource from storage.
      */

@@ -9,5 +9,5 @@ class Player extends Model
 {
     use HasFactory;
     protected $table = 'players';
-    protected $fillable = ["created_by", 'name', 'surname1', 'surname2', 'nickname', 'image', 'team_id'];
+    protected $fillable = ["created_by", 'name', 'surname1', 'surname2', 'nickname', 'image', 'team_id', 'role', 'description'];
 }
