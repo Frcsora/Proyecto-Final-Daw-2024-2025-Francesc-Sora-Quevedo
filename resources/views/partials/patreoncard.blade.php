@@ -1,4 +1,4 @@
-<section class="flex flex-col">
+<section class="flex flex-col w-full">
     <x-card>
         <section>
             <x-slot:patreon></x-slot:patreon>

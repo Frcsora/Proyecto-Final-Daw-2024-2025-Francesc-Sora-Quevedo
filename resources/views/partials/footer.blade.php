@@ -60,9 +60,9 @@
         <small class="text-[11px] md:text-[13px]">
             <a href="https://piopioesports.up.railway.app/">PioPioEsports</a>
             © 2025 by
-            <a href="https://www.fsoraquevedo.com"> Francesc Sorà </a>
+            <a href="https://www.fsoraquevedo.com" target="_blank" rel="noopener noreferrer"> Francesc Sorà </a>
             is licensed under
-            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">
                 CC BY-NC-ND 4.0
             </a>
         </small>
