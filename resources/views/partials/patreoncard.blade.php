@@ -8,4 +8,4 @@
     </x-card>
 </section> --}}
 
-<img src="{{asset('images/patreon.png')}}" alt="Banner patreon" class="w-full" target="_blank" rel="noopener noreferrer">
+<a href="https://www.patreon.com/PioPioeSports" target="_blank" rel="noopener noreferrer"><img src="{{asset('images/patreon.png')}}" alt="Banner patreon" class="w-full"></a>
