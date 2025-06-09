@@ -1,5 +1,5 @@
 <x-layout :image="$image" :imageFondo="$imageFondo" :socialmedias="$socialmedias" :tweets="$tweets" sponsors="$sponsors" :teams="$teams">
-    <x-slot:title>aboutus</x-slot:title>
+    <x-slot:title>manual</x-slot:title>
     <main class="flex flex-col items-center gap-4">
         <h1>Manual de Usuario</h1>
         <x-card>

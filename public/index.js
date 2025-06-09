@@ -69,12 +69,12 @@ addEventListener('DOMContentLoaded', () => {
             if(!contains(children, tagid) && target.value !== ""){
 
                 const tag = document.createElement('p');
-                tag.classList.add('rounded', 'bg-[grey]','p-2');
+                tag.classList.add('rounded', 'bg-[grey]','p-2','w-16');
                 tag.innerText = tagname;
                 tag.id = tagid;
                 const button = document.createElement('button');
                 button.innerText = 'X';
-                button.classList.add('buttonRed')
+                button.classList.add('buttonRed', "w-6", "h-6", "rounded-full", "flex", "items-center", "justify-center", "text-white", "ml-2")
                 button.addEventListener('click', () => {
                     button.parentElement.remove();
                 })
