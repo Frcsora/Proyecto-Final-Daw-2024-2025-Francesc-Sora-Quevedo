@@ -50,7 +50,6 @@ class ImagesController extends Controller
             };
             $logos = Images::where('type', 'logo')->get();
             $fondos = Images::where('type', 'fondo')->get();
-            dd($image);
             return view('images.index', ['teams' => $teams,'logos' => $logos, 'fondos' => $fondos, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
