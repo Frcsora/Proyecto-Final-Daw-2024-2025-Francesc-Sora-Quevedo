@@ -9,5 +9,5 @@ class Images extends Model
 {
     use HasFactory;
     protected $table = 'images';
-    protected $fillable = ["created_by", "base64", "name", "active"];
+    protected $fillable = ["created_by", "base64", "name", "active", "type"];
 }
