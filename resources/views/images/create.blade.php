@@ -8,7 +8,7 @@
             <form id="formImage" method="post" action="{{route('images.store')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{Auth::user()->id}}" name="created_by">
-                <fieldset id="dropeo">
+                <fieldset>
                     <label for="type">Tipo</label><br>
                     <select id="type" name="type">
                         <option value="logo">Logo</option>
@@ -19,7 +19,7 @@
                     <label for="name">Nombre</label><br>
                     <input type="text" id="name" name="name">
                 </fieldset><br>
-                <fieldset>
+                <fieldset id="dropeo">
                     <label for="image">Imagen:</label><br>
                     <input type="file" id="imagen" name="imagen" alt="imagen noticia">
                     <input type="hidden" name="image" id="image">
