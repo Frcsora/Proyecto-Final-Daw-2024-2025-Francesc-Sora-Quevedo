@@ -100,7 +100,7 @@ class SocialmediaController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'link' => 'required|url|max:255',
-            'media_id' => 'required|int|exists:medias,id',
+            'media' => 'required|int|exists:medias,id',
         ]);
         $request->validate(['media'=>'required']);
         $media = $request->media;
