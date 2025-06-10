@@ -171,7 +171,6 @@ class ImagesController extends Controller
             foreach($logos as $logo){
                 if($id == $logo->id){
                     Images::findOrFail($logo->id)->update(['active' => 'true']);
-                    dd($logo);
                     session()->put('image', $logo);
                 }else{
                     Images::findOrFail($logo->id)->update(['active' => 'false']);
@@ -184,7 +183,8 @@ class ImagesController extends Controller
             foreach($fondos as $fondo){
                 if($id == $fondo->id){
                     Images::findOrFail($fondo->id)->update(['active' => 'true']);
-                    session()->put('imageFondo', $fondos);
+
+                    session()->put('imageFondo', $fondo);
                 }else{
                     Images::findOrFail($fondo->id)->update(['active' => 'false']);
                 }
