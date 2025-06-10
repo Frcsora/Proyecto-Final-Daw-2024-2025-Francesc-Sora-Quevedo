@@ -124,13 +124,21 @@ class ImagesController extends Controller
     public function show($id)
     {
         if(UserValidator::validateAdmin()){
+            $preview = Images::findOrFail($id);
             if(session()->has('teams')){
                 $teams = session()->get('teams');
             }else{
                 $teams = Teams::all();
                 session()->put('teams', $teams);
             }
-            $image = Images::findOrFail($id);
+            if($preview->type == 'logo'){
+                $image = $preview;
+            } else if(session()->has('image')){
+                $image = session()->get('image');
+            }else{
+                $image = Images::where('type', 'fondo')
+                    ->where('active', 'true')->first();
+            }
             if(session()->has('socialmedia')){
                 $socialmedias = session()->get('socialmedia');
             }else{
@@ -138,7 +146,9 @@ class ImagesController extends Controller
                 $socialmedias = SanitizeSVG::sanitizeSVG($socialmedias);
                 session()->put('socialmedias', $socialmedias);
             }
-            if(session()->has('imageFondo')){
+            if($preview->type == 'fondo'){
+                $imageFondo = $preview;
+            }else if(session()->has('imageFondo')){
                 $imageFondo = session()->get('imageFondo');
             }else{
                 $imageFondo = Images::where('type', 'fondo')
