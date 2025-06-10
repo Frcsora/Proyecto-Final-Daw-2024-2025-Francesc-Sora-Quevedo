@@ -20,6 +20,7 @@ class ImagesController extends Controller
     public function index()
     {
         if(UserValidator::validateAdmin()){
+
             if(session()->has('teams')){
                 $teams = session()->get('teams');
             }else{

@@ -2,7 +2,7 @@
     <section class="flex justify-evenly gap-1">
         <a href="<?php echo e(route('welcome')); ?>" class="w-24 md:w-32"><img class="w-24 md:w-32 lg:w-full logo" src="<?php echo e($image); ?>" alt="Logo del equipo pio pio e-sports"></a>
         <section class="w-full hidden xl:flex justify-between items-center">
-            <nav class="w-full flex justify-center items-center lg:text-2xl 2xl:text-4xl">
+            <nav class="w-full flex justify-center items-center lg:text-2xl">
                 <ul class="flex items-center gap-5">
                     <li><a href="<?php echo e(route('aboutus')); ?>">Nuestro club</a></li>
                     <li class="cursor-pointer relative" id="dropdownTeams">
@@ -47,7 +47,7 @@
             <ul class="w-12 flex flex-row-reverse z-20">
                 <?php if(count($socialmedias) > 0): ?>
                     <?php $__currentLoopData = $socialmedias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $socialmedia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li class="z-20 w-full"><a class="z-20" href="<?php echo e($socialmedia->link); ?>"><?php echo $socialmedia->medias->svg; ?></a></li>
+                        <li class="z-20 w-full"><a class="z-20" href="<?php echo e($socialmedia->link); ?>" target="_blank" rel="noopener noreferrer"><?php echo $socialmedia->medias->svg; ?></a></li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php endif; ?>
             </ul>

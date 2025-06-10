@@ -1,13 +1,14 @@
 <footer class="bg-[#fac533] w-full p-4 text-3xl md:text-md gap-4 flex flex-col items-center md:flex-row md:items:center md:justify-around">
     <section>
         <section x-data="{ open: false }">
-            <button @click="open = true" class="buttonBlue p-2">Ver Políticas</button>
+            <button @click="open = true" class="buttonBlue p-2 text-base">Ver Políticas</button>
             <section x-show="open" x-transition class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                 <section class="bg-white rounded-lg w-96 md:w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 relative">
                     <button @click="open = false"
                             class="buttonRed">
                         Cerrar
                     </button>
+                    <?php echo $__env->make('partials.linea', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                     <section class="overflow-x-hidden text-gray-800 w-full">
                         <h2 class="text-md md:text-xl lg:text-3xl font-bold mb-6 text-center">Política de Privacidad – PioPioEsports</h2>
                         <p class="text-sm text-center text-gray-500 mb-8">Última actualización: 10 de mayo de 2025</p>
@@ -43,7 +44,7 @@
         </section>
     </section>
     <section>
-        <nav>
+        <nav class="text-base">
             <p>Menú </p>
             <ul class="nav-list flex flex-col gap-2">
                 <a href="<?php echo e(route('aboutus')); ?>"><li><p>Nuestro club</p></li></a>
@@ -56,19 +57,19 @@
         </nav>
     </section>
     <section class="flex flex-col h-full justify-around items-center">
-        <small class="text-[11px]">
+        <small class="text-[11px] md:text-[13px]">
             <a href="https://piopioesports.up.railway.app/">PioPioEsports</a>
             © 2025 by
-            <a href="https://www.fsoraquevedo.com"> Francesc Sorà </a>
+            <a href="https://www.fsoraquevedo.com" target="_blank" rel="noopener noreferrer"> Francesc Sorà </a>
             is licensed under
-            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">
                 CC BY-NC-ND 4.0
             </a>
         </small>
         <section class="flex flex-row-reverse gap-2">
             <?php if(count($socialmedias) > 0): ?>
                 <?php $__currentLoopData = $socialmedias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $socialmedia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <a href="<?php echo e($socialmedia->link); ?>"><?php echo $socialmedia->medias->svg; ?></a>
+                    <a href="<?php echo e($socialmedia->link); ?>" target="_blank" rel="noopener noreferrer"><?php echo $socialmedia->medias->svg; ?></a>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php endif; ?>
         </section>
