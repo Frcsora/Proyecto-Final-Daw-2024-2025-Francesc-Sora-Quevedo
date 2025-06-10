@@ -50,6 +50,7 @@ class ImagesController extends Controller
             };
             $logos = Images::where('type', 'logo')->get();
             $fondos = Images::where('type', 'fondo')->get();
+            dd($image);
             return view('images.index', ['teams' => $teams,'logos' => $logos, 'fondos' => $fondos, 'image'=>$image->base64,'imageFondo'=>$imageFondo->base64,'socialmedias'=>$socialmedias]);
         }
         else{
@@ -170,6 +171,7 @@ class ImagesController extends Controller
             foreach($logos as $logo){
                 if($id == $logo->id){
                     Images::findOrFail($logo->id)->update(['active' => 'true']);
+                    dd($logo);
                     session()->put('image', $logo);
                 }else{
                     Images::findOrFail($logo->id)->update(['active' => 'false']);
