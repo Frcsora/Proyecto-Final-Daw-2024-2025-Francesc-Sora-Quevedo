@@ -9,7 +9,7 @@
                 <h2>Encuentranos en nuestras redes sociales</h2><br>
                 <section class="">
                     @foreach($socialmedias as $media)
-                        <p class="text-2xl flex">{{$media->name}} - <a href="{{$media->link}}">{!! $media->medias->svg !!}</a></p><br>
+                        <p class="text-2xl flex">{{$media->name}} - <a href="{{$media->link}}" target="_blank" rel="noopener noreferrer">{!! $media->medias->svg !!}</a></p><br>
                     @endforeach
                 </section>
             </section>
