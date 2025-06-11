@@ -154,7 +154,9 @@ class PlayersMediasController extends Controller
      */
     public function destroy($id)
     {
-        PlayersMedias::findOrFail($id)->delete();
-        return redirect()->route('players.show', $id)->with('status', 'Red social borrada');
+        $player = PlayersMedias::findOrFail($id);
+        $player_id = $player->player_id;
+        $player->delete();
+        return redirect()->route('players.show', $player_id)->with('status', 'Red social borrada');
     }
 }
