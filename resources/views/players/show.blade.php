@@ -10,7 +10,7 @@
             <p>{{$player->role}}</p>
             @include('partials.linea')
             <p><b>Descripción</b></p>
-            <p class="rounded bg-white">{{$player->description}}</p>
+            <p class="rounded bg-white p-4 lg:w-[75%]">{{$player->description}}</p>
 
             @if(Auth::check())
                 @if(in_array(Auth::user()->role, ['admin', 'superadmin']))
